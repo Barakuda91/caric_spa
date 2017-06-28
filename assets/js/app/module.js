@@ -4,7 +4,8 @@
     angular
         .module("General", [
             'ngRoute',
-            'ngResource'
+            'ngResource',
+            'ngAnimate'
         ])
         .config(GeneralConfig)
         .directive('answerField', function () {

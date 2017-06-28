@@ -1,36 +1,44 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 bottom-line-x3">
-        <h3>Проставки</h3>
+        <h3>Объявления о продаже проставки</h3>
     </div>
 </div>
-<div class="row mt-5">
-    <div class="col-lg-4 col-md-3 col-sm-3 text-right">
+
+<div class="row filter-block-row">
+    <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
         Материал:
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="material" class="form-control">
-            <option value="" disabled selected>материал</option>
+        <select ng-model="material" class="form-control form-control-sm">
+            <option value="" disabled selected>Выберите</option>
             <option value="{{item.key}}" ng-repeat="item in optMaterial">{{item.value}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <input type="text" class="form-control">
+        <select ng-model="fixPoint" class="form-control form-control-sm">
+            <option value="" disabled selected>Выберите</option>
+            <option value="{{item.key}}" ng-repeat="item in optFixPoint">{{item.value}}</option>
+        </select>
     </div>
-    <div class="col-lg-4 col-md-3 col-sm-3">
+    <div class="col-lg-4 col-md-3 col-sm-3 small">
         Точек крепежа:
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+
+<div class="row filter-block-row">
+    <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
         Ширина:
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3">
-        <input type="text">
+    <div class="col-lg-2 col-md-2 col-sm-2">
+        <input type="text" class="form-control form-control-sm">
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
-        <input type="text">
+    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+        <select ng-model="pcd" class="form-control form-control-sm">
+            <option value="" disabled selected>Выберите</option>
+            <option value="{{item.key}}" ng-repeat="item in optPCD">{{item.value}}</option>
+        </select>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3">
+    <div class="col-lg-4 col-md-4 col-sm-4 small">
         Диаметр окружности:
     </div>
 </div>

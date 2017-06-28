@@ -34,6 +34,7 @@ html{
 body{
     font-family:"Trebuchet MS", Arial, sans-serif;
     font-size: 1.6rem;
+    background-color: #f7f7f7;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -87,8 +88,22 @@ fieldset[disabled] .btn-orange.active {
     color: #FF7200;
     background-color: #ffffff;
 }
-
-
+.btn-full {
+    padding-right: 0;
+}
+.btn-head-block {
+    background: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    display: block;
+    margin-right: -14px;
+    color: #FF7200;
+}
+.btn-head-block:hover {
+    background: #ccc;
+    color: #FF7200;
+    border: 1px solid #FF7200;
+}
 
 /*HEADER*/
 .top_line_wrap{
@@ -190,7 +205,11 @@ fieldset[disabled] .btn-orange.active {
     margin: 2rem 0;
 
 }
-
+.form-control.form-control-sm {
+    height: 25px;
+    padding: 3px 6px;
+    font-size: 12px;
+}
 .list-custom ul{
     margin: 2rem 0;
 }
@@ -211,6 +230,7 @@ fieldset[disabled] .btn-orange.active {
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     border:1px solid #ccc;
+    background-color: #fff;
 }
 .logo_block a:hover{
     /*    -webkit-transform: scale(1.1);
@@ -237,101 +257,6 @@ fieldset[disabled] .btn-orange.active {
 .logo_block_arrow_right:hover, .logo_block_arrow_left:hover{
     color: #a7a7a7;
     cursor: pointer;
-}
-
-.logo_block a.ac{
-    background:url("/images/logos_light_100_list.png") 0 0 no-repeat;;
-}
-.logo_block a.acura{
-    background:url("/images/logos_light_100_list.png") -10rem 0 no-repeat;;
-}
-.logo_block a.audi{
-     background:url("/images/logos_light_100_list.png") -20rem 0 no-repeat;;
- }
-.logo_block a.aromeo{
-    background:url("/images/logos_light_100_list.png") -30rem 0 no-repeat;;
-}
-.logo_block a.alpina{
-    background:url("/images/logos_light_100_list.png") -40rem 0 no-repeat;;
-}
-.logo_block a.as_martin{
-    background:url("/images/logos_light_100_list.png") -50rem 0 no-repeat;;
-}
-.logo_block a.bmw{
-    background:url("/images/logos_light_100_list.png") -60rem 0 no-repeat;;
-}
-.logo_block a.bentley{
-    background:url("/images/logos_light_100_list.png") -70rem 0 no-repeat;;
-}
-.logo_block a.bjc{
-    background:url("/images/logos_light_100_list.png") -80rem 0 no-repeat;;
-}
-.logo_block a.tatra{
-    background:url("/images/logos_light_100_list.png") -90rem 0 no-repeat;;
-}
-
-
-.logo_block a.bugatti{
-    background:url("/images/logos_light_100_list.png") 0 -10rem no-repeat;;
-}
-.logo_block a.venturi{
-    background:url("/images/logos_light_100_list.png") -10rem -10rem no-repeat;;
-}
-.logo_block a.wall{
-    background:url("/images/logos_light_100_list.png") -20rem -10rem no-repeat;;
-}
-.logo_block a.byd{
-    background:url("/images/logos_light_100_list.png") -30rem -10rem no-repeat;;
-}
-.logo_block a.cadilac{
-    background:url("/images/logos_light_100_list.png") -40rem -10rem no-repeat;;
-}
-.logo_block a.chana{
-    background:url("/images/logos_light_100_list.png") -50rem -10rem no-repeat;;
-}
-.logo_block a.shkoda{
-    background:url("/images/logos_light_100_list.png") -60rem -10rem no-repeat;;
-}
-.logo_block a.suzuki{
-    background:url("/images/logos_light_100_list.png") -70rem -10rem no-repeat;;
-}
-.logo_block a.chevrolet{
-    background:url("/images/logos_light_100_list.png") -80rem -10rem no-repeat;;
-}
-.logo_block a.volvo{
-    background:url("/images/logos_light_100_list.png") -90rem -10rem no-repeat;;
-}
-
-
-.logo_block a.daimler{
-    background:url("/images/logos_light_100_list.png") 0 -20rem no-repeat;;
-}
-.logo_block a.daikin{
-    background:url("/images/logos_light_100_list.png") -10rem -20rem no-repeat;;
-}
-.logo_block a.eagle{
-    background:url("/images/logos_light_100_list.png") -20rem -20rem no-repeat;;
-}
-.logo_block a.ford{
-    background:url("/images/logos_light_100_list.png") -30rem -20rem no-repeat;;
-}
-.logo_block a.ferrary{
-    background:url("/images/logos_light_100_list.png") -40rem -20rem no-repeat;;
-}
-.logo_block a.ducati{
-    background:url("/images/logos_light_100_list.png") -50rem -20rem no-repeat;;
-}
-.logo_block a.iveco{
-    background:url("/images/logos_light_100_list.png") -60rem -20rem no-repeat;;
-}
-.logo_block a.fiat{
-    background:url("/images/logos_light_100_list.png") -70rem -20rem no-repeat;;
-}
-.logo_block a.chrisler{
-    background:url("/images/logos_light_100_list.png") -80rem -20rem no-repeat;;
-}
-.logo_block a.geely{
-    background:url("/images/logos_light_100_list.png") -90rem -20rem no-repeat;;
 }
 
 .footer_wrap{
@@ -686,5 +611,35 @@ ul#main-line-menu li.active a {
     color: #ffffff;
 }
 
+.filter-block-row {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.addv-small-block-row {
+    margin-bottom: 20px;
+}
+.imput-half {
+    width: 48% !important;
+    display: inline-block;
+}
+.vcenter{
+    top: 2px;
+}
 
+.modal-shadow {
+    z-index: 2;
+    background-color: rgba(0, 0, 0 , 0.32);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
 
+.modal-animation { -webkit-transition: 0.35s linear all;  transition: 0.35s linear all;  }
+.modal-animation.ng-enter { margin-top: -300px; }        /* начало анимации появившегося элемента - enter */
+.modal-animation.ng-enter.ng-enter-active { margin-top: 30px; } /* окончание анимации */
+.modal-animation.ng-leave { margin-top: 30px; }        /* начало анимации исчезающего элемента - leave */
+.modal-animation.ng-leave.ng-leave-active { margin-top: 1000px;  } /* окончание анимации */

@@ -16,8 +16,9 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "angular": "^*",
+    "angular": "*",
     "angular-route": "*",
-    "angular-resource": "*"
+    "angular-resource": "*",
+    "angular-animate": "*"
   }
 }
