@@ -18,7 +18,7 @@ head
   base(href="/")
 doctype html
 
-html(data-ng-app='General' ng-controller="IndexController")
+html(data-ng-app='General')
   body
     block body
 
@@ -50,15 +50,16 @@ html(data-ng-app='General' ng-controller="IndexController")
     script(src="/vendor/angular-resource/angular-resource.min.js")
     script(src="/vendor/angular-route/angular-route.min.js")
     script(src="/vendor/angular-animate/angular-animate.min.js")
+    script(src="/vendor/angular-middleware/dist/angular-middleware.min.js")
     script(src="/vendor/bootstrap/dist/js/bootstrap.min.js")
     script(src="https://use.fontawesome.com/44919449a8.js")
     // SCRIPTS
     script(src="/js/dependencies/sails.io.js")
     script(src="/js/app/module.js")
-    script(src="/js/app/controllers/AdverdController.js")
-    script(src="/js/app/controllers/AdwerdController.js")
+    script(src="/js/app/controllers/AdvertController.js")
     script(src="/js/app/controllers/IndexController.js")
     script(src="/js/app/controllers/ListController.js")
+    script(src="/js/app/services.js")
     // SCRIPTS END
 
     div(class="footer_wrap")

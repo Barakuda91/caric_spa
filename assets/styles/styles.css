@@ -34,7 +34,7 @@ html{
 body{
     font-family:"Trebuchet MS", Arial, sans-serif;
     font-size: 1.6rem;
-    background-color: #f7f7f7;
+    background-color: #f1f1f1;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -223,7 +223,7 @@ fieldset[disabled] .btn-orange.active {
 
 /*Gallery*/
 
-.logo_block a{
+.addv-small-block {
     display:block;
     height: 18rem;
     width: 18rem;
@@ -231,14 +231,54 @@ fieldset[disabled] .btn-orange.active {
     transition: all 0.3s ease-out;
     border:1px solid #ccc;
     background-color: #fff;
+    position: relative;
+    cursor: pointer;
 }
-.logo_block a:hover{
-    /*    -webkit-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        transform: scale(1.1);*/
-    box-shadow: 5px 5px 5px 5px #ccc;
+.addv-small-block .image{
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 85%;
+}
+.addv-small-block .image:hover{
+    border:1px solid #ccc;
+    height: 120%;
+    z-index: 2;
+    width: 120%;
+    left: -10%;
+    top: -10%;
+}
+.addv-small-block .info{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.addv-small-block .params {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    text-align: left;
+    padding-left: 5px;
+}
+.addv-small-block .price {
+    text-align: right;
+    right: 10px;
+    font-size: larger;
+    font-weight: bold;
+    color: #ff7200;
+    text-shadow: 0px 0px 5px white;
+    position: relative;
+    z-index: 1;
+}
+/*.addv-small-block:hover{*/
+    /*!*    -webkit-transform: scale(1.1);*/
+        /*-ms-transform: scale(1.1);*/
+        /*transform: scale(1.1);*!*/
+    /*box-shadow: 5px 5px 5px 5px #ccc;*/
 
-}
+/*}*/
 .logo_block_arrow_right, .logo_block_arrow_left{
     display: inline-block;
     position: absolute;
@@ -643,3 +683,9 @@ ul#main-line-menu li.active a {
 .modal-animation.ng-enter.ng-enter-active { margin-top: 30px; } /* окончание анимации */
 .modal-animation.ng-leave { margin-top: 30px; }        /* начало анимации исчезающего элемента - leave */
 .modal-animation.ng-leave.ng-leave-active { margin-top: 1000px;  } /* окончание анимации */
+
+.content_block {
+    border: 1px solid #d9d9d9;
+    background-color: #fff;
+    margin: 10px auto;
+}

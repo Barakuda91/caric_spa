@@ -19,6 +19,7 @@
     "angular": "*",
     "angular-route": "*",
     "angular-resource": "*",
-    "angular-animate": "*"
+    "angular-animate": "*",
+    "angular-middleware": "^2.1.9"
   }
 }

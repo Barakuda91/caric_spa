@@ -4,6 +4,7 @@
     angular
         .module("General", [
             'ngRoute',
+            'ngRoute.middleware',
             'ngResource',
             'ngAnimate'
         ])
@@ -12,13 +13,27 @@
             var el = {
                 scope: true, //чтобы не засорять родительский скоп
                 templateUrl: '/templates/ad-small-block.html'
-            }
+            };
             console.log(el);
             return el;
         });
 
-    GeneralConfig.$inject = ['$routeProvider', '$locationProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
-    function GeneralConfig ($routeProvider, $locationProvider) {
+
+    GeneralConfig.$inject = ['$routeProvider', '$locationProvider','$middlewareProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
+    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider) {
+        console.log('GET GeneralModule');
+        $middlewareProvider.map({
+            'some': function someMiddleware() {
+                console.log('GET middleware.some');
+                var _this = this;
+                io.socket.post('/api/localization', {}, function (resData, jwres) {
+                    window.localization_items = resData[0];
+                    _this.next();
+                })
+
+            }
+        });
+
         $locationProvider
             .html5Mode({
                 enabled: true,
@@ -27,28 +42,37 @@
 
         $routeProvider
             .when('/', {
+                templateUrl: 'view/index.html',
                 controller: 'IndexController',
-                templateUrl: 'view/index.html'
+                controllerAs: 'index',
+                middleware: 'some'
             })
             .when('/list/:type', {
                 controller: 'ListController',
                 templateUrl: '/view/list/index.html'
             })
-            .when('/adverd/wheel/:id', {
-                controller: 'AdwerdController',
+            .when('/advert/wheel/:id', {
+                controller: 'AdvertController',
                 templateUrl: 'view/index.html'
             })
-            .when('/adverd/tyre/:id', {
-                controller: 'AdwerdController',
+            .when('/advert/tyre/:id', {
+                controller: 'AdvertController',
                 templateUrl: 'view/index.html'
             })
-            .when('/adverd/space/:id', {
-                controller: 'AdwerdController',
+            .when('/advert/space/:id', {
+                controller: 'AdvertController',
                 templateUrl: 'view/index.html'
             })
-            .when('/adverd/my/', {
-                controller: 'AdwerdController',
+            .when('/advert/my/', {
+                controller: 'AdvertController',
                 templateUrl: 'view/index.html'
+
+            })
+            .when('/advert/add/', {
+                controller: 'AdvertController',
+                controllerAs: 'advert',
+                middleware: 'some',
+                templateUrl: '/view/adv/add.html'
             })
             .when('/user/settings', {
                 controller: 'IndexController',
@@ -61,10 +85,6 @@
             .when('/user/signup', {
                 controller: 'IndexController',
                 templateUrl: 'view/index.html'
-            })
-            .when('/adverd/new', {
-                controller: 'AdwerdController',
-                templateUrl: '/view/index.html'
             })
             .otherwise({
                 redirectTo: '/'

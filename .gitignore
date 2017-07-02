@@ -67,6 +67,7 @@ config/local.js
 ################################################
 
 node_modules
+assets/vendor
 bower_components
 
 

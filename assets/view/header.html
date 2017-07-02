@@ -7,13 +7,26 @@
                     <div class="form-group"></div>
                     <div class="inline">
                         <div class="logo h2 no-margin"><a href="/">Carick.com</a></div>
-                        <div class="slogan text-right text-uppercase">Диски и шины Украины</div>
+                        <div class="slogan text-right text-uppercase">{{_.LOGO_TAGLINE[lang]}}</div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 text-right text-xs-center text-xxs-center">
                     <div class="form-group"></div>
-                    <button type="button" class="btn btn-orange btn-lg" ng-click="modalLoginOpen()">
-                        Вход\Регистрация{{modal.login}}
+                    lang = {{lang}}
+                    <button type="button" class="btn btn-sm"  ng-click="changelang('ru')">
+                        ru
+                    </button>
+
+                    <button type="button" class="btn btn-sm" ng-click="changelang('ua')">
+                        ua
+                    </button>
+
+                    <button type="button" class="btn btn-sm" ng-click="changelang('en')">
+                        en
+                    </button>
+
+                    <button type="button" class="btn btn-orange btn-lg" ng-click="index.modalLoginOpen()">
+                        {{_.LOGIN_BUTTON_TITLEE[lang]}}
                     </button>
                     <div class="form-group main-logined-dropdawn"></div>
                 </div>
