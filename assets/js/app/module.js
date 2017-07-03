@@ -49,7 +49,9 @@
             })
             .when('/list/:type', {
                 controller: 'ListController',
-                templateUrl: '/view/list/index.html'
+                templateUrl: '/view/list/index.html',
+                controllerAs: 'list',
+                middleware: 'some'
             })
             .when('/advert/wheel/:id', {
                 controller: 'AdvertController',

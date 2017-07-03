@@ -190,8 +190,8 @@ module.exports = {
                 },
                 SEARCH:{
                     ru: 'поиск',
-                    en: 'пошук',
-                    ua: 'search'
+                    en: 'search',
+                    ua: 'пошук'
                 },
                 WHEELS_ON_SALE: {
                     ru: 'диски в продаже',

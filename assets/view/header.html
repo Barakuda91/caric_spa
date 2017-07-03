@@ -12,16 +12,15 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 text-right text-xs-center text-xxs-center">
                     <div class="form-group"></div>
-                    lang = {{lang}}
-                    <button type="button" class="btn btn-sm"  ng-click="changelang('ru')">
+                    <button type="button" class="btn btn-sm"  ng-class="localizationButton.ru" ng-click="changelang('ru')">
                         ru
                     </button>
 
-                    <button type="button" class="btn btn-sm" ng-click="changelang('ua')">
+                    <button type="button" class="btn btn-sm" ng-class="localizationButton.ua" ng-click="changelang('ua')">
                         ua
                     </button>
 
-                    <button type="button" class="btn btn-sm" ng-click="changelang('en')">
+                    <button type="button" class="btn btn-sm" ng-class="localizationButton.en" ng-click="changelang('en')">
                         en
                     </button>
 
