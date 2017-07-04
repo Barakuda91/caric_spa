@@ -21,19 +21,19 @@
             $rootScope.lang = lang;
         };
 
-        console.log($rootScope._,$rootScope)
+        console.log($rootScope._['QWERTY'],$rootScope)
         $rootScope.modal = {
             login: false
         };
         this.modalOn = false;
 
 
-        this.modalLoginOpen = function() {
+        $rootScope.modalLoginOpen = function() {
             $rootScope.modalWindowClass = 'modal-shadow';
             $rootScope.modal.login = true;
         };
 
-        this.modalLoginClose = function() {
+        $rootScope.modalLoginClose = function() {
             $rootScope.modal.login = false;
             $rootScope.modalWindowClass = ''
         };

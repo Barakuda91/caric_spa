@@ -4,13 +4,27 @@
     function Service() {
 
         this.getLocalizator = function() {
-                return window.localization_items
+            if (!window.localization_items) return;
+
+
+            var currentObject = window.localization_items; //{};
+            currentObject = new Proxy(currentObject, {
+                get: function(target, phrase) {
+                    if (phrase in target) {
+                        return target[phrase];
+                    } else {
+                        return {ru:phrase,en:phrase,ua:phrase};
+                    }
+                }
+            })
+
+            return currentObject;
         };
 
         this.getLocalizationButton = function(lang)
         {
             var e={en:'',ru:'',ua:''}
-            e[lang] = 'btn-success';
+            e[lang] = 'btn-orange';
             return e;
         };
     }

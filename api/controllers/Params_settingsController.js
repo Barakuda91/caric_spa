@@ -174,19 +174,69 @@ module.exports = {
                     ua: 'диски і шини з усієї країни'
                 },
                 INDEX_TAGLINE: {
-                    ru: 'Диски Это 80% Вида Автомобиля (с) Генри Форд',
-                    en: 'Machinery was invented by labor for labor-serving purposes. The wheel is the basis of the machine. (s) by Henry Ford',
+                    ru: 'диски Это 80% Вида Автомобиля (с) Генри Форд',
+                    en: 'machinery was invented by labor for labor-serving purposes. The wheel is the basis of the machine. (s) by Henry Ford',
                     ua: 'диски це 80% зовнiшного вигляду автiвки (с) Генрі Форд'
                 },
                 PLEASE_SELECT: {
-                    ru: 'Выберите',
-                    en: 'Please Select',
-                    ua: 'Виберіть'
+                    ru: 'выберите',
+                    en: 'please Select',
+                    ua: 'виберіть'
                 },
-                LOGIN_BUTTON_TITLEE:{
-                    ru: 'Вход\Регистрация',
-                    en: 'Login\Registration',
-                    ua: 'Вхід\Реєстрація'
+                ENTER:{
+                    ru: 'вход',
+                    en: 'enter',
+                    ua: 'вхiд'
+                },
+                FORGOT_PASSWORD:{
+                    ru: 'забыли пароль?',
+                    en: 'forgot password?',
+                    ua: 'забули пароль?'
+                },
+                PASSWORD:{
+                    ru: 'пароль',
+                    en: 'password',
+                    ua: 'пароль'
+                },
+                USERNAME:{
+                    ru: 'имя пользователя',
+                    en: 'username',
+                    ua: 'iм\'я користувача'
+                },
+                REPEAT:{
+                    ru: 'повторите',
+                    en: 'repeat',
+                    ua: 'повторiть'
+                },
+                EMAIL:{
+                    ru: 'E-mail',
+                    en: 'E-mail',
+                    ua: 'E-mail'
+                },
+                LOGIN:{
+                    ru: 'вход',
+                    en: 'login',
+                    ua: 'вхід'
+                },
+                REGISTRATION:{
+                    ru: 'регистрация',
+                    en: 'registration',
+                    ua: 'реєстрація'
+                },
+                TO_REGISTER:{
+                    ru: 'загеристрироваться',
+                    en: 'to register',
+                    ua: 'зареєструватися'
+                },
+                ALREDY_EXISTS:{
+                    ru: 'уже существует',
+                    en: 'already exists',
+                    ua: 'вже існує'
+                },
+                SEND:{
+                    ru: 'выслать',
+                    en: 'send',
+                    ua: 'вислати'
                 },
                 SEARCH:{
                     ru: 'поиск',
