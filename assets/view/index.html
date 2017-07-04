@@ -79,8 +79,8 @@
                             {{_[block.title][lang]}}
                         </a>
                     </div>
-                    <div ng-repeat="(j,el) in block.adverds" class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                        <div class="addv-small-block inline main-auto-img" >
+                    <div ng-repeat="(j,el) in block.adverds" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xxs-6 text-center">
+                        <div ng-if="windowWidth >= index.screenWidthData[j]" class="addv-small-block inline main-auto-img" >
                             <div data-id="{{el.id}}" class="info">
                                 <div class="price">{{el.price}}</div>
                                 <div class="params">{{el.params[0]}} {{el.params[1]}} {{el.params[2]}}</div></div>
