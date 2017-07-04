@@ -64,7 +64,7 @@
                 middleware: 'some'
             })
             .when('/list/:type', {
-                controller: 'IndexController,ListController',
+                controller: 'IndexController',
                 templateUrl: '/view/list/index.html',
                 controllerAs: 'list',
                 middleware: 'some'
