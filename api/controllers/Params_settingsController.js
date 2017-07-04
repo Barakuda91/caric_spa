@@ -193,10 +193,20 @@ module.exports = {
                     en: 'forgot password?',
                     ua: 'забули пароль?'
                 },
+                FORGOT_PASSWORD_TEXT:{
+                    ru: 'укажите Email, который был указан при регистрации',
+                    en: 'enter the email that you provided during registration',
+                    ua: 'вкажіть Email, який був вказаний при реєстрації'
+                },
                 PASSWORD:{
                     ru: 'пароль',
                     en: 'password',
                     ua: 'пароль'
+                },
+                REMEMBER_ME:{
+                    ru: 'Запомнить меня',
+                    en: '',
+                    ua: ''
                 },
                 USERNAME:{
                     ru: 'имя пользователя',
@@ -217,6 +227,11 @@ module.exports = {
                     ru: 'вход',
                     en: 'login',
                     ua: 'вхід'
+                },
+                RECOLLECT:{
+                    ru: 'вспомнить',
+                    en: 'recollect',
+                    ua: 'згадати'
                 },
                 REGISTRATION:{
                     ru: 'регистрация',

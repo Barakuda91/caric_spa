@@ -3,17 +3,17 @@
 
     function Service() {
 
-        this.getLocalizator = function() {
+        this.getLocalizator = function($rootScope) {
             if (!window.localization_items) return;
-
-
-            var currentObject = window.localization_items; //{};
+            var currentObject = window.localization_items;
             currentObject = new Proxy(currentObject, {
                 get: function(target, phrase) {
                     if (phrase in target) {
-                        return target[phrase];
+                        return (function($rootScope){
+                            return target[phrase][$rootScope.lang];
+                        })($rootScope);
                     } else {
-                        return {ru:phrase,en:phrase,ua:phrase};
+                        return phrase;
                     }
                 }
             })

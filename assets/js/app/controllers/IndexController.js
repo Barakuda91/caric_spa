@@ -8,37 +8,63 @@
         console.log('GET IndexController');
         var _this = this;
 
-        $rootScope._ = Service.getLocalizator();
+        $rootScope.lang = $rootScope.lang || 'ru';
+        $rootScope._ = Service.getLocalizator($rootScope);
         $scope.$watch('lang',function(newVal, oldVal){
             if (newVal === oldVal) {
                 return;
             };
             $rootScope.localizationButton = Service.getLocalizationButton($rootScope.lang)
         });
-        $rootScope.lang = $rootScope.lang || 'ru';
         $rootScope.localizationButton = Service.getLocalizationButton($rootScope.lang);
         $rootScope.changelang = function(lang) {
             $rootScope.lang = lang;
         };
 
-        console.log($rootScope._['QWERTY'],$rootScope)
+/*--- настройки модалок START ---*/
         $rootScope.modal = {
-            login: false
+            login: {
+                open: false,
+                loginOn: true,
+                forgotOn: false
+            }
         };
-        this.modalOn = false;
 
-
-        $rootScope.modalLoginOpen = function() {
+        $rootScope.modalLoginOpen = function () {
             $rootScope.modalWindowClass = 'modal-shadow';
-            $rootScope.modal.login = true;
+            $rootScope.modal.login.open = true;
         };
 
-        $rootScope.modalLoginClose = function() {
-            $rootScope.modal.login = false;
+        $rootScope.modalLoginClose = function () {
+            $rootScope.modal.login.open = false;
             $rootScope.modalWindowClass = ''
         };
 
+        $rootScope.modelLoginSwitch = function (type) {
+            if (type == 'login')
+                $rootScope.modal.login.loginOn = true;
+            else
+                $rootScope.modal.login.loginOn = false;
+        }
 
+        $rootScope.modelLoginForgot = function () {
+            $rootScope.modal.login.forgotOn = !$rootScope.modal.login.forgotOn;
+        }
+        // функция авторизаци
+        // регистрации
+        // восстановления пароля
+        $rootScope.loginFormFunction = function(type) {
+
+            console.log($rootScope.modal.form[type])
+            io.socket.post('/api/localization', {}, function (resData, jwres) {
+                window.localization_items = resData[0];
+                _this.next();
+            })
+
+
+
+        };
+/*--- настройки модалок END ---*/
         var w = angular.element(window);
         $scope.$watch(
             function () {

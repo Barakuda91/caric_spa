@@ -8,34 +8,43 @@
             </div>
             <div class="modal-body">
                 <div class="panel panel-login no-margin-bottom">
+                    <!-- Navigation -->
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-6">
-                                <a href="#" class="active" id="login-form-link">{{_.LOGIN[lang]}}</a>
+                                <a ng-click="modelLoginSwitch('login')">{{_.LOGIN}}</a>
                             </div>
                             <div class="col-xs-6">
-                                <a href="#" id="register-form-link">{{_.REGISTRATION[lang]}}</a>
+                                <a ng-click="modelLoginSwitch('register')">{{_.REGISTRATION}}</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Navigation END-->
+
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <form id="login-form" action="" method="post" role="form" style="display: block;">
+                                <!-- Login -->
+                                <form name="login" ng-show="modal.login.loginOn">
                                     <div class="form-group">
-                                        <input type="text" name="username" id="log-email" tabindex="1" class="form-control" placeholder="{{_.EMAIL[lang]}}" value="">
+                                        <input type="email" name="email" required min-chars-length="5" ng-model="modal.form.login.email" ng-model="email" class="form-control" placeholder="{{_.EMAIL}}" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="log-password" tabindex="2" class="form-control" placeholder="{{_.PASSWORD[lang]}}">
+                                        <input type="password" name="password" required min-chars-length="6" ng-model="password" ng-model="modal.form.login.password" class="form-control" placeholder="{{_.PASSWORD}}">
                                     </div>
-                                    <!--<div class="form-group text-center">
-                                        <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-                                        <label for="remember"> Запомнить меня</label>
-                                    </div>-->
+                                    <div class="form-group text-center">
+                                        <input type="checkbox" id="remember" ng-model="modal.form.login.remember">
+                                        <label for="remember">{{_.REMEMBER_ME}}</label>
+                                    </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-orange" value="{{_.ENTER[lang]}}">
+                                                <input
+                                                        type="submit"
+                                                        ng-click="loginFormFunction('login')"
+                                                        class="form-control btn btn-orange"
+                                                        ng-disabled="login.password.$valid == false || login.email.$valid == false"
+                                                        value="{{_.ENTER}}">
                                             </div>
                                         </div>
                                     </div>
@@ -43,7 +52,20 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="javascript:void(0);" tabindex="5" id="forgot-password-link" class="forgot-password">{{_.FORGOT_PASSWORD[lang]}}</a>
+                                                    <a ng-click="modelLoginForgot('open')" class="forgot-password">{{_.FORGOT_PASSWORD}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="modal.login.forgotOn">
+                                        {{_.FORGOT_PASSWORD_TEXT}}
+                                        <div class="form-group">
+                                            <input class="form-control" ng-model="modal.form.forgot.email" placeholder="{{_.EMAIL}}" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-offset-3">
+                                                    <input type="submit" ng-click="loginFormFunction('forgot')" class="form-control btn btn-orange" value="{{_.RECOLLECT}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -52,48 +74,34 @@
                                         <div id="error-log-block"></div>
                                     </div>
                                 </form>
-                                <form id="register-form" action="" method="post" role="form" style="display: none;">
+                                <!-- Login END -->
+
+                                <!-- Registration -->
+                                <div ng-hide="modal.login.loginOn" id="register-form">
                                     <div class="form-group">
-                                        <input type="text" name="username" id="reg-username" tabindex="1" class="form-control" placeholder="{{_.USERNAME[lang]}}" value="">
+                                        <input type="text" ng-model="modal.form.register.username" class="form-control" placeholder="{{_.USERNAME}}" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" id="reg-email" tabindex="1" class="form-control" placeholder="{{_.EMAIL[lang]}}" value="">
+                                        <input type="email" ng-model="modal.form.register.email" class="form-control" placeholder="{{_.EMAIL}}" value="">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" id="reg-password" tabindex="2" class="form-control" placeholder="{{_.PASSWORD[lang]}}">
+                                        <input type="password" ng-model="modal.form.register.pasword" class="form-control" placeholder="{{_.PASSWORD}}">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="confirm-password" id="reg-confirm-password" tabindex="2" class="form-control" placeholder="{{_.REPEAT[lang]}} {{_.PASSWORD[lang]}}">
+                                        <input type="password" ng-model="modal.form.register.confirmPassword" class="form-control" placeholder="{{_.REPEAT}} {{_.PASSWORD}}">
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-orange" value="{{_.TO_REGISTER[lang]}}">
+                                                <input type="submit" ng-click="loginFormFunction('register')" class="form-control btn btn-orange" value="{{_.TO_REGISTER}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div id="error-reg-block"></div>
                                     </div>
-                                </form>
-                                <form id="forgot-form" action="" method="post" role="form" style="display: none;">
-                                    <div class="form-group">
-                                        <input type="email" name="email" id="fog-email" tabindex="1" class="form-control" placeholder="{{_.EMAIL[lang]}}" value="">
-                                    </div>
-                                    <div class="form-group" style="display:none;">
-                                        <input type="password" name="password" id="fog-password" tabindex="2" class="form-control" placeholder="{{_.PASSWORD[lang]}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="forgot-submit" id="forgot-submit" tabindex="4" class="form-control btn btn-orange" value="{{_.SEND[lang]}} {{_.PASSWORD[lang]}}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div id="error-forget-block"></div>
-                                    </div>
-                                </form>
+                                </div>
+                                <!-- Registration END -->
                             </div>
                         </div>
                     </div>
@@ -112,7 +120,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body">{{_.ALREDY_EXISTS[lang]}}</div>
+            <div class="modal-body">{{_.ALREDY_EXISTS}}</div>
         </div>
     </div>
 </div>

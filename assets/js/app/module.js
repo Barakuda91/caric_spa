@@ -9,14 +9,30 @@
             'ngAnimate'
         ])
         .config(GeneralConfig)
-        .directive('answerField', function () {
-            var el = {
-                scope: true, //чтобы не засорять родительский скоп
-                templateUrl: '/templates/ad-small-block.html'
+        .directive('minCharsLength', function() {
+            return {
+                require: 'ngModel',
+                link: function(scope, element, attr, mCtrl) {
+                    function minCharsLength(value) {
+                        if (value.length >= attr.minCharsLength ) {
+                            mCtrl.$setValidity('minCharsLength', true);
+                        } else {
+                            mCtrl.$setValidity('minCharsLength', false);
+                        }
+                        return value;
+                    }
+                    mCtrl.$parsers.push(minCharsLength);
+                }
             };
-            console.log(el);
-            return el;
         });
+        // .directive('answerField', function () {
+        //     var el = {
+        //         scope: true, //чтобы не засорять родительский скоп
+        //         templateUrl: '/templates/ad-small-block.html'
+        //     };
+        //     console.log(el);
+        //     return el;
+        // });
 
 
     GeneralConfig.$inject = ['$routeProvider', '$locationProvider','$middlewareProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
@@ -48,7 +64,7 @@
                 middleware: 'some'
             })
             .when('/list/:type', {
-                controller: 'ListController',
+                controller: 'IndexController,ListController',
                 templateUrl: '/view/list/index.html',
                 controllerAs: 'list',
                 middleware: 'some'
