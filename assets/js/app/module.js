@@ -104,9 +104,6 @@
                 controller: 'IndexController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
-            })
-            .otherwise({
-                redirectTo: '/'
             });
     }
 })();

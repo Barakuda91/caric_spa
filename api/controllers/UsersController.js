@@ -21,6 +21,13 @@ module.exports = {
 			});
 		Params_settings._create();
     	res.end({res: 'ok'})
+	},
+	register: function () {
+		sails.log(currentName+'.register');
+	},
+	forgotPassword: function () {
+		sails.log(currentName+'.forgotPassword');
+
 	}
 };
 

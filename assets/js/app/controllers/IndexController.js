@@ -76,9 +76,8 @@
         // восстановления пароля
         $rootScope.loginFormFunction = function(type) {
             console.log($rootScope.modal.form[type])
-            io.socket.post('/api/localization', {}, function (resData, jwres) {
-                window.localization_items = resData[0];
-                _this.next();
+            io.socket.post('/api/user/'+type, $rootScope.modal.form[type], function (resData, jwres) {
+
             })
         };
 
