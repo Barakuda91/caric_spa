@@ -677,15 +677,82 @@ ul#main-line-menu li.active a {
     left: 0px;
     right: 0px;
 }
+.spinnerFullBlock {
+    z-index: 3;
+    background-color: #ededed;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
 
-.modal-animation { -webkit-transition: 0.35s linear all;  transition: 0.35s linear all;  }
-.modal-animation.ng-enter { margin-top: -300px; }        /* начало анимации появившегося элемента - enter */
-.modal-animation.ng-enter.ng-enter-active { margin-top: 30px; } /* окончание анимации */
-.modal-animation.ng-leave { margin-top: 30px; }        /* начало анимации исчезающего элемента - leave */
-.modal-animation.ng-leave.ng-leave-active { margin-top: 1000px;  } /* окончание анимации */
+.spinnerFullBlock div {
+    position: relative;
+    z-index: 4;
+    width: 100px;
+    height: 100px;
+    background-image: url('/images/spinner.gif');
+    top: 50%;
+
+    margin: -50px auto auto auto;
+}
+/*.modal-animation {*/
+    /*-webkit-transition: 0.6s linear all;*/
+    /*transition: 0.6s linear all;*/
+/*}*/
+/*.modal-animation.ng-enter { top: -300px; }                  !* начало анимации появившегося элемента - enter *!*/
+/*.modal-animation.ng-enter.ng-enter-active { top: 30px; }    !* окончание анимации *!*/
+/*.modal-animation.ng-leave { opacity: 1;  }                  !* начало анимации исчезающего элемента - leave *!*/
+/*.modal-animation.ng-leave.ng-leave-active { opacity: 0;  }  !* окончание анимации *!*/
+
+
+/* The element to apply the animation to */
+.spinnerOff {
+    opacity:0;
+    left: -100%;
+    animation-name: example;
+    animation-duration: 1s;
+}
+
+@keyframes example{
+    0% { opacity:1; left: 0;}
+    99% { opacity:0; left: 0;}
+    100% { opacity:0;  left: -100%;}
+}
+
+/*@-webkit-keyframes fadein{*/
+    /*0% { opacity:1; }*/
+    /*66% { opacity:1; }*/
+    /*100% { opacity:0; }*/
+/*}*/
+
+.modal-shadow {
+    -webkit-transition: 0.4s ease-in all;
+    transition: 0.4s ease-in all;
+
+}
+.modal-shadow.ng-enter { opacity: 0;}                   /* начало анимации появившегося элемента - enter */
+.modal-shadow.ng-enter.ng-enter-active { opacity: 1; }  /* окончание анимации */
+.modal-shadow.ng-leave { opacity: 1;  }                 /* начало анимации исчезающего элемента - leave */
+.modal-shadow.ng-leave.ng-leave-active { opacity: 0;  } /* окончание анимации */
 
 .content_block {
     border: 1px solid #d9d9d9;
     background-color: #fff;
     margin: 10px auto;
+}
+.form-group {
+    position: relative;
+}
+.form-group .fa {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #02a302;
+}
+.form-group .fa-square-o {
+    color: #a80005;
 }

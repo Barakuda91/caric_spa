@@ -8,18 +8,6 @@
         console.log('GET AdvertController');
         var _this = this;
 
-        $rootScope._ = Service.getLocalizator();
-        $scope.$watch('lang',function(newVal, oldVal){
-            if (newVal === oldVal) {
-                return;
-            };
-            $rootScope.localizationButton = Service.getLocalizationButton($rootScope.lang)
-        });
-        $rootScope.lang = $rootScope.lang || 'ru';
-        $rootScope.localizationButton = Service.getLocalizationButton($rootScope.lang);
-        $rootScope.changelang = function(lang) {
-            $rootScope.lang = lang;
-        };
 
     }
 })();

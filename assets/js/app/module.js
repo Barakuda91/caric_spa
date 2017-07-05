@@ -25,28 +25,23 @@
                 }
             };
         });
-        // .directive('answerField', function () {
-        //     var el = {
-        //         scope: true, //чтобы не засорять родительский скоп
-        //         templateUrl: '/templates/ad-small-block.html'
-        //     };
-        //     console.log(el);
-        //     return el;
-        // });
 
 
     GeneralConfig.$inject = ['$routeProvider', '$locationProvider','$middlewareProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
     function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider) {
         console.log('GET GeneralModule');
         $middlewareProvider.map({
-            'some': function someMiddleware() {
-                console.log('GET middleware.some');
+            'getLocalization': function () {
+                console.log('GET middleware.getLocalization');
                 var _this = this;
-                io.socket.post('/api/localization', {}, function (resData, jwres) {
-                    window.localization_items = resData[0];
+                if(!window.localization_items ) {
+                    io.socket.post('/api/localization', {}, function (resData, jwres) {
+                        window.localization_items = resData[0];
+                        _this.next();
+                    })
+                } else {
                     _this.next();
-                })
-
+                }
             }
         });
 
@@ -61,47 +56,53 @@
                 templateUrl: 'view/index.html',
                 controller: 'IndexController',
                 controllerAs: 'index',
-                middleware: 'some'
+                middleware: 'getLocalization'
             })
             .when('/list/:type', {
                 controller: 'IndexController',
                 templateUrl: '/view/list/index.html',
                 controllerAs: 'list',
-                middleware: 'some'
+                middleware: 'getLocalization'
             })
             .when('/advert/wheel/:id', {
-                controller: 'AdvertController',
+                controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/tyre/:id', {
-                controller: 'AdvertController',
+                controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/space/:id', {
-                controller: 'AdvertController',
+                controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/my/', {
-                controller: 'AdvertController',
+                controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
 
             })
             .when('/advert/add/', {
-                controller: 'AdvertController',
-                controllerAs: 'advert',
-                middleware: 'some',
+                controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: '/view/adv/add.html'
             })
             .when('/user/settings', {
                 controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: '/view/index.html'
             })
             .when('/user/login', {
                 controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/user/signup', {
                 controller: 'IndexController',
+                middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .otherwise({

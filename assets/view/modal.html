@@ -1,10 +1,10 @@
 
 <!-- Modal -->
 <div ng-class="modalWindowClass">
-    <div ng-if="modal.login" class="modal-dialog modal-animation">
-        <div class="modal-content">
+    <div ng-if="modal.login.open" class="modal-dialog modal-animation">
+        <div class="modal-content" ng-click="$event.stopPropagation()">
             <div class="modal-header">
-                <button type="button" class="close" ng-click="modalLoginClose()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" ng-click="modalLoginOpenSwitcher()"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <div class="panel panel-login no-margin-bottom">
@@ -77,18 +77,56 @@
                                 <!-- Login END -->
 
                                 <!-- Registration -->
-                                <div ng-hide="modal.login.loginOn" id="register-form">
+                                <form name="modal.form.register" ng-hide="modal.login.loginOn" id="register-form">
                                     <div class="form-group">
-                                        <input type="text" ng-model="modal.form.register.username" class="form-control" placeholder="{{_.USERNAME}}" value="">
+                                        <input
+                                                type="text"
+                                                name="username"
+                                                ng-model="username"
+                                                required
+                                                min-chars-length="3"
+                                                class="form-control"
+                                                placeholder="{{_.USERNAME}}"
+                                                value="">
+                                        <i ng-if="modal.form.register.username.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <i ng-hide="modal.form.register.username.$untouched"  ng-if="modal.form.register.username.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" ng-model="modal.form.register.email" class="form-control" placeholder="{{_.EMAIL}}" value="">
+                                        <input
+                                                type="email"
+                                                name="email"
+                                                ng-model="email"
+                                                required
+                                                min-chars-length="5"
+                                                class="form-control"
+                                                placeholder="{{_.EMAIL}}"
+                                                value="">
+                                        <i ng-if="modal.form.register.email.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <i ng-hide="modal.form.register.email.$untouched"  ng-if="modal.form.register.email.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" ng-model="modal.form.register.pasword" class="form-control" placeholder="{{_.PASSWORD}}">
+                                        <input
+                                                type="password"
+                                                name="password"
+                                                ng-model="password"
+                                                required
+                                                min-chars-length="6"
+                                                class="form-control"
+                                                placeholder="{{_.PASSWORD}}">
+                                        <i ng-if="modal.form.register.password.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <i ng-hide="modal.form.register.password.$untouched" ng-if="modal.form.register.password.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" ng-model="modal.form.register.confirmPassword" class="form-control" placeholder="{{_.REPEAT}} {{_.PASSWORD}}">
+                                        <input
+                                                type="password"
+                                                name="confirmPassword"
+                                                ng-model="confirmPassword"
+                                                required
+                                                min-chars-length="6"
+                                                class="form-control"
+                                                placeholder="{{_.REPEAT}} {{_.PASSWORD}}">
+                                        <i ng-show="modal.form.register.password.$viewValue == modal.form.register.confirmPassword.$viewValue" class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <i ng-hide="modal.form.register.confirmPassword.$untouched" ng-if="modal.form.register.password.$viewValue !== modal.form.register.confirmPassword.$viewValue" class="fa fa-square-o" aria-hidden="true"></i>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -100,7 +138,7 @@
                                     <div class="form-group">
                                         <div id="error-reg-block"></div>
                                     </div>
-                                </div>
+                                </form>
                                 <!-- Registration END -->
                             </div>
                         </div>

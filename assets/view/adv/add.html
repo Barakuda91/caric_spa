@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container" ng-controller="AdvertController">
 
     <div class="content_block">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
-                {{_.ADD_ADVERT_PLEASE_TYPE[lang]}}
+                {{_.ADD_ADVERT_PLEASE_TYPE}}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 text-left">
                 <select ng-model="material" class="form-control form-control-sm">
-                    <option value="" disabled selected>{{_.PLEASE_SELECT[lang]}}</option>
+                    <option value="" disabled selected>{{_.PLEASE_SELECT}}</option>
                     <option value="{{item.key}}" ng-repeat="item in optMaterial">{{item.value}}</option>
                 </select>
             </div>

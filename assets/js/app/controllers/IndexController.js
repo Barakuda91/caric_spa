@@ -3,67 +3,89 @@
 
     angular.module("General").controller("IndexController", IndexController);
 
-    IndexController.$inject = ['$scope','$routeParams','$rootScope','Service']
-    function IndexController ($scope, $routeParams, $rootScope, Service) {
+    IndexController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout']
+    function IndexController ($scope, $routeParams, $rootScope, Service,$timeout) {
         console.log('GET IndexController');
         var _this = this;
+        // отключение спинера загрузки страницы TODO сделать выключение спинера по загрузке всех данных
+        $timeout(function() {
+            return document.getElementById('spinner').className = "spinnerFullBlock spinnerOff";
+        },1000);
 
         $rootScope.lang = $rootScope.lang || 'ru';
-        $rootScope._ = Service.getLocalizator($rootScope);
+        $rootScope._    = $rootScope._    || Service.getLocalizator($rootScope);
+
+        // меняет цвет кнопки текущего языка
         $scope.$watch('lang',function(newVal, oldVal){
             if (newVal === oldVal) {
                 return;
-            };
+            }
             $rootScope.localizationButton = Service.getLocalizationButton($rootScope.lang)
         });
+
+        // устанавливает цвет кнопки текущего языка при загрузке
         $rootScope.localizationButton = Service.getLocalizationButton($rootScope.lang);
+
+        // обработчик нажатия на кнопку смены языка
         $rootScope.changelang = function(lang) {
             $rootScope.lang = lang;
         };
 
-/*--- настройки модалок START ---*/
+/*--- модалки START ---*/
         $rootScope.modal = {
             login: {
                 open: false,
                 loginOn: true,
                 forgotOn: false
+            },
+            shadow: false
+        };
+
+        // открытие закрытие модального окна логина, регистрации
+        $rootScope.modalLoginOpenSwitcher = function (type) {
+            if(type == 'open' ) {
+                $rootScope.modal.shadow = true;
+                $rootScope.modal.login.open = true;
+            } else {
+                $rootScope.modal.login.open = false;
+                $rootScope.modal.shadow = false;
             }
         };
 
-        $rootScope.modalLoginOpen = function () {
-            $rootScope.modalWindowClass = 'modal-shadow';
-            $rootScope.modal.login.open = true;
-        };
-
-        $rootScope.modalLoginClose = function () {
-            $rootScope.modal.login.open = false;
-            $rootScope.modalWindowClass = ''
-        };
-
+        // переключение в модальном окне (вход регистрация)
         $rootScope.modelLoginSwitch = function (type) {
-            if (type == 'login')
-                $rootScope.modal.login.loginOn = true;
-            else
-                $rootScope.modal.login.loginOn = false;
-        }
+            $rootScope.modal.login.loginOn = (type == 'login');
+        };
 
+        // включение отключение блока "забыл пароль"
         $rootScope.modelLoginForgot = function () {
             $rootScope.modal.login.forgotOn = !$rootScope.modal.login.forgotOn;
-        }
+        };
+
+        // $rootScope.modal.form.register.username.validationClass
+        // $rootScope.modal.form.register.email.validationClass
+        // $rootScope.modal.form.register.password.validationClass
+        // $rootScope.modal.form.register.confirmPassword.validationClass
+        //
+        //
+        // fa-check-square-o
+        // fa-square-o
+
         // функция авторизаци
         // регистрации
         // восстановления пароля
         $rootScope.loginFormFunction = function(type) {
-
             console.log($rootScope.modal.form[type])
             io.socket.post('/api/localization', {}, function (resData, jwres) {
                 window.localization_items = resData[0];
                 _this.next();
             })
-
-
-
         };
+
+        $rootScope.modalShadowClick = function() {
+            console.log('modalShadowClick');
+        };
+
 /*--- настройки модалок END ---*/
         var w = angular.element(window);
         $scope.$watch(
