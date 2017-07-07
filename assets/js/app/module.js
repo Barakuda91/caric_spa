@@ -5,6 +5,8 @@
         .module("General", [
             'ngRoute',
             'ngRoute.middleware',
+            'angular-md5',
+            'LocalStorageModule',
             'ngResource',
             'ngAnimate'
         ])
@@ -27,9 +29,15 @@
         });
 
 
-    GeneralConfig.$inject = ['$routeProvider', '$locationProvider','$middlewareProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
-    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider) {
+    GeneralConfig.$inject = ['$routeProvider', '$locationProvider','$middlewareProvider','localStorageServiceProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
+    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider,localStorageServiceProvider) {
         console.log('GET GeneralModule');
+
+        localStorageServiceProvider
+            .setPrefix('caric')
+            .setDefaultToCookie(false);
+
+
         $middlewareProvider.map({
             'getLocalization': function () {
                 console.log('GET middleware.getLocalization');
@@ -93,17 +101,17 @@
             .when('/user/settings', {
                 controller: 'IndexController',
                 middleware: 'getLocalization',
-                templateUrl: '/view/index.html'
+                templateUrl: '/view/user/settings.html'
             })
-            .when('/user/login', {
+            .when('/user/adverts', {
                 controller: 'IndexController',
                 middleware: 'getLocalization',
-                templateUrl: 'view/index.html'
+                templateUrl: 'view/user/alladdv.html'
             })
-            .when('/user/signup', {
+            .when('/user/messages', {
                 controller: 'IndexController',
                 middleware: 'getLocalization',
-                templateUrl: 'view/index.html'
+                templateUrl: 'view/user/messages.html'
             });
     }
 })();

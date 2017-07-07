@@ -21,9 +21,25 @@
                     <button type="button" class="btn btn-sm" ng-class="localizationButton.en" ng-click="changelang('en')">
                         en
                     </button>
-                    <button type="button" class="btn btn-orange btn-lg" ng-click="modalLoginOpenSwitcher('open')">
+
+                    <button ng-hide="userData.auth" type="button" class="btn btn-orange btn-lg" ng-click="modalLoginOpenSwitcher('open')">
                         {{_.LOGIN}}/{{_.REGISTRATION}}
                     </button>
+
+                    <div ng-show="userData.auth"  class="btn-group">
+                        <a ng-href="/advert/add" id="add-advert" type="button" class="btn btn-orange btn-lg">Подать обьявление</a>
+                        <button type="button" class="btn btn-orange btn-lg dropdown-toggle no-padding" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="main-menu-disk" src="/images/disk_w.svg" alt="">
+                        </button>
+                        <ul class="dropdown-menu main-logined-dropdawn">
+                            <li><a href="/user">Кабинет</a></li>
+                            <li><a href="/user/adverts">Объявления</a></li>
+                            <li><a href="/user/messages">Сообщения</a></li>
+                            <li><a href="/user/settings">Настройки</a></li>
+                            <li><a ng-click="userLogout()" class="logout-user">Выйти</a></li>
+                        </ul>
+                    </div>
+
                     <div class="form-group main-logined-dropdawn"></div>
                 </div>
             </div>

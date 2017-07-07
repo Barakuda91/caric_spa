@@ -9,23 +9,33 @@ module.exports = {
 
         // создаём тестовых пользователей
         sails.models.users.destroy({}).exec(function() {
+
+            var email2 = email;
+
+            var email4 = email3;
+
+            var email6 = email5;
+
+            var email8 = email7;
+
+            var email10 = email9;
             sails.models.users.create([{
                 username: 'Barakuda',
-                passwordHash: '46f94c8de14fb36680850768ff1b7f2a', // 123qwe
+                passwordHash: 'e10adc3949ba59abbe56e057f20f883e', // 123qwe
                 email: 'barakudatm@gmail.com',
                 firstName: 'Alexksandr',
                 lastName: 'Istomin',
                 status: 'admin'
             }, {
                 username: 'Padavan',
-                passwordHash: '46f94c8de14fb36680850768ff1b7f2a', // 123qwe
+                passwordHash: 'e10adc3949ba59abbe56e057f20f883e', // 123qwe
                 email: 'padavan_z@gmail.com',
                 firstName: 'Geka',
                 lastName: 'Urchenko',
                 status: 'admin'
             }, {
                 username: 'Test',
-                passwordHash: '46f94c8de14fb36680850768ff1b7f2a', // 123qwe
+                passwordHash: 'e10adc3949ba59abbe56e057f20f883e', // 123qwe
                 email: 'test@gmail.com',
                 firstName: 'Test',
                 lastName: 'Test',

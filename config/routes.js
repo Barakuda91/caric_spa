@@ -22,13 +22,16 @@ module.exports.routes = {
   'get /advert/*': {
     view: 'homepage'
   },
+  'get /user/*': {
+    view: 'homepage'
+  },
   'get /modest_caric_spa': {
     view: 'admin/admin'
   },
-  'post /api/user/auth': 'UsersController.auth',
+  'post /api/user/login': 'UsersController.login',
   'post /api/user/register': 'UsersController.register',
   'post /api/user/forgot_password': 'UsersController.forgotPassword',
-  'post /api/admin/create_db': 'Params_settingsController.create_db' // TODO закрыть доступ к этому методу или удалить его к херушкам
+  'get /api/admin/create_db': 'Params_settingsController.create_db' // TODO закрыть доступ к этому методу или удалить его к херушкам
   // '/user/*': {
   //   view: 'user'
   // },

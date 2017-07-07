@@ -756,3 +756,14 @@ ul#main-line-menu li.active a {
 .form-group .fa-square-o {
     color: #a80005;
 }
+
+
+
+/* custom classes */
+.width-auto {
+    width: auto;
+}
+.display-iblock {
+    display: inline-block;
+}
+

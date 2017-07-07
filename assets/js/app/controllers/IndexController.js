@@ -3,10 +3,18 @@
 
     angular.module("General").controller("IndexController", IndexController);
 
-    IndexController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout']
-    function IndexController ($scope, $routeParams, $rootScope, Service,$timeout) {
+    IndexController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout', 'md5', 'localStorageService']
+    function IndexController ($scope, $routeParams, $rootScope, Service,$timeout,md5,localStorageService) {
         console.log('GET IndexController');
         var _this = this;
+
+        if (localStorageService.get('user_data')) {
+            $rootScope.userData = localStorageService.get('user_data');
+            $rootScope.userData.auth = true;
+        } else {
+            $rootScope.userData = {auth: false}
+        }
+
         // отключение спинера загрузки страницы TODO сделать выключение спинера по загрузке всех данных
         $timeout(function() {
             return document.getElementById('spinner').className = "spinnerFullBlock spinnerOff";
@@ -33,10 +41,20 @@
 
 /*--- модалки START ---*/
         $rootScope.modal = {
-            login: {
+            reg_auth: {
                 open: false,
-                loginOn: true,
-                forgotOn: false
+                login: {
+                    open: true
+                },
+                register: {
+                    open: false
+                },
+                forgot: {
+                    open: false
+                },
+                success: {
+                    open: false
+                }
             },
             shadow: false
         };
@@ -45,21 +63,23 @@
         $rootScope.modalLoginOpenSwitcher = function (type) {
             if(type == 'open' ) {
                 $rootScope.modal.shadow = true;
-                $rootScope.modal.login.open = true;
+                $rootScope.modal.reg_auth.open = true;
             } else {
-                $rootScope.modal.login.open = false;
+                $rootScope.modal.reg_auth.open = false;
                 $rootScope.modal.shadow = false;
             }
         };
 
-        // переключение в модальном окне (вход регистрация)
+        // переключение в модальном окне (вход - регистрация)
         $rootScope.modelLoginSwitch = function (type) {
-            $rootScope.modal.login.loginOn = (type == 'login');
+            $rootScope.modal.reg_auth.login.open = false;
+            $rootScope.modal.reg_auth.register.open = false;
+            $rootScope.modal.reg_auth[type].open = true;
         };
 
         // включение отключение блока "забыл пароль"
         $rootScope.modelLoginForgot = function () {
-            $rootScope.modal.login.forgotOn = !$rootScope.modal.login.forgotOn;
+            $rootScope.modal.reg_auth.forgot.open = !$rootScope.modal.reg_auth.forgot.open;
         };
 
         // $rootScope.modal.form.register.username.validationClass
@@ -75,9 +95,23 @@
         // регистрации
         // восстановления пароля
         $rootScope.loginFormFunction = function(type) {
-            console.log($rootScope.modal.form[type])
-            io.socket.post('/api/user/'+type, $rootScope.modal.form[type], function (resData, jwres) {
 
+            var data = {
+                email: $rootScope.modal.form[type].email,
+                password: md5.createHash($rootScope.modal.form[type].password || ''),
+                confirmPassword: md5.createHash($rootScope.modal.form[type].confirmPassword || '')
+            };
+
+            io.socket.post('/api/user/'+type, data, function (resData) {
+                console.log(resData)
+                if (resData.status) {
+                    $rootScope.userData = resData.data;
+                    $rootScope.userData.auth = true;
+                    $rootScope.modal.reg_auth.open = false;
+                    localStorageService.set('user_data', resData.data);
+                } else {
+                    alert(resData.data)
+                }
             })
         };
 
@@ -86,6 +120,12 @@
         };
 
 /*--- настройки модалок END ---*/
+
+        $rootScope.userLogout = function() {
+            $rootScope.userData = {auth: false};
+            localStorageService.remove('user_data');
+        }
+
         var w = angular.element(window);
         $scope.$watch(
             function () {

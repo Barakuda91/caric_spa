@@ -1,16 +1,31 @@
 <div class="container" ng-controller="AdvertController">
-
     <div class="content_block">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="row filter-block-row">
+            <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
                 {{_.ADD_ADVERT_PLEASE_TYPE}}
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 text-left">
-                <select ng-model="material" class="form-control form-control-sm">
-                    <option value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                    <option value="{{item.key}}" ng-repeat="item in optMaterial">{{item.value}}</option>
+            <div class="col-lg-2 col-md-3 col-sm-3">
+                <select
+                        data-ng-options="value.title for (key , value) in addAdvert.advertType"
+                        data-ng-model="addAdvert.advertTypeSelected"
+                        class="form-control form-control-sm">
                 </select>
             </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 text-right">
+                <input type="text" class="form-control form-control-sm display-iblock" style="width: 60%;">
+                <select
+                        data-ng-options="o.type for o in addAdvert.currency"
+                        data-ng-model="addAdvert.selectedCurrency"
+                        class="form-control form-control-sm width-auto display-iblock">
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-3 small">
+                цена
+            </div>
         </div>
+        <div ng-include="'/templates/list/wheels-filter-block.html'"></div>
+        <div ng-include="'/templates/list/tyres-filter-block.html'"></div>
+        <div ng-include="'/templates/list/spaces-filter-block.html'"></div>
     </div>
+    {{addAdvert}}
 </div>

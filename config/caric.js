@@ -5,5 +5,6 @@ module.exports.caric = {
             small: '/assets/templates/addv-small-block.html',
             full: '/assets/templates/addv-full-block.html'
         }
-    }
-}
+    },
+    secret: 'age64kg32bt'
+};
