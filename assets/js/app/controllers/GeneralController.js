@@ -171,9 +171,7 @@
         $rootScope.userLogout = function() {
             $rootScope.userData = {auth: false};
             localStorageService.remove('user_data');
-        }
-
-
+        };
 
         this.adverdsArray = [
             {
@@ -279,5 +277,6 @@
                 ]
             }
         ];
+
     }
 })();

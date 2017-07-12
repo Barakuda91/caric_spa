@@ -8,6 +8,7 @@
         console.log('GET IndexController');
 
         var w = angular.element(window);
+
         $scope.$watch( // TODO исправить
             function () {
                 return window.innerWidth;
@@ -22,8 +23,7 @@
             $scope.$apply();
         });
 
-
-        this.screenWidthData = {
+        $scope.screenWidthData = {
             0: '1',
             1: '430',
             2: '768',
@@ -31,8 +31,111 @@
             4: '1200',
             5: '1200'
         };
-    IndexController.$inject = ['$scope', '$routeParams', '$rootScope', 'Service', '$timeout', 'md5', 'localStorageService','$log']
-    function IndexController($scope, $routeParams, $rootScope, Service, $timeout, md5, localStorageService,$log) {
-        $log.debug('GET '+controllerName);
+
+        $scope.adverdsArray = [
+            {
+                title: 'WHEELS_ON_SALE',
+                adverds: [
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    },
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/default.jpg',
+                        price: '300$',
+                        params: ['5x120',' 17','j9'],
+                        id: '125640'
+                    },
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/default.jpg',
+                        price: '140$',
+                        params: ['4x100',' 13','j5.5'],
+                        id: '125641'
+                    },
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/default.jpg',
+                        price: '230$',
+                        params: ['5x108',' 17','j10'],
+                        id: '125642'
+                    },
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    },
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/default.jpg',
+                        price: '500$',
+                        params: ['5x114','16','j8'],
+                        id: '125644'
+                    }
+                ]
+            },{
+                title: 'TYRES_ON_SALE',
+                adverds: [
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    }
+                ]
+            },{
+                title: 'SPACES_ON_SALE',
+                adverds: [
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    }
+                ]
+            },{
+                title: 'WHEELS',
+                adverds: [
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    }
+                ]
+            },{
+                title: 'TYRES',
+                adverds: [
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    }
+                ]
+            },{
+                title: 'SPACES',
+                adverds: [
+                    {
+                        type: 'wheels',
+                        imgUrl: '/images/test_adv.jpg',
+                        price: '100$',
+                        params: ['5x120',' 15','j9'],
+                        id: '125643'
+                    }
+                ]
+            }
+        ];
+        console.log(this.screenWidthData);
     };
 })();
