@@ -11,6 +11,7 @@
             io.socket.post('/api/advert/save', $scope.settingParams.values, function (resData) {
                 if(resData.status) {
 //                    $rootScope.modal('success')
+                    $rootScope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
                     alert('success');
                 }
             })
