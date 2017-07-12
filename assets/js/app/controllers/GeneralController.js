@@ -173,30 +173,7 @@
             localStorageService.remove('user_data');
         }
 
-        var w = angular.element(window);
-        $scope.$watch( // TODO исправить
-            function () {
-                return window.innerWidth;
-            },
-            function (value) {
-                $scope.windowWidth = value;
-            },
-            true
-        );
 
-        w.bind('resize', function(){
-            $scope.$apply();
-        });
-
-
-        this.screenWidthData = {
-            0: '1',
-            1: '1',
-            2: '768',
-            3: '992',
-            4: '1200',
-            5: '1200'
-        };
 
         this.adverdsArray = [
             {
