@@ -1,0 +1,167 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="modalLoginOpenSwitcher()"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="panel panel-login no-margin-bottom">
+        <!-- Navigation -->
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a ng-click="modelLoginSwitch('login')">{{_.LOGIN}}</a>
+                </div>
+                <div class="col-xs-6">
+                    <a ng-click="modelLoginSwitch('register')">{{_.REGISTRATION}}</a>
+                </div>
+            </div>
+        </div>
+        <!-- Navigation END-->
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Login -->
+                    <div ng-show="modal.reg_auth.success.open">
+                        Вход выполнен успешно
+                    </div>
+                    <form ng-show="modal.reg_auth.login.open" name="login">
+                        <div class="form-group">
+                            <input
+                                    type="email"
+                                    name="email"
+                                    required
+                                    min-chars-length="5"
+                                    ng-model="modal.form.login.email"
+                                    ng-model="email"
+                                    class="form-control"
+                                    placeholder="{{_.EMAIL}}"
+                                    value="">
+                        </div>
+                        <div class="form-group">
+                            <input
+                                    type="password"
+                                    name="password"
+                                    required
+                                    min-chars-length="6"
+                                    ng-model="modal.form.login.password"
+                                    ng-model="password"
+                                    class="form-control"
+                                    placeholder="{{_.PASSWORD}}">
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="checkbox" id="remember" ng-model="modal.form.login.remember">
+                            <label for="remember">{{_.REMEMBER_ME}}</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <input
+                                            type="submit"
+                                            ng-click="loginFormFunction('login')"
+                                            class="form-control btn btn-orange"
+                                            ng-disabled="login.password.$valid == false || login.email.$valid == false"
+                                            value="{{_.ENTER}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="text-center">
+                                        <a ng-click="modelLoginForgot('open')" class="forgot-password">{{_.FORGOT_PASSWORD}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-show="modal.reg_auth.forgot.open">
+                            {{_.FORGOT_PASSWORD_TEXT}}
+                            <div class="form-group">
+                                <input class="form-control" ng-model="modal.form.forgot.email" placeholder="{{_.EMAIL}}" value="">
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <input type="submit" ng-click="loginFormFunction('forgot')" class="form-control btn btn-orange" value="{{_.RECOLLECT}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="error-log-block"></div>
+                        </div>
+                    </form>
+                    <!-- Login END -->
+
+                    <!-- Registration -->
+                    <form ng-show="modal.reg_auth.register.open" name="registration" >
+                        <div class="form-group">
+                            <input
+                                    type="text"
+                                    name="username"
+                                    ng-model="username"
+                                    ng-model="modal.form.register.username"
+                                    required
+                                    min-chars-length="3"
+                                    class="form-control"
+                                    placeholder="{{_.USERNAME}}"
+                                    value="">
+                            <i ng-if="registration.username.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
+                            <i ng-hide="registration.username.$untouched"  ng-if="modal.form.register.username.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                    type="email"
+                                    name="email"
+                                    ng-model="email"
+                                    ng-model="modal.form.register.email"
+                                    required
+                                    min-chars-length="5"
+                                    class="form-control"
+                                    placeholder="{{_.EMAIL}}"
+                                    value="">
+                            <i ng-if="registration.email.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
+                            <i ng-hide="registration.email.$untouched"  ng-if="registration.email.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                    type="password"
+                                    name="password"
+                                    ng-model="password"
+                                    ng-model="modal.form.register.password"
+                                    required
+                                    min-chars-length="6"
+                                    class="form-control"
+                                    placeholder="{{_.PASSWORD}}">
+                            <i ng-if="registration.password.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
+                            <i ng-hide="registration.password.$untouched" ng-if="registration.password.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    ng-model="confirmPassword"
+                                    ng-model="modal.form.register.confirmPassword"
+                                    required
+                                    min-chars-length="6"
+                                    class="form-control"
+                                    placeholder="{{_.REPEAT}} {{_.PASSWORD}}">
+                            <i ng-show="registration.password.$viewValue == registration.confirmPassword.$viewValue" class="fa fa-check-square-o" aria-hidden="true"></i>
+                            <i ng-hide="registration.confirmPassword.$untouched" ng-if="registration.password.$viewValue !== registration.confirmPassword.$viewValue" class="fa fa-square-o" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <input type="submit" ng-click="loginFormFunction('register')" class="form-control btn btn-orange" value="{{_.TO_REGISTER}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="error-reg-block"></div>
+                        </div>
+                    </form>
+                    <!-- Registration END -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

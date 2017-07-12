@@ -17,6 +17,92 @@
             <div class="btn btn-orange btn-md">Херак!</div>
         </div>
     </div>
-    <div class="row" style="margin-bottom: 200px">
+    <div class="row">
+        <div class="col-lg-8 text-right"  style="margin-top: 15px;">
+            <select ng-model="bdDump">
+                <option value="saveDown">
+                    сохранить данные из базы данных в файл
+                </option>
+                <option value="saveUp">
+                    восстановить данные из файла в базу
+                </option>
+            </select>
+            {{bdDump}}
+        </div>
+        <div class="col-lg-2 text-right"  style="margin-top: 15px;">
+            <div class="btn btn-orange btn-md">действоватЬ</div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-lg-2 text-center">
+            <h3>АЛИАС</h3>
+        </div>
+        <div class="col-lg-3 text-center">
+            <h3>РУССКИЙ</h3>
+        </div>
+        <div class="col-lg-3 text-center">
+            <h3>АНГЛИЙСКИЙ</h3>
+        </div>
+        <div class="col-lg-3 text-center">
+            <h3>украинский</h3>
+        </div>
+    </div>
+
+    <div class="row bottom-line">
+        <div class="col-lg-2 text-center">
+            <input type="text" ng-model="searchKey" placeholder="поиск" class="form-control">
+        </div>
+        <div class="col-lg-3 text-center">
+            <input  type="text" ng-model="searchRu" placeholder="поиск" class="form-control">
+        </div>
+        <div class="col-lg-3 text-center">
+            <input  type="text" ng-model="searchEn" placeholder="поиск" class="form-control">
+        </div>
+        <div class="col-lg-3 text-center">
+            <input  type="text" ng-model="searchUa" placeholder="поиск" class="form-control">
+        </div>
+        <div class="col-lg-1 text-center">
+            <input type="button" class="btn btn-success btn-sm" value="сохранить" ng-click="updateLocalization()">
+        </div>
+    </div>
+
+
+    <div ng-repeat="(key, value) in settingParams | myFilter:searchKey:searchRu:searchEn:searchUa" class="row row-hover-shine">
+        <div class="col-lg-2 text-left">
+            {{key}}
+        </div>
+        <div class="col-lg-3 text-right">
+            <input type="text" ng-model="settingParams[key].ru" value="{{value.ru}}" class="form-control">
+        </div>
+        <div class="col-lg-3 text-right">
+            <input type="text" ng-model="settingParams[key].en" value="{{value.en}}" class="form-control">
+        </div>
+        <div class="col-lg-3 text-right">
+            <input type="text" ng-model="settingParams[key].ua" value="{{value.ua}}" class="form-control">
+        </div>
+        <div class="col-lg-1 text-left">
+            <i class="fa fa-times fa-2x pointer red" aria-hidden="true"></i>
+        </div>
+    </div>
+
+    <form  ng-submit="addNewAlias()" class="row row-hover-shine">
+        <div class="col-lg-2 text-right">
+            <input ng-model="newAlias" type="text" class="form-control">
+        </div>
+        <div class="col-lg-3 text-right">
+            <input ng-model="newTransl.ru" type="text" class="form-control">
+        </div>
+        <div class="col-lg-3 text-right">
+            <input ng-model="newTransl.en" type="text" class="form-control">
+        </div>
+        <div class="col-lg-3 text-right">
+            <input ng-model="newTransl.ua" type="text" class="form-control">
+        </div>
+        <div class="col-lg-1 text-left">
+            <input type="submit" ng-show="false"><i class="fa fa-plus fa-2x pointer green" ng-click="addNewAlias()" aria-hidden="true"></i>
+        </div>
+        <!--<div class="col-lg-1 text-center">-->
+            <!--<input type="button" class="btn btn-success btn-sm" value="сохранить" ng-click="updateLocalization()">-->
+        <!--</div>-->
+    </form>
 </div>

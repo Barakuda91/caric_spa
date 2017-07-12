@@ -62,54 +62,54 @@
         $routeProvider
             .when('/', {
                 templateUrl: 'view/index.html',
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 controllerAs: 'index',
                 middleware: 'getLocalization'
             })
             .when('/list/:type', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 templateUrl: '/view/list/index.html',
                 controllerAs: 'list',
                 middleware: 'getLocalization'
             })
             .when('/advert/wheel/:id', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/tyre/:id', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/space/:id', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/my/', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
 
             })
             .when('/advert/add/', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: '/view/adv/add.html'
             })
             .when('/user/settings', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: '/view/user/settings.html'
             })
             .when('/user/adverts', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/user/alladdv.html'
             })
             .when('/user/messages', {
-                controller: 'IndexController',
+                controller: 'GeneralController',
                 middleware: 'getLocalization',
                 templateUrl: 'view/user/messages.html'
             });

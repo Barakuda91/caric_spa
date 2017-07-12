@@ -33,7 +33,7 @@ var jsFilesToInject = [
 
   'js/app/**/module.js',
 
-  'js/app/**/*.js',
+  'js/app/**/*.js'
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.

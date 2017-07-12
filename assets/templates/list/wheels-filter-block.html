@@ -1,77 +1,77 @@
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        Тип
+        {{_.TYPE}}
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select class="form-control form-control-sm">
-            <option value="" disabled selected>Выберите</option>
-            <option value="{{item.key}}" ng-repeat="item in optType">{{item.value}}</option>
+        <select ng-model="settingParams.values.wheelType" class="form-control form-control-sm">
+            <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.wheelType">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select class="form-control form-control-sm">
-            <option value="" disabled selected>Выберите</option>
-            <option value="{{item.key}}" ng-repeat="item in optWidth">{{item.value}}</option>
+        <select ng-model="settingParams.values.wheelWidth" class="form-control form-control-sm">
+            <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.wheelWidth">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        Ширина
+        {{_.WIDTH}}
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-        Центральное отверстие
+        {{_.CENTER_HOLE}}
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <input type="text" class="form-control form-control-sm">
+        <input model="settingParams.values.centerHole" type="text" class="form-control form-control-sm">
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <select class="form-control form-control-sm">
-            <option value="" disabled selected>Выберите</option>
-            <option value="{{item.key}}" ng-repeat="item in optDiameter">{{item.value}}</option>
-        </select>
+    <div class="col-lg-2 col-md-3 col-sm-3 text-right">
+        <input model="settingParams.values.offset" type="text" class="form-control form-control-sm">
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 small">
-        Диаметр
+    <div class="col-lg-4 col-md-3 col-sm-3 small">
+        {{_.OFFSET}}
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        Разболтовка
+        {{_.PCD}}
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="material" class="form-control form-control-sm">
-            <option value="" disabled selected>Выберите</option>
-            <option value="{{item.key}}" ng-repeat="item in optPCD">{{item.value}}</option>
+        <select ng-model="settingParams.values.pcd" class="form-control form-control-sm">
+            <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.pcd">{{item}}</option>
         </select>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <input type="text" class="form-control form-control-sm">
+    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+        <select  ng-model="settingParams.values.diameter" class="form-control form-control-sm">
+            <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.diameter">{{item}}</option>
+        </select>
     </div>
-    <div class="col-lg-4 col-md-3 col-sm-3 small">
-        Вылет
+    <div class="col-lg-4 col-md-4 col-sm-4 small">
+        {{_.DIAMETER}}
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-        Производитель
+        {{_.MAKER}}
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
         <select ng-model="material" class="form-control form-control-sm">
-            <option value="" disabled selected>Выберите</option>
-            <option value="{{item.key}}" ng-repeat="item in optMaker">{{item.value}}</option>
+            <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.wheelMaker">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="material" class="form-control form-control-sm">
-            <option value="" disabled selected>Выберите</option>
-            <option value="{{item.key}}" ng-repeat="item in optModel">{{item.value}}</option>
+            <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.wheelModel">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        Модель
+        {{_.MODEL}}
     </div>
 </div>

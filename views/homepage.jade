@@ -6,7 +6,7 @@ block body
     div(ng-include="'view/header.html'")
     div(data-ng-view="")
 
-    div(class="modal-shadow" ng-if="modal.shadow" ng-click="modalLoginOpenSwitcher()")
+    div(class="modal-shadow" ng-if="modalStatus.shadow" ng-click="modalLoginOpenSwitcher()")
       div(ng-include="'view/modal.html'")
 
   div(class="footer_wrap")

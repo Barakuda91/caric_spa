@@ -758,6 +758,11 @@ ul#main-line-menu li.active a {
 }
 
 
+textarea.form-control{
+    resize: none;
+    height: 120px;
+}
+
 
 /* custom classes */
 .width-auto {
@@ -765,5 +770,22 @@ ul#main-line-menu li.active a {
 }
 .display-iblock {
     display: inline-block;
+}
+
+.price-left {
+    padding-right: 0px;
+}
+.price-right {
+    padding-left: 0px;
+}
+.price-left > .form-control{
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-right: 0px;
+}
+.price-right > .form-control{
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0px;
 }
 

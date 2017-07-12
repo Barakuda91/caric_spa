@@ -3,22 +3,50 @@ var currentName = 'Params_settingsController';
 var config = sails.config.caric;
 
 module.exports = {
+    get: function(req,res) {
+        sails.log(currentName + '.get');
+        sails.models.params_settings.find().limit(1).exec(function(err, row){
+            console.log(err, row);
+            if (!err) {
+                res.json({status: true, data: row[0]})
+            } else {
+                res.json({status: false, data: err})
+            }
+        });
+    },
+    get_localization: function(req, res) {
+        sails.log(currentName + '.get_localization');
+        sails.models.localization.find().limit(1).exec(function(err, row){
+            if (!err) {
+                delete row[0].id;
+                delete row[0].updatedAt;
+                delete row[0].createdAt;
+                res.json({status: true, data: row[0]})
+            } else {
+                res.json({status: false, data: err})
+            }
+        });
+    },
+    set_localization: function(req, res) {
+        sails.log(currentName + '.set_localization');
 
+console.log(req);
+        sails.models.localization.destroy({}).exec(function() {
+            sails.models.localization.create(req.body).exec(function(err){
+                if (!err) {
+                    res.json({status: true})
+                } else {
+                    res.json({status: false, data: err})
+                }
+            });
+        });
+    },
     create_db: function(req,res) {
         sails.log(currentName + '.create_db');
 
         // создаём тестовых пользователей
         sails.models.users.destroy({}).exec(function() {
 
-            var email2 = email;
-
-            var email4 = email3;
-
-            var email6 = email5;
-
-            var email8 = email7;
-
-            var email10 = email9;
             sails.models.users.create([{
                 username: 'Barakuda',
                 passwordHash: 'e10adc3949ba59abbe56e057f20f883e', // 123qwe
@@ -52,36 +80,29 @@ module.exports = {
         // заполняет коллекцию параметров
         sails.models.params_settings.destroy({}).exec(function() {
             sails.models.params_settings.create({
-                wheelType: [
+                productionYear: ['1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017'],
+                currency: [
                     {
-                        key: 'cast',
-                        title: 'CAST'//'литой'
+                        key: 'usd',
+                        title: 'USD'
                     },
                     {
-                        key: 'forged',
-                        title: 'FORGET'//'кованый'
-                    },
-                    {
-                        key: 'stamped',
-                        title: 'STAMPED'//'штампованый'
-                    },
-                    {
-                        key: 'modular',
-                        title: 'MODULAR'//'сборной'
+                        key: 'uah',
+                        title: 'UAH'
                     }
                 ],
-                tyreType: [
+                advertType: [
                     {
-                        key: 'winter',
-                        title: 'WINTER'//'зима'
+                        key: 'wheels',
+                        title: 'WHEELS'
                     },
                     {
-                        key: 'summer',
-                        title: 'SUMMER'//'лето'
+                        key: 'tyres',
+                        title: 'TYRES'
                     },
                     {
-                        key: 'allseason',
-                        title: 'ALLSEASON'//'всесезонная'
+                        key: 'spaces',
+                        title: 'SPACES'
                     }
                 ],
                 diameter: ['12','13','14','15','16','17','18','19','20','21','22','23','24'],
@@ -103,10 +124,63 @@ module.exports = {
                         title: 'OTHER'
                     }
                 ],
+                wheelType: [
+                    {
+                        key: 'cast',
+                        title: 'CAST'//'литой'
+                    },
+                    {
+                        key: 'forged',
+                        title: 'FORGET'//'кованый'
+                    },
+                    {
+                        key: 'stamped',
+                        title: 'STAMPED'//'штампованый'
+                    },
+                    {
+                        key: 'modular',
+                        title: 'MODULAR'//'сборной'
+                    }
+                ],
                 wheelWidth: ['5','5.5','6','6.5','7','7.5','8','8.5','9','9.5','10','10.5','11','11.5','12','12.5'],
+                wheelEt: ['-55','-54','-53','-52','-51','-50','-49','-48','-47','-46','-45','-44','-43','-42','-41','-40','-39','-38','-37','-36','-35','-34','-33','-32','-31','-30','-29','-28','-27','-26','-25','-24','-23','-22','-21','-20','-19','-18','-17','-16','-15','-14','-13','-12','-11','-10','-9','-8','-7','-6','-5','-4','-3','-2','-1','0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55'],
+                tyreType: [
+                    {
+                        key: 'winter',
+                        title: 'WINTER'//'зима'
+                    },
+                    {
+                        key: 'summer',
+                        title: 'SUMMER'//'лето'
+                    },
+                    {
+                        key: 'allseason',
+                        title: 'ALLSEASON'//'всесезонная'
+                    }
+                ],
                 tyreWidth: ['165','175','185','195','205','215','225','235','245','255','265','275','285','295','305','315','325','335'],
                 tyreHeight: ['20','25','30','35','40','45','50','55','60','65','70','75','80','85','90'],
-                PCD: ['4x98','4x100','4x108','4x110','4x114.3','5x100','5x108','5x110','5x112','5x114.3','5x115','5x120','5x120.65','5x125','5x127','6x114.3','6x127','6x139.7']
+                tyreLoadIndex: ['60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100','101','102','103','104','105','106','107','108','109','110','111','112','113','114','115','116','117','118','119','120','121','122','123','124','125','126','127','128','129'],
+                tyreSpeedIndex: ['J','K','L','M','N','P','Q','R','S','T','U','H','V','VR','W','Y','ZR'],
+                pcd: ['4x98','4x100','4x108','4x110','4x114.3','5x100','5x108','5x110','5x112','5x114.3','5x115','5x120','5x120.65','5x125','5x127','6x114.3','6x127','6x139.7'],
+                spacesType: [
+                    {
+                        key: 'simple',
+                        title: 'SIMPLE'
+                    },{
+                        key: 'transitional',
+                        title: 'TRANSITIONAL'
+                    }
+                ],
+                fastenersType: [
+                    {
+                        key: 'stud',
+                        title: 'STUD'
+                    },{
+                        key: 'screw',
+                        title:'SCREW'
+                    }
+                 ]
             }).exec(function (err, finn) {
                 if (!err) {
                     sails.log('create_db: params_settings.create DONE')
@@ -116,196 +190,271 @@ module.exports = {
             });
         });
         // заполняет коллекцию локализации
-        sails.models.localization.destroy({}).exec(function() {
-            sails.models.localization.create({
-                'CAST': {
-                    ru: 'литой',
-                    en: 'cast',
-                    ua: 'литий'
-                },
-                'FORGET': {
-                    ru: 'кованый',
-                    en: 'forget',
-                    ua: 'кований'
-                },
-                'STAMPED': {
-                    ru: 'штампованный',
-                    en: 'stamped',
-                    ua: 'штампований'
-                },
-                'MODULAR': {
-                    ru: 'сборной',
-                    en: 'modular',
-                    ua: 'збірній'
-                },
-                'WINTER': {
-                    ru: 'зима',
-                    en: 'winter',
-                    ua: 'зима'
-                },
-                'SUMMER': {
-                    ru: 'лето',
-                    en: 'summer',
-                    ua: 'лiто'
-                },
-                'ALLSEASON': {
-                    ru: 'всесезонная',
-                    en: 'all-weather',
-                    ua: 'всесезонна'
-                },
-                'ALUMINIUM': {
-                    ru: 'алюминий',
-                    en: 'aluminum',
-                    ua: 'алюминiй'
-                },
-                'STEEL': {
-                    ru: 'сталь',
-                    en: 'steel',
-                    ua: 'сталь'
-                },
-                'TITANIUM': {
-                    ru: 'титан',
-                    en: 'titanium',
-                    ua: 'титан'
-                },
-                'OTHER': {
-                    ru: 'другое',
-                    en: 'other',
-                    ua: 'iнше'
-                },
-                'ADD_ADVERT_PLEASE_TYPE': {
-                    ru: 'тип товара',
-                    en: 'advert type',
-                    ua: 'тип товару'
-                },
-                LOGO_TAGLINE: {
-                    ru: 'диски, шины: украины',
-                    en: 'wheels and tyres of Ukraine',
-                    ua: 'диски і шини з усієї країни'
-                },
-                INDEX_TAGLINE: {
-                    ru: 'диски Это 80% Вида Автомобиля (с) Генри Форд',
-                    en: 'machinery was invented by labor for labor-serving purposes. The wheel is the basis of the machine. (s) by Henry Ford',
-                    ua: 'диски це 80% зовнiшного вигляду автiвки (с) Генрі Форд'
-                },
-                PLEASE_SELECT: {
-                    ru: 'выберите',
-                    en: 'please Select',
-                    ua: 'виберіть'
-                },
-                ENTER:{
-                    ru: 'вход',
-                    en: 'enter',
-                    ua: 'вхiд'
-                },
-                FORGOT_PASSWORD:{
-                    ru: 'забыли пароль?',
-                    en: 'forgot password?',
-                    ua: 'забули пароль?'
-                },
-                FORGOT_PASSWORD_TEXT:{
-                    ru: 'укажите Email, который был указан при регистрации',
-                    en: 'enter the email that you provided during registration',
-                    ua: 'вкажіть Email, який був вказаний при реєстрації'
-                },
-                PASSWORD:{
-                    ru: 'пароль',
-                    en: 'password',
-                    ua: 'пароль'
-                },
-                REMEMBER_ME:{
-                    ru: 'Запомнить меня',
-                    en: '',
-                    ua: ''
-                },
-                USERNAME:{
-                    ru: 'имя пользователя',
-                    en: 'username',
-                    ua: 'iм\'я користувача'
-                },
-                REPEAT:{
-                    ru: 'повторите',
-                    en: 'repeat',
-                    ua: 'повторiть'
-                },
-                EMAIL:{
-                    ru: 'E-mail',
-                    en: 'E-mail',
-                    ua: 'E-mail'
-                },
-                LOGIN:{
-                    ru: 'вход',
-                    en: 'login',
-                    ua: 'вхід'
-                },
-                RECOLLECT:{
-                    ru: 'вспомнить',
-                    en: 'recollect',
-                    ua: 'згадати'
-                },
-                REGISTRATION:{
-                    ru: 'регистрация',
-                    en: 'registration',
-                    ua: 'реєстрація'
-                },
-                TO_REGISTER:{
-                    ru: 'загеристрироваться',
-                    en: 'to register',
-                    ua: 'зареєструватися'
-                },
-                ALREDY_EXISTS:{
-                    ru: 'уже существует',
-                    en: 'already exists',
-                    ua: 'вже існує'
-                },
-                SEND:{
-                    ru: 'выслать',
-                    en: 'send',
-                    ua: 'вислати'
-                },
-                SEARCH:{
-                    ru: 'поиск',
-                    en: 'search',
-                    ua: 'пошук'
-                },
-                WHEELS_ON_SALE: {
-                    ru: 'диски в продаже',
-                    en: 'wheels on sale',
-                    ua: 'диски в продажу'
-                },
-                TYRES_ON_SALE: {
-                    ru: 'шины в продаже',
-                    en: 'tyres on sale',
-                    ua: 'шина в продажу'
-                },
-                SPACES_ON_SALE: {
-                    ru: 'проставки в продаже',
-                    en: 'spaces on sale',
-                    ua: 'проставки в продажу'
-                },
-                WHEELS: {
-                    ru: 'диски',
-                    en: 'wheels',
-                    ua: 'диски'
-                },
-                TYRES: {
-                    ru: 'шины',
-                    en: 'tyres',
-                    ua: 'шини'
-                },
-                SPACES: {
-                    ru: 'проставки',
-                    en: 'spaces',
-                    ua: 'проставки'
-                }
-            }).exec(function (err, finn) {
-                if (!err) {
-                    sails.log('create_db: params_settings.create DONE')
-                } else {
-                    sails.log.error(err)
-                }
-            });
-        });
+        // sails.models.localization.destroy({}).exec(function() {
+        //     sails.models.localization.create({
+        //         CAST: {
+        //             ru: 'литой',
+        //             en: 'cast',
+        //             ua: 'литий'
+        //         },
+        //         FORGET: {
+        //             ru: 'кованый',
+        //             en: 'forget',
+        //             ua: 'кований'
+        //         },
+        //         STAMPED: {
+        //             ru: 'штампованный',
+        //             en: 'stamped',
+        //             ua: 'штампований'
+        //         },
+        //         MODULAR: {
+        //             ru: 'сборной',
+        //             en: 'modular',
+        //             ua: 'збірній'
+        //         },
+        //         WINTER: {
+        //             ru: 'зима',
+        //             en: 'winter',
+        //             ua: 'зима'
+        //         },
+        //         SUMMER: {
+        //             ru: 'лето',
+        //             en: 'summer',
+        //             ua: 'лiто'
+        //         },
+        //         ALLSEASON: {
+        //             ru: 'всесезонная',
+        //             en: 'all-weather',
+        //             ua: 'всесезонна'
+        //         },
+        //         ALUMINIUM: {
+        //             ru: 'алюминий',
+        //             en: 'aluminum',
+        //             ua: 'алюминiй'
+        //         },
+        //         STEEL: {
+        //             ru: 'сталь',
+        //             en: 'steel',
+        //             ua: 'сталь'
+        //         },
+        //         TITANIUM: {
+        //             ru: 'титан',
+        //             en: 'titanium',
+        //             ua: 'титан'
+        //         },
+        //         OTHER: {
+        //             ru: 'другое',
+        //             en: 'other',
+        //             ua: 'iнше'
+        //         },
+        //         ADD_ADVERT_PLEASE_TYPE: {
+        //             ru: 'тип товара',
+        //             en: 'advert type',
+        //             ua: 'тип товару'
+        //         },
+        //         LOGO_TAGLINE: {
+        //             ru: 'диски, шины: украины',
+        //             en: 'wheels and tyres of Ukraine',
+        //             ua: 'диски і шини з усієї країни'
+        //         },
+        //         INDEX_TAGLINE: {
+        //             ru: 'диски Это 80% Вида Автомобиля (с) Генри Форд',
+        //             en: 'machinery was invented by labor for labor-serving purposes. The wheel is the basis of the machine. (s) by Henry Ford',
+        //             ua: 'диски це 80% зовнiшного вигляду автiвки (с) Генрі Форд'
+        //         },
+        //         PLEASE_SELECT: {
+        //             ru: 'выберите',
+        //             en: 'please Select',
+        //             ua: 'виберіть'
+        //         },
+        //         ENTER:{
+        //             ru: 'вход',
+        //             en: 'enter',
+        //             ua: 'вхiд'
+        //         },
+        //         FORGOT_PASSWORD:{
+        //             ru: 'забыли пароль?',
+        //             en: 'forgot password?',
+        //             ua: 'забули пароль?'
+        //         },
+        //         FORGOT_PASSWORD_TEXT:{
+        //             ru: 'укажите Email, который был указан при регистрации',
+        //             en: 'enter the email that you provided during registration',
+        //             ua: 'вкажіть Email, який був вказаний при реєстрації'
+        //         },
+        //         PASSWORD:{
+        //             ru: 'пароль',
+        //             en: 'password',
+        //             ua: 'пароль'
+        //         },
+        //         REMEMBER_ME:{
+        //             ru: 'Запомнить меня',
+        //             en: '',
+        //             ua: ''
+        //         },
+        //         USERNAME:{
+        //             ru: 'имя пользователя',
+        //             en: 'username',
+        //             ua: 'iм\'я користувача'
+        //         },
+        //         REPEAT:{
+        //             ru: 'повторите',
+        //             en: 'repeat',
+        //             ua: 'повторiть'
+        //         },
+        //         EMAIL:{
+        //             ru: 'E-mail',
+        //             en: 'E-mail',
+        //             ua: 'E-mail'
+        //         },
+        //         LOGIN:{
+        //             ru: 'вход',
+        //             en: 'login',
+        //             ua: 'вхід'
+        //         },
+        //         RECOLLECT:{
+        //             ru: 'вспомнить',
+        //             en: 'recollect',
+        //             ua: 'згадати'
+        //         },
+        //         REGISTRATION:{
+        //             ru: 'регистрация',
+        //             en: 'registration',
+        //             ua: 'реєстрація'
+        //         },
+        //         TO_REGISTER:{
+        //             ru: 'загеристрироваться',
+        //             en: 'to register',
+        //             ua: 'зареєструватися'
+        //         },
+        //         ALREDY_EXISTS:{
+        //             ru: 'уже существует',
+        //             en: 'already exists',
+        //             ua: 'вже існує'
+        //         },
+        //         SEND:{
+        //             ru: 'выслать',
+        //             en: 'send',
+        //             ua: 'вислати'
+        //         },
+        //         SEARCH:{
+        //             ru: 'поиск',
+        //             en: 'search',
+        //             ua: 'пошук'
+        //         },
+        //         WHEELS_ON_SALE: {
+        //             ru: 'диски в продаже',
+        //             en: 'wheels on sale',
+        //             ua: 'диски в продажу'
+        //         },
+        //         TYRES_ON_SALE: {
+        //             ru: 'шины в продаже',
+        //             en: 'tyres on sale',
+        //             ua: 'шина в продажу'
+        //         },
+        //         SPACES_ON_SALE: {
+        //             ru: 'проставки в продаже',
+        //             en: 'spaces on sale',
+        //             ua: 'проставки в продажу'
+        //         },
+        //         WHEELS: {
+        //             ru: 'диски',
+        //             en: 'wheels',
+        //             ua: 'диски'
+        //         },
+        //         TYRES: {
+        //             ru: 'шины',
+        //             en: 'tyres',
+        //             ua: 'шини'
+        //         },
+        //         SPACES: {
+        //             ru: 'проставки',
+        //             en: 'spaces',
+        //             ua: 'проставки'
+        //         },
+        //         PRICE: {
+        //             ru: '',
+        //             en: 'price',
+        //             ua: ''
+        //         },
+        //         TYPE: {
+        //             ru: '',
+        //             en: 'type',
+        //             ua: ''
+        //         },
+        //         WIDTH: {
+        //             ru: '',
+        //             en: 'width',
+        //             ua: ''
+        //         },
+        //         HEIGHT: {
+        //             ru: '',
+        //             en: 'height',
+        //             ua: ''
+        //         },
+        //         MAKER: {
+        //             ru: '',
+        //             en: 'maker',
+        //             ua: ''
+        //         },
+        //         MODEL: {
+        //             ru: '',
+        //             en: 'model',
+        //             ua: ''
+        //         },
+        //         DIAMETER: {
+        //             ru: '',
+        //             en: 'diamerer',
+        //             ua: ''
+        //         },
+        //         MATERIAL: {
+        //             ru: '',
+        //             en: 'material',
+        //             ua: ''
+        //         },
+        //         OFFSET: {
+        //             ru: 'вылет',
+        //             en: 'offset',
+        //             ua: 'вилiт'
+        //         },
+        //         CENTER_HOLE: {
+        //             ru: '',
+        //             en: 'center hole',
+        //             ua: ''
+        //         },
+        //         PCD: {
+        //             ru: 'разболтовка',
+        //             en: 'pitch center diameter',
+        //             ua: ''
+        //         },
+        //         PROFILE_HEIGHT: {
+        //             ru: 'высота профиля',
+        //             en: 'profile height',
+        //             ua: ''
+        //         },
+        //         RESIDUAL_TREAD: {
+        //             ru: '',
+        //             en: 'residual tread',
+        //             ua: ''
+        //         },
+        //         LOAD_INDEX: {
+        //             ru: 'индекс нагрузки',
+        //             en: 'load index',
+        //             ua: ''
+        //         },
+        //         SPEED_INDEX: {
+        //             ru: 'индекс скорости',
+        //             en: 'speed index',
+        //             ua: ''
+        //         }
+        //     }).exec(function (err, finn) {
+        //         if (!err) {
+        //             sails.log('create_db: params_settings.create DONE')
+        //         } else {
+        //             sails.log.error(err)
+        //         }
+        //     });
+        // });
 
 
         // sails.models.adverts.create([

@@ -1,0 +1,15 @@
+.row-hover-shine:hover{
+    background-color: #f5f8d6;
+}
+.form-control{
+    background-color: rgba(255,255,255,.70);
+}
+.pointer{
+    cursor: pointer;
+}
+.green{
+    color: lawngreen;
+}
+.red{
+    color: red;
+}

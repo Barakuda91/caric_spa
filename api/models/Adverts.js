@@ -19,7 +19,6 @@ module.exports = {
       tyreWidth: 'string', // ширина шины
       PCD: 'string', // диаметр окружности точек крепежа
       tyreeight: 'string'// высота профиля шины
-
   }
 };
 
