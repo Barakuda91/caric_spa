@@ -3,18 +3,18 @@
     var  controllerName = 'AdminController';
     angular.module("Admin").controller("AdminController", AdminController);
 
-    AdminController.$inject = ['$scope', '$route','$routeParams','$filter', '$log']
-    function AdminController ($scope,$route,$routeParams,$filter,$log) {
+    AdminController.$inject = ['$scope', '$route','$routeParams','$filter','localStorageService','$log']
+    function AdminController ($scope,$route,$routeParams,$filter,localStorageService,$log) {
         $log.debug('GET '+controllerName);
-
-        $scope.settingParams = {};
+console.log(localStorageService)
+        $scope.localizationArray = {};
         $scope.bdDump = 'saveUp';
 
 
         // загружаем список локализации
         io.socket.post('/api/params_settings/get_localization', {}, function (resData) {
             console.log(resData);
-            $scope.settingParams = resData.data;
+            $scope.localizationArray = resData.data;
             $scope.$digest();
         });
 
@@ -32,15 +32,15 @@
         //
         $scope.addNewAlias = function() {
             $log.debug(controllerName+'.addNewAlias');
-            if ($scope.newAlias.length > 0 && !$scope.settingParams[$scope.newAlias]) {
-                $scope.settingParams[$scope.newAlias] = $scope.newTransl;
+            if ($scope.newAlias.length > 0 && !$scope.localizationArray[$scope.newAlias]) {
+                $scope.localizationArray[$scope.newAlias] = $scope.newTransl;
                 $scope.newAlias = $scope.newTransl = '';
             }
         };
 
         $scope.updateLocalization = function () {
             $log.debug(controllerName+'.updateLocalization');
-            io.socket.post('/api/params_settings/set_localization', $scope.settingParams, function (resData) {
+            io.socket.post('/api/params_settings/set_localization', $scope.localizationArray, function (resData) {
                 if(resData.status) {
                     alert('Succsess');
                 } else {
@@ -55,10 +55,12 @@
 
         $scope.localizationUpdateDb = function() {
             $log.debug(controllerName+'.localizationUpdateDb');
-
-
         };
 
+        $scope.aliasRemove = function (key) {
+            delete $scope.localizationArray[key];
+        };
+        
         $scope.goMainPage = function() {
 
             $route.reload();

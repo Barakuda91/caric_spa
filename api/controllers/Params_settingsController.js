@@ -15,6 +15,32 @@ module.exports = {
             })
         });
     },
+    test: function (req, res) {
+        return;
+        fs.readFile('./db_dump/setting_cities_array.json', function(err, data) {
+
+            var json_data = JSON.parse(data);
+
+            sails.models.params_settings.find().exec(function (err, rows) {
+
+
+                var json_data_ = Object.assign({regions:json_data},rows[0])
+
+                sails.models.params_settings.destroy({}).exec(function (err, rows) {
+                    sails.models.params_settings.create(json_data_).exec(function (err) {
+
+                        if(!err) {
+                            res.json({status: true})
+                        } else {
+                            res.json(err)
+
+                        }
+                    })
+
+                })
+            });
+        });
+    },
     /* DEPRECATED METHODS!!!!!!END!!!!*/
 
 
@@ -110,12 +136,14 @@ module.exports = {
     get_localization: function(req, res) {
         sails.log(currentName + '.get_localization');
         sails.models.localization.find().exec(function(err, row){
+            var rows = Object.assign({},row[0],row[1])
+
             if (!err) {
-                delete row[0].id;
-                delete row[0].updatedAt;
-                delete row[0].createdAt;
-                delete row[0].type;
-                res.json({status: true, data: row[0]})
+                delete rows.id;
+                delete rows.updatedAt;
+                delete rows.createdAt;
+                delete rows.type;
+                res.json({status: true, data: rows})
             } else {
                 res.json({status: false, data: err})
             }

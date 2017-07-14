@@ -50,8 +50,9 @@
                 $log.debug('GET middleware.getLocalization');
                 var _this = this;
                 if(!window.localization_items ) {
-                    io.socket.post('/api/localization', {}, function (resData, jwres) {
-                        window.localization_items = resData[0];
+                    io.socket.post('/api/params_settings/get_localization', {}, function (resData) {
+                        console.log(resData.data)
+                        window.localization_items = resData.data;
                         _this.next();
                     })
                 } else {

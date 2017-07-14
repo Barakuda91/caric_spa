@@ -4,7 +4,10 @@
     angular
         .module("Admin", [
             'ngRoute',
-            'ngResource'
+            'ngResource',
+            'ngRoute.middleware',
+            'angular-md5',
+            'LocalStorageModule'
         ])
         .config(AdminConfig)
         .filter('myFilter', function () {
@@ -34,8 +37,20 @@
             }
         });;
 
-    AdminConfig.$inject = ['$routeProvider', '$locationProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
-    function AdminConfig ($routeProvider, $locationProvider) {
+    AdminConfig.$inject = ['$routeProvider','$locationProvider','$middlewareProvider','localStorageServiceProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
+    function AdminConfig ($routeProvider,$locationProvider,$middlewareProvider,localStorageServiceProvider) {
+
+        $middlewareProvider.map({
+            'auth': function () {
+                console.log('GET middleware.auth');
+            }
+        });
+
+        localStorageServiceProvider
+            .setPrefix('caric')
+            .setDefaultToCookie(false);
+
+
         $locationProvider
             .html5Mode({
                 enabled: true,
@@ -45,7 +60,8 @@
         $routeProvider
             .when('/modest_caric_spa', {
                 controller: 'AdminController',
-                templateUrl: 'view/admin/index.html'
+                templateUrl: 'view/admin/index.html',
+               // middleware: 'auth'
             })
             .when('/', {
                 templateUrl: function () {

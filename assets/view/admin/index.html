@@ -18,6 +18,9 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-2 text-right"  style="margin-top: 15px;">
+            Дамп базы
+        </div>
         <div class="col-lg-8 text-right"  style="margin-top: 15px;">
             <select ng-model="dbDumpType">
                 <option value="set">
@@ -66,21 +69,21 @@
     </div>
 
 
-    <div ng-repeat="(key, value) in settingParams | myFilter:searchKey:searchRu:searchEn:searchUa" class="row row-hover-shine">
+    <div ng-repeat="(key, value) in localizationArray | myFilter:searchKey:searchRu:searchEn:searchUa" class="row row-hover-shine">
         <div class="col-lg-2 text-left">
             {{key}}
         </div>
         <div class="col-lg-3 text-right">
-            <input type="text" ng-model="settingParams[key].ru" value="{{value.ru}}" class="form-control">
+            <input type="text" ng-model="localizationArray[key].ru" value="{{value.ru}}" class="form-control">
         </div>
         <div class="col-lg-3 text-right">
-            <input type="text" ng-model="settingParams[key].en" value="{{value.en}}" class="form-control">
+            <input type="text" ng-model="localizationArray[key].en" value="{{value.en}}" class="form-control">
         </div>
         <div class="col-lg-3 text-right">
-            <input type="text" ng-model="settingParams[key].ua" value="{{value.ua}}" class="form-control">
+            <input type="text" ng-model="localizationArray[key].ua" value="{{value.ua}}" class="form-control">
         </div>
         <div class="col-lg-1 text-left">
-            <i class="fa fa-times fa-2x pointer red" aria-hidden="true"></i>
+            <i ng-click="aliasRemove(key)" class="fa fa-times fa-2x pointer red" aria-hidden="true"></i>
         </div>
     </div>
 

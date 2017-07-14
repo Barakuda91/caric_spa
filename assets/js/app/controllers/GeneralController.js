@@ -151,7 +151,8 @@
                         wheelMaker:     resData.data.wheelMaker,
                         wheelModel:     resData.data.wheelModel,
                         spacesType:     resData.data.spacesType,
-                        fastenersType:  resData.data.fastenersType
+                        fastenersType:  resData.data.fastenersType,
+                        regions:         resData.data.regions
                     };
 
                     if (!$rootScope.settingParams.defaultSelected) {
