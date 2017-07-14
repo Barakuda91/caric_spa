@@ -1,11 +1,12 @@
 (function(){
     "use strict";
+    var controllerName = 'GeneralController';
 
     angular.module("General").controller("GeneralController", GeneralController);
 
-    GeneralController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout', 'md5', 'localStorageService']
-    function GeneralController ($scope, $routeParams, $rootScope, Service,$timeout,md5,localStorageService) {
-        console.log('GET GeneralController');
+    GeneralController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout', 'md5', 'localStorageService','$log']
+    function GeneralController ($scope, $routeParams, $rootScope, Service,$timeout,md5,localStorageService,$log) {
+        $log.debug('GET '+controllerName);
         var _this = this;
 
         if (localStorageService.get('user_data')) {
@@ -66,6 +67,8 @@
 
         // открытие закрытие модального окна логина, регистрации
         $rootScope.modalLoginOpenSwitcher = function (type) {
+            $log.debug(controllerName+'.modalLoginOpenSwitcher');
+
             if(type == 'open' ) {
                 $rootScope.modalStatus.shadow = true;
                 $rootScope.modalStatus.reg_auth.open = true;
@@ -77,6 +80,8 @@
 
         // переключение в модальном окне (вход - регистрация)
         $rootScope.modelLoginSwitch = function (type) {
+            $log.debug(controllerName+'.modelLoginSwitch+');
+
             $rootScope.modalStatus.reg_auth.login.open = false;
             $rootScope.modalStatus.reg_auth.register.open = false;
             $rootScope.modalStatus.reg_auth[type].open = true;
@@ -84,6 +89,8 @@
 
         // включение отключение блока "забыл пароль"
         $rootScope.modelLoginForgot = function () {
+            $log.debug(controllerName+'.modelLoginForgot');
+
             $rootScope.modalStatus.reg_auth.forgot.open = !$rootScope.modalStatus.reg_auth.forgot.open;
         };
 

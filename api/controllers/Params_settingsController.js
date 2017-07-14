@@ -3,6 +3,18 @@ var currentName = 'Params_settingsController';
 var config = sails.config.caric;
 
 module.exports = {
+
+    /* DUMPING */
+    save_dump_in_file: function(req, res) {
+
+    },
+    restore_dump_from_file: function(req, res) {
+
+    },
+    /* DUMPING END*/
+
+
+
     get: function(req,res) {
         sails.log(currentName + '.get');
         sails.models.params_settings.find().limit(1).exec(function(err, row){
@@ -89,6 +101,20 @@ console.log(req);
                     {
                         key: 'uah',
                         title: 'UAH'
+                    }
+                ],
+                advertDeliveryMethod: [
+                    {
+                        key: 'delivery_by_country',
+                        title: 'DELIVERY_BY_COUNTRY'
+                    },
+                    {
+                        key: 'delivery_by_world',
+                        title: 'DELIVERY_BY_WORLD'
+                    },
+                    {
+                        key: 'take_yourself',
+                        title: 'TAKE_YOURSELF'
                     }
                 ],
                 advertType: [

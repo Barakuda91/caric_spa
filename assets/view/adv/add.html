@@ -49,12 +49,33 @@
             </div>
         </div>
 
+        <div class="row filter-block-row">
+            <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
+                {{_.REGION}}
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <select ng-model="settingParams.values.region" class="form-control form-control-sm">
+                    <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+                    <option value="{{item}}" ng-repeat="item in settingParams.region">{{_[item.title]}}</option>
+                </select>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                <select ng-model="settingParams.values.city" class="form-control form-control-sm">
+                    <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
+                    <option value="{{item}}" ng-repeat="item in settingParams.city">{{_[item.title]}}</option>
+                </select>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 small">
+                {{_.CITY}}
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
                 Описание
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 ">
-                <textarea ng-model="settingParams.values.addvertDescription" class="form-control"></textarea>
+                <textarea ng-model="settingParams.values.advertDescription" class="form-control"></textarea>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
 

@@ -29,9 +29,16 @@
         });
 
 
-    GeneralConfig.$inject = ['$routeProvider', '$locationProvider','$middlewareProvider','localStorageServiceProvider']; // при минификации минификатор не сможет изменить название переменной, если она в строке
-    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider,localStorageServiceProvider) {
-        console.log('GET GeneralModule');
+    GeneralConfig.$inject = [// при минификации минификатор не сможет изменить название переменной, если она в строке
+        '$routeProvider',
+        '$locationProvider',
+        '$middlewareProvider',
+        'localStorageServiceProvider',
+        '$logProvider'];
+
+    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider,localStorageServiceProvider,$logProvider) {
+        var $log = angular.injector(['ng']).get('$log');
+        $logProvider.debugEnabled(false);
 
         localStorageServiceProvider
             .setPrefix('caric')
@@ -40,7 +47,7 @@
 
         $middlewareProvider.map({
             'getLocalization': function () {
-                console.log('GET middleware.getLocalization');
+                $log.debug('GET middleware.getLocalization');
                 var _this = this;
                 if(!window.localization_items ) {
                     io.socket.post('/api/localization', {}, function (resData, jwres) {
@@ -62,54 +69,62 @@
         $routeProvider
             .when('/', {
                 templateUrl: 'view/index.html',
+                //controllerAs: 'general',
                 controller: 'GeneralController',
-                controllerAs: 'index',
                 middleware: 'getLocalization'
             })
             .when('/list/:type', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 templateUrl: '/view/list/index.html',
-                controllerAs: 'list',
                 middleware: 'getLocalization'
             })
             .when('/advert/wheel/:id', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/tyre/:id', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/space/:id', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
             .when('/advert/my/', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
 
             })
             .when('/advert/add/', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: '/view/adv/add.html'
             })
             .when('/user/settings', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: '/view/user/settings.html'
             })
             .when('/user/adverts', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/user/alladdv.html'
             })
             .when('/user/messages', {
                 controller: 'GeneralController',
+                //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/user/messages.html'
             });

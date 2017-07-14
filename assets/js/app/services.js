@@ -1,9 +1,12 @@
 (function() {
     "use strict";
-
+    var name = 'Service';
+    var $log = angular.injector(['ng']).get('$log');
     function Service() {
 
         this.getLocalizator = function($rootScope) {
+            $log.debug(name+'.getLocalizator');
+
             if (!window.localization_items) return;
             var currentObject = window.localization_items;
             currentObject = new Proxy(currentObject, {
@@ -20,24 +23,27 @@
                         return phrase;
                     }
                 }
-            })
+            });
 
             return currentObject;
         };
 
-        this.getLocalizationButton = function(lang)
-        {
+        this.getLocalizationButton = function(lang) {
+            $log.debug(name+'.getLocalizationButton');
+
             var e={en:'',ru:'',ua:''}
             e[lang] = 'btn-orange';
             return e;
         };
         
         this.getDefaultSettingParamsValues = function(settingParams) {
+            $log.debug(name+'.getDefaultSettingParamsValues');
+
             return {
                 advertType:     settingParams.advertType[0].key,
                 currency:       settingParams.currency[0].key,
                 productionYear: settingParams.productionYear[15],
-                pcd:            settingParams.pcd[0],
+                pcd:            settingParams.pcd[4],
                 pcdSpacesFrom:  settingParams.pcd[6],
                 pcdSpacesTo:    settingParams.pcd[8],
                 diameter:       settingParams.diameter[0],
@@ -54,7 +60,16 @@
                 //wheelMaker:   settingParams.wheelMaker[0].key,
                 //wheelModel:   settingParams.wheelModel[0].key
                 spacesType:     settingParams.spacesType[0].key,
-                fastenersType:  settingParams.fastenersType[0].key
+                fastenersType:  settingParams.fastenersType[0].key,
+                // advertDeliveryMethod:   settingParams.advertDeliveryMethod[0].key,
+                price:              '',
+                advertPhoneNumber:  '',
+                advertDescription:  '',
+                centerHole:         '',
+                offset:             '',
+                treadRest_1:        '',
+                treadRest_2:        '',
+                spacesCenterHole:   ''
             }
         }
     }

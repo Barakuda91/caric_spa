@@ -1,11 +1,11 @@
 (function(){
     "use strict";
-
+    var  controllerName = 'AdminController';
     angular.module("Admin").controller("AdminController", AdminController);
 
-    AdminController.$inject = ['$scope', '$route','$routeParams','$filter']
-    function AdminController ($scope, $route, $routeParams, $filter) {
-        console.log('Admin');
+    AdminController.$inject = ['$scope', '$route','$routeParams','$filter', '$log']
+    function AdminController ($scope,$route,$routeParams,$filter,$log) {
+        $log.debug('GET '+controllerName);
 
         $scope.settingParams = {};
         $scope.bdDump = 'saveUp';
@@ -18,6 +18,7 @@
 
 
         $scope.addNewAlias = function() {
+            $log.debug(controllerName+'.addNewAlias');
             if ($scope.newAlias.length > 0 && !$scope.settingParams[$scope.newAlias]) {
                 $scope.settingParams[$scope.newAlias] = $scope.newTransl;
                 $scope.newAlias = $scope.newTransl = '';
@@ -25,6 +26,7 @@
         };
 
         $scope.updateLocalization = function () {
+            $log.debug(controllerName+'.updateLocalization');
             io.socket.post('/api/params_settings/set_localization', $scope.settingParams, function (resData) {
                 if(resData.status) {
                     alert('Succsess');
@@ -32,6 +34,16 @@
                     alert('Error');
                 }
             });
+        };
+
+        $scope.localizationFileSave = function() {
+            $log.debug(controllerName+'.localizationFileSave');
+        };
+
+        $scope.localizationUpdateDb = function() {
+            $log.debug(controllerName+'.localizationUpdateDb');
+
+
 
         };
 
