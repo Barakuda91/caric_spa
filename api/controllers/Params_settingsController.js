@@ -1,19 +1,100 @@
 
 var currentName = 'Params_settingsController';
 var config = sails.config.caric;
-
+var fs  = require('fs');
 module.exports = {
+
+    /* DEPRECATED METHODS!!!!!!!!!!!!!*/
+    add_localization_cities: function (req, res) {
+        fs.readFile('./db_dump/localization_cities_array.json', function(err, data) {
+
+            var json_data = JSON.parse(data);
+
+            sails.models.localization.create(json_data).exec(function (err) {
+                res.json(err)
+            })
+        });
+    },
+    /* DEPRECATED METHODS!!!!!!END!!!!*/
+
 
     /* DUMPING */
     save_dump_in_file: function(req, res) {
+        sails.log(currentName + '.save_dump_in_file');
+        var json_array = {};
+        var modelsArray = [];
 
+        for (var key in sails.models) {
+            modelsArray.push(key);
+        }
+
+        var i = 0;
+
+        (function d(i){
+            getDb(modelsArray[i],function (err, rows) {
+                if (!err) {
+                    json_array[modelsArray[i]] = rows;
+
+                    if (i !== modelsArray.length - 1) {
+                        d(++i);
+                    } else {
+                        fs.writeFile('./db_dump/caric_spa.json',JSON.stringify(json_array), function(err) {
+                            if (!err) {
+                                res.json({status: true});
+                            } else {
+                                res.json({status: false, data: err});
+                            }
+                        })
+                    }
+                } else {
+                    res.json({status: false, data: err});
+                }
+            });
+        })(i);
+
+
+        function getDb(dbName,cb) {
+            sails.models[dbName].find().exec(cb);
+        }
     },
     restore_dump_from_file: function(req, res) {
+        sails.log(currentName + '.restore_dump_from_file');
+        fs.readFile('./db_dump/caric_spa.json', function(err, data) {
+            if (!err) {
+                var json_array = JSON.parse(data);
+                var modelsArray = [];
 
+                for (var key in json_array) {
+                    modelsArray.push(key);
+                }
+                var i = 0;
+
+                (function d(i){
+                    setDataInDb(modelsArray[i], json_array[modelsArray[i]], function (err, rows) {
+                        if (!err) {
+                            if (i !== modelsArray.length - 1) {
+                                d(++i);
+                            } else {
+                                res.json({status: true, data: modelsArray});
+                            }
+                        } else {
+                            res.json({status: false, data: err});
+                        }
+                    });
+                })(i);
+
+
+                function setDataInDb(dbName,data,cb) {
+                    sails.models[dbName].destroy({}).exec(function() {
+                        sails.models[dbName].create(data).exec(cb)
+                    });
+                }
+            } else {
+                res.json({status: false, data: err});
+            }
+        })
     },
     /* DUMPING END*/
-
-
 
     get: function(req,res) {
         sails.log(currentName + '.get');
@@ -28,11 +109,12 @@ module.exports = {
     },
     get_localization: function(req, res) {
         sails.log(currentName + '.get_localization');
-        sails.models.localization.find().limit(1).exec(function(err, row){
+        sails.models.localization.find().exec(function(err, row){
             if (!err) {
                 delete row[0].id;
                 delete row[0].updatedAt;
                 delete row[0].createdAt;
+                delete row[0].type;
                 res.json({status: true, data: row[0]})
             } else {
                 res.json({status: false, data: err})
@@ -42,7 +124,7 @@ module.exports = {
     set_localization: function(req, res) {
         sails.log(currentName + '.set_localization');
 
-console.log(req);
+        console.log(req);
         sails.models.localization.destroy({}).exec(function() {
             sails.models.localization.create(req.body).exec(function(err){
                 if (!err) {
@@ -206,7 +288,7 @@ console.log(req);
                         key: 'screw',
                         title:'SCREW'
                     }
-                 ]
+                ]
             }).exec(function (err, finn) {
                 if (!err) {
                     sails.log('create_db: params_settings.create DONE')

@@ -19,18 +19,17 @@
     </div>
     <div class="row">
         <div class="col-lg-8 text-right"  style="margin-top: 15px;">
-            <select ng-model="bdDump">
-                <option value="saveDown">
+            <select ng-model="dbDumpType">
+                <option value="set">
                     сохранить данные из базы данных в файл
                 </option>
-                <option value="saveUp">
+                <option value="get">
                     восстановить данные из файла в базу
                 </option>
             </select>
-            {{bdDump}}
         </div>
         <div class="col-lg-2 text-right"  style="margin-top: 15px;">
-            <div class="btn btn-orange btn-md">действоватЬ</div>
+            <div ng-click="dbDump(dbDumpType)" class="btn btn-orange btn-md">действоватЬ</div>
         </div>
     </div>
     <div class="row">

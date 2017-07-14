@@ -39,11 +39,6 @@ module.exports.routes = {
 
   'post /api/advert/save': 'AdvertsController.save',
 
-  'get /api/admin/create_db': 'Params_settingsController.create_db' // TODO закрыть доступ к этому методу или удалить его к херушкам
-  // '/user/*': {
-  //   view: 'user'
-  // },
-  // 'get /list/wheels': 'IndexController.test',
-  //
-
+  'post /api/admin/dump/set': 'Params_settingsController.save_dump_in_file',
+  'post /api/admin/dump/get': 'Params_settingsController.restore_dump_from_file'
 };
