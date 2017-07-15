@@ -1,5 +1,6 @@
 (function(){
     "use strict";
+    var controllerName = 'ListController';
 
     angular.module("General").controller("ListController", ListController);
 

@@ -8,7 +8,7 @@
         $log.debug('GET '+controllerName);
         var _this = this;
 
-        $scope.advertSubbmit = function() {
+        $scope.advertSubmit = function() {
 
 
             io.socket.post('/api/advert/save', $scope.settingParams.values, function (resData) {
