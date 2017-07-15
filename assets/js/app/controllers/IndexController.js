@@ -42,6 +42,7 @@
         $scope.adverdsArray = [
             {
                 title: 'WHEELS_ON_SALE',
+                type: 'wheel',
                 adverds: [
                     {
                         type: 'wheels',
@@ -88,6 +89,7 @@
                 ]
             },{
                 title: 'TYRES_ON_SALE',
+                type: 'tyres',
                 adverds: [
                     {
                         type: 'wheels',
@@ -99,39 +101,7 @@
                 ]
             },{
                 title: 'SPACES_ON_SALE',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            },{
-                title: 'WHEELS',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            },{
-                title: 'TYRES',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            },{
-                title: 'SPACES',
+                type: 'spaces',
                 adverds: [
                     {
                         type: 'wheels',
