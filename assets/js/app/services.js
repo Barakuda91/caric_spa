@@ -79,6 +79,11 @@ console.log(settingParams)
                 // advertDeliveryMethod:   defaultValues.advertDeliveryMethod || settingParams.advertDeliveryMethod[0].key,
             }
         }
+
+        this.getAdvertsForManiPage = function (name) {
+            console.log(name + '.getAdvertsForManiPage');
+
+        }
     }
 
     angular

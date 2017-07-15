@@ -6,7 +6,7 @@
     AdvertController.$inject = ['$scope','$routeParams','$rootScope','Service','$log']
     function AdvertController ($scope,$routeParams,$rootScope,Service,$log) {
         $log.debug('GET '+controllerName);
-        $scope.advertSubbmit = function() {
+        $scope.advertSubmit = function() {
 
             io.socket.post('/api/advert/save', $scope.settingParams.values, function (resData) {
                 if(resData.status) {
@@ -14,7 +14,7 @@
                     console.log($rootScope.settingParams)
                     $scope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
                     $scope.$digest()
-                    alert('success');
+                    //alert('success');
 
                 }
             })
