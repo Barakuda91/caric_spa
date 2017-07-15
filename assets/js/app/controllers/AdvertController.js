@@ -8,13 +8,14 @@
         $log.debug('GET '+controllerName);
         $scope.advertSubmit = function() {
 
-            io.socket.post('/api/advert/save', $scope.settingParams.values, function (resData) {
+            io.socket.post('/api/post/save', $scope.settingParams.values, function (resData) {
+
                 if(resData.status) {
 //                    $rootScope.modal('success')
                     console.log($rootScope.settingParams)
                     $scope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
                     $scope.$digest()
-                    //alert('success');
+                    alert('success');
 
                 }
             })
