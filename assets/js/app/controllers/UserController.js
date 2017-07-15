@@ -1,6 +1,6 @@
 (function(){
     "use strict";
-
+    var controllerName = 'UserController';
     angular.module("General").controller("UserController", UserController);
 
     UserController.$inject = ['$scope','$routeParams','$rootScope','Service']
