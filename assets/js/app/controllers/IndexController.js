@@ -42,114 +42,76 @@
             var tempTyres = [];
             var tempSpasers = [];
             if ('undefined' != typeof(resData.data)) {
-                for (var i = 0; i < 3; i++) {
-                    for (var key in resData.data) {
-                        switch (resData.data[key].advertType) {
-                            case 'wheels':
-                                tempWheels.push(
-                                    {
-                                        type: resData.data[key].advertType,
-                                        imgUrl: '/images/test_adv.jpg',
-                                        price: resData.data[key].price,
-                                        params: ['XXXX', 'ZZ', 'Q'],
-                                        id: resData.data[key].id
-                                    }
-                                );
-                                break;
+                for (var key in resData.data) {
+                    var currencySymbol = ('usd' === resData.data[key].currency) ? '$' : 'грн.';
+                    if (!resData.data[key].price) {
+                        var priceCombined = '';
+                    } else {
+                        var priceCombined = resData.data[key].price + currencySymbol;
 
-                            case 'tyres':
-                                tempTyres.push(
-                                    {
-                                        type: resData.data[key].advertType,
-                                        imgUrl: '/images/test_adv.jpg',
-                                        price: resData.data[key].price,
-                                        params: ['XXXX', 'ZZ', 'Q'],
-                                        id: resData.data[key].id
-                                    }
-                                );
-                                break;
-                        }
+                    }
+
+                    switch (resData.data[key].advertType) {
+                        case 'wheels':
+                            tempWheels.push(
+                                {
+                                    type: resData.data[key].advertType,
+                                    imgUrl: '/images/test_adv.jpg',
+                                    price: priceCombined,
+                                    params: [resData.data[key].pcd, resData.data[key].diameter, resData.data[key].wheelWidth],
+                                    id: resData.data[key].id
+                                }
+                            );
+                            break;
+
+                        case 'tyres':
+                            tempTyres.push(
+                                {
+                                    type: resData.data[key].advertType,
+                                    imgUrl: '/images/test_adv.jpg',
+                                    price: priceCombined,
+                                    params: [resData.data[key].tyreWidth, resData.data[key].tyreHeight, resData.data[key].diameter],
+                                    id: resData.data[key].id
+                                }
+                            );
+                            break;
+
+                        case 'spaces':
+                            tempSpasers.push(
+                                {
+                                    type: resData.data[key].advertType,
+                                    imgUrl: '/images/test_adv.jpg',
+                                    price: priceCombined,
+                                    params: [resData.data[key].pcdSpacesFrom, resData.data[key].pcdSpacesTo, resData.data[key].spacesWidth],
+                                    id: resData.data[key].id
+                                }
+                            );
+                            break;
                     }
                 }
+                formatedData.push({
+                    title: 'WHEELS_ON_SALE',
+                    type: 'wheel',
+                    adverds: tempWheels
+                });
+                formatedData.push({
+                    title: 'TYRES_ON_SALE',
+                    type: 'tyres',
+                    adverds: tempTyres
+                });
+                formatedData.push({
+                    title: 'SPACES_ON_SALE',
+                    type: 'spaces',
+                    adverds: tempSpasers
+                })
             }
-
-            //$scope.adverdsArray = resData;
+            console.log('FORMATED DATA');
+            console.log(formatedData);
+            $scope.adverdsArray = formatedData;
         })
 
-        $scope.adverdsArray = [
-            {
-                title: 'WHEELS_ON_SALE',
-                type: 'wheel',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '300$',
-                        params: ['5x120',' 17','j9'],
-                        id: '125640'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '140$',
-                        params: ['4x100',' 13','j5.5'],
-                        id: '125641'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '230$',
-                        params: ['5x108',' 17','j10'],
-                        id: '125642'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '500$',
-                        params: ['5x114','16','j8'],
-                        id: '125644'
-                    }
-                ]
-            },{
-                title: 'TYRES_ON_SALE',
-                type: 'tyres',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            },{
-                title: 'SPACES_ON_SALE',
-                type: 'spaces',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            }
-        ];
-        console.log(this.screenWidthData);
+        console.log('OLDFORMATED DATA');
+        console.log($scope.adverdsArray);
+
     };
 })();
