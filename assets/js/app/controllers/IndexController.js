@@ -34,9 +34,46 @@
 
 
 
-        io.socket.post('/api/advert/get', function (resData) {
+        io.socket.post('/api/post/get', function (resData) {
             console.log('GET ADVERTS');
             console.log(resData);
+            var formatedData = [];
+            var tempWheels = [];
+            var tempTyres = [];
+            var tempSpasers = [];
+            if ('undefined' != typeof(resData.data)) {
+                for (var i = 0; i < 3; i++) {
+                    for (var key in resData.data) {
+                        switch (resData.data[key].advertType) {
+                            case 'wheels':
+                                tempWheels.push(
+                                    {
+                                        type: resData.data[key].advertType,
+                                        imgUrl: '/images/test_adv.jpg',
+                                        price: resData.data[key].price,
+                                        params: ['XXXX', 'ZZ', 'Q'],
+                                        id: resData.data[key].id
+                                    }
+                                );
+                                break;
+
+                            case 'tyres':
+                                tempTyres.push(
+                                    {
+                                        type: resData.data[key].advertType,
+                                        imgUrl: '/images/test_adv.jpg',
+                                        price: resData.data[key].price,
+                                        params: ['XXXX', 'ZZ', 'Q'],
+                                        id: resData.data[key].id
+                                    }
+                                );
+                                break;
+                        }
+                    }
+                }
+            }
+
+            //$scope.adverdsArray = resData;
         })
 
         $scope.adverdsArray = [

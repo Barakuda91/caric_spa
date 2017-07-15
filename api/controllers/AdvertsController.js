@@ -70,7 +70,7 @@ module.exports = {
 
     get: function (req, res) {
         sails.log(currentName + '.get');
-        sails.models.adverts.find().limit(10).exec(function(err, rows) {
+        sails.models.adverts.find().exec(function(err, rows) {
             if (!err) {
                 res.json({status: true, data: rows})
             } else {
