@@ -18,6 +18,7 @@ module.exports = {
             currency: req.body.currency,
             advertPhoneNumber: req.body.advertPhoneNumber,
             advertDeliveryMethod: req.body.advertDeliveryMethod,
+
         };
 
         switch (req.body.advertType) {

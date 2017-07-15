@@ -1,6 +1,6 @@
 <div class="gallery_wrap panel-body" id="main_page_logos_div">
     <div class="container" ng-controller="ListController as list">
-        <div ng-include="'/templates/list/pagi-nav-block.html'"></div>
+        <div ng-include="'/templates/filters/pagi-nav-block.html'"></div>
         <div ng-switch on="listType" class="bottom-line">
             <div ng-switch-when="wheels">
                 <div class="row">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <div class="content_block">
-                    <div ng-include="'/templates/list/wheels-filter-block.html'"></div>
+                    <div ng-include="'/templates/filters/wheels-filter-block.html'"></div>
                 </div>
             </div>
             <div ng-switch-when="tyres">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="content_block">
-                    <div ng-include="'/templates/list/tyres-filter-block.html'"></div>
+                    <div ng-include="'/templates/filters/tyres-filter-block.html'"></div>
                 </div>
             </div>
             <div ng-switch-when="spaces">
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="content_block">
-                    <div ng-include="'/templates/list/spaces-filter-block.html'"></div>
+                    <div ng-include="'/templates/filters/spaces-filter-block.html'"></div>
                 </div>
             </div>
         </div>
@@ -137,6 +137,6 @@
                 </div>
             </div>
         </div>
-        <div ng-include="'/templates/list/pagi-nav-block.html'"></div>
+        <div ng-include="'/templates/filters/pagi-nav-block.html'"></div>
     </div>
 </div>

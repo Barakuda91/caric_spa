@@ -152,11 +152,11 @@
                         wheelModel:     resData.data.wheelModel,
                         spacesType:     resData.data.spacesType,
                         fastenersType:  resData.data.fastenersType,
-                        regions:         resData.data.regions
+                        regions:        resData.data.regions
                     };
 
                     if (!$rootScope.settingParams.defaultSelected) {
-                        $rootScope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
+                        $rootScope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams, {}, false);
                     }
                 } else {
                     console.log('err', resData.data)

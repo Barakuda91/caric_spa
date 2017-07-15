@@ -80,32 +80,32 @@
                 templateUrl: '/view/list/index.html',
                 middleware: 'getLocalization'
             })
-            .when('/advert/wheel/:id', {
+            .when('/post/wheel/:id', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
-            .when('/advert/tyre/:id', {
+            .when('/post/tyre/:id', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
-            .when('/advert/space/:id', {
+            .when('/post/space/:id', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
             })
-            .when('/advert/my/', {
+            .when('/post/my/', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',
                 templateUrl: 'view/index.html'
 
             })
-            .when('/advert/add/', {
+            .when('/post/add/', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',
