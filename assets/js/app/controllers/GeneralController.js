@@ -4,8 +4,16 @@
 
     angular.module("General").controller("GeneralController", GeneralController);
 
-    GeneralController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout', 'md5', 'localStorageService','$log']
-    function GeneralController ($scope, $routeParams, $rootScope, Service,$timeout,md5,localStorageService,$log) {
+    GeneralController.$inject = [
+        '$scope',
+        '$rootScope',
+        'Service',
+        '$timeout',
+        'md5',
+        'localStorageService',
+        '$log',
+        '$templateCache'];
+    function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,$templateCache) {
         $log.debug('GET '+controllerName);
 
         if (localStorageService.get('user_data')) {
@@ -19,6 +27,18 @@
         $timeout(function() {
             return document.getElementById('spinner').className = "spinnerFullBlock spinnerOff";
         },1000);
+
+
+        $scope.tempUrl = '/modals/reg_auth.html';
+
+
+        // Service.modal('arvert_add_succes', {
+        //     size: '',
+        //     template: '',
+        //
+        // });
+        //
+        // Service.modal('arvert_add_succes');
 
         $rootScope.lang = $rootScope.lang || 'ru';
         $rootScope._    = $rootScope._    || Service.getLocalizator($rootScope);
@@ -151,6 +171,7 @@
                         spacesType:     resData.data.spacesType,
                         fastenersType:  resData.data.fastenersType,
                         regions:        resData.data.regions,
+                        spacesWidth:    '',
                         price:          '',
                         centerHole:     '',
                         offset:         '',
