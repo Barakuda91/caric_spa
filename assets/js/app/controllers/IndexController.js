@@ -32,6 +32,13 @@
             5: '1200'
         };
 
+
+
+        io.socket.post('/api/advert/get', function (resData) {
+            console.log('GET ADVERTS');
+            console.log(resData);
+        })
+
         $scope.adverdsArray = [
             {
                 title: 'WHEELS_ON_SALE',

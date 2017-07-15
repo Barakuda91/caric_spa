@@ -173,7 +173,7 @@ module.exports = {
                 username: 'Barakuda',
                 passwordHash: 'e10adc3949ba59abbe56e057f20f883e', // 123qwe
                 email: 'barakudatm@gmail.com',
-                firstName: 'Alexksandr',
+                firstName: 'Sasho',
                 lastName: 'Istomin',
                 status: 'admin'
             }, {

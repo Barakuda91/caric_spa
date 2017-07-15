@@ -17,7 +17,7 @@
                     console.log($rootScope.settingParams)
                     $scope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
                     $scope.$digest()
-                    //alert('success');
+                    alert('success');
 
 
 

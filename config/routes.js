@@ -38,6 +38,7 @@ module.exports.routes = {
   'post /api/params_settings/set_localization': 'Params_settingsController.set_localization',
 
   'post /api/advert/save': 'AdvertsController.save',
+  'post /api/advert/get': 'AdvertsController.get',
 
   'post /api/admin/dump/set': 'Params_settingsController.save_dump_in_file',
   'post /api/admin/dump/get': 'Params_settingsController.restore_dump_from_file',

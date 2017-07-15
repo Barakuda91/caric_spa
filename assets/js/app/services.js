@@ -72,6 +72,11 @@
                 spacesCenterHole:   ''
             }
         }
+
+        this.getAdvertsForManiPage = function (name) {
+            console.log(name + '.getAdvertsForManiPage');
+
+        }
     }
 
     angular
