@@ -38,7 +38,7 @@
 
     function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider,localStorageServiceProvider,$logProvider) {
         var $log = angular.injector(['ng']).get('$log');
-        $logProvider.debugEnabled(false);
+        $logProvider.debugEnabled(true);
 
         localStorageServiceProvider
             .setPrefix('caric')
@@ -51,7 +51,6 @@
                 var _this = this;
                 if(!window.localization_items ) {
                     io.socket.post('/api/params_settings/get_localization', {}, function (resData) {
-                        console.log(resData.data)
                         window.localization_items = resData.data;
                         _this.next();
                     })
@@ -109,7 +108,7 @@
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',
-                templateUrl: '/view/adv/add.html'
+                templateUrl: '/view/post/add.html'
             })
             .when('/user/settings', {
                 controller: 'GeneralController',

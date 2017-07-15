@@ -125,7 +125,6 @@ module.exports = {
     get: function(req,res) {
         sails.log(currentName + '.get');
         sails.models.params_settings.find().limit(1).exec(function(err, row){
-            console.log(err, row);
             if (!err) {
                 res.json({status: true, data: row[0]})
             } else {
@@ -151,8 +150,6 @@ module.exports = {
     },
     set_localization: function(req, res) {
         sails.log(currentName + '.set_localization');
-
-        console.log(req);
         sails.models.localization.destroy({}).exec(function() {
             sails.models.localization.create(req.body).exec(function(err){
                 if (!err) {
@@ -165,7 +162,6 @@ module.exports = {
     },
     create_db: function(req,res) {
         sails.log(currentName + '.create_db');
-
         // создаём тестовых пользователей
         sails.models.users.destroy({}).exec(function() {
 

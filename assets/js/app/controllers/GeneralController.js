@@ -7,7 +7,6 @@
     GeneralController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout', 'md5', 'localStorageService','$log']
     function GeneralController ($scope, $routeParams, $rootScope, Service,$timeout,md5,localStorageService,$log) {
         $log.debug('GET '+controllerName);
-        var _this = this;
 
         if (localStorageService.get('user_data')) {
             $rootScope.userData = localStorageService.get('user_data');
@@ -129,7 +128,6 @@
             $rootScope.settingParams = {ready: false};
             io.socket.post('/api/params_settings/get', {}, function (resData) {
                 if (resData.status) {
-                    console.log(resData.data);
                     $rootScope.settingParams = {
                         defaultSelected:$rootScope.settingParams.defaultSelected || false,
                         advertType:     resData.data.advertType,
@@ -140,23 +138,38 @@
                         material:       resData.data.material,
                         tyreType:       resData.data.tyreType,
                         tyreHeight:     resData.data.tyreHeight,
-                        tyreMaker:      resData.data.tyreMaker,
-                        tyreModel:      resData.data.tyreModel,
+                        //tyreMaker:      resData.data.tyreMaker,
+                        //tyreModel:      resData.data.tyreModel,
                         tyreWidth:      resData.data.tyreWidth,
                         tyreSpeedIndex: resData.data.tyreSpeedIndex,
                         tyreLoadIndex:  resData.data.tyreLoadIndex,
                         wheelType:      resData.data.wheelType,
                         wheelWidth:     resData.data.wheelWidth,
                         wheelEt:        resData.data.wheelEt,
-                        wheelMaker:     resData.data.wheelMaker,
-                        wheelModel:     resData.data.wheelModel,
+                        //wheelMaker:     resData.data.wheelMaker,
+                        //wheelModel:     resData.data.wheelModel,
                         spacesType:     resData.data.spacesType,
                         fastenersType:  resData.data.fastenersType,
-                        regions:        resData.data.regions
+                        regions:        resData.data.regions,
+                        price:          '',
+                        centerHole:     '',
+                        offset:         '',
+                        treadRest_1:    '',
+                        treadRest_2:    '',
+                        spacesCenterHole:   '',
+                        advertPhoneNumber:  '',
+                        advertDescription:  ''
+
                     };
 
                     if (!$rootScope.settingParams.defaultSelected) {
-                        $rootScope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams, {}, false);
+                        $rootScope.settingParams.values = Service.getDefaultSettingParamsValues(
+                            $rootScope.settingParams,
+                            {
+                                currency: $rootScope.settingParams.currency[0].key,
+                                advertType:$rootScope.settingParams.advertType[0].key
+                            },
+                            false);
                     }
                 } else {
                     console.log('err', resData.data)
@@ -164,7 +177,13 @@
             });
         } else {
             $rootScope.settingParams.defaultSelected = false;
-            $rootScope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
+            $rootScope.settingParams.values = Service.getDefaultSettingParamsValues(
+                $rootScope.settingParams,
+                {
+                    currency: $rootScope.settingParams.currency[0].key,
+                    advertType:$rootScope.settingParams.advertType[0].key
+                },
+                false);
         }
         /*--- загрузка Params settings END  ---*/
 
