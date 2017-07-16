@@ -1,5 +1,8 @@
 <div class="container" ng-controller="AdvertController">
-    <div class="content_block">
+    <div ng-if="userData.auth == false" class="content_block">
+        <div ng-include="'templates/modals/auth.html'"></div>
+    </div>
+    <div ng-if="userData.auth" class="content_block">
 
         <div class="row filter-block-row">
             <div class="col-lg-12 col-md-12 col-sm-12">
