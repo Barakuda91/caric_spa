@@ -6,5 +6,14 @@ module.exports.caric = {
             full: '/assets/templates/addv-full-block.html'
         }
     },
-    secret: 'age64kg32bt'
+    secret: 'age64kg32bt',
+    advertSettingParamFilters: {
+        index: [
+            'advertType', 'currency', 'price', 'diameter', 'wheelWidth',
+            'pcd', 'wheelWidth', 'tyreWidth', 'tyreHeight', 'pcdSpacesFrom',
+            'pcdSpacesTo', 'spacesWidth'
+        ],
+        list: [],
+        all: []
+    }
 };

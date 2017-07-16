@@ -8,7 +8,8 @@
         $log.debug('GET '+controllerName);
         $scope.advertSubmit = function() {
 
-            io.socket.post('/api/advert/save', $scope.settingParams.values, function (resData) {
+            io.socket.post('/api/post/save', $scope.settingParams.values, function (resData) {
+
                 if(resData.status) {
                     $scope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
                     Service.modal($rootScope, {
@@ -17,7 +18,7 @@
                         size: 'sm'
                     });
                     $scope.$digest()
-
+                    alert('success');
                 }
             })
         }

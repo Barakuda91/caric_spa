@@ -30,87 +30,83 @@
             5: '1200'
         };
 
+        /* забираем из базы все обьявы и гереним галереи по типам */
+        if (!$rootScope.adverdsArray) {
+            io.socket.post('/api/post/get', {filters:'index'}, function (resData) {
+                console.log('GET ADVERTS ---');
+                console.log(resData);
+                var formatedData = [];
+                var tempWheels = [];
+                var tempTyres = [];
+                var tempSpasers = [];
+                if ('undefined' != typeof(resData.data)) {
+                    for (var key in resData.data) {
+                        var currencySymbol = ('usd' === resData.data[key].currency) ? '$' : 'грн.';
+                        if (!resData.data[key].price) {
+                            var priceCombined = '';
+                        } else {
+                            var priceCombined = resData.data[key].price + currencySymbol;
 
+                        }
 
-        io.socket.post('/api/advert/get', function (resData) {
-            console.log('GET ADVERTS');
-            console.log(resData);
-        });
+                        switch (resData.data[key].advertType) {
+                            case 'wheels':
+                                tempWheels.push(
+                                    {
+                                        type: resData.data[key].advertType,
+                                        imgUrl: '/images/test_adv.jpg',
+                                        price: priceCombined,
+                                        params: [resData.data[key].pcd, resData.data[key].diameter, resData.data[key].wheelWidth],
+                                        id: resData.data[key].id
+                                    }
+                                );
+                                break;
 
-        $scope.adverdsArray = [
-            {
-                title: 'WHEELS_ON_SALE',
-                type: 'wheel',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '300$',
-                        params: ['5x120',' 17','j9'],
-                        id: '125640'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '140$',
-                        params: ['4x100',' 13','j5.5'],
-                        id: '125641'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '230$',
-                        params: ['5x108',' 17','j10'],
-                        id: '125642'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    },
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/default.jpg',
-                        price: '500$',
-                        params: ['5x114','16','j8'],
-                        id: '125644'
+                            case 'tyres':
+                                tempTyres.push(
+                                    {
+                                        type: resData.data[key].advertType,
+                                        imgUrl: '/images/test_adv.jpg',
+                                        price: priceCombined,
+                                        params: [resData.data[key].tyreWidth, resData.data[key].tyreHeight, resData.data[key].diameter],
+                                        id: resData.data[key].id
+                                    }
+                                );
+                                break;
+
+                            case 'spaces':
+                                tempSpasers.push(
+                                    {
+                                        type: resData.data[key].advertType,
+                                        imgUrl: '/images/test_adv.jpg',
+                                        price: priceCombined,
+                                        params: [resData.data[key].pcdSpacesFrom, resData.data[key].pcdSpacesTo, resData.data[key].spacesWidth],
+                                        id: resData.data[key].id
+                                    }
+                                );
+                                break;
+                        }
                     }
-                ]
-            },{
-                title: 'TYRES_ON_SALE',
-                type: 'tyres',
-                adverds: [
-                    {
+                    formatedData.push({
+                        title: 'WHEELS_ON_SALE',
                         type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            },{
-                title: 'SPACES_ON_SALE',
-                type: 'spaces',
-                adverds: [
-                    {
-                        type: 'wheels',
-                        imgUrl: '/images/test_adv.jpg',
-                        price: '100$',
-                        params: ['5x120',' 15','j9'],
-                        id: '125643'
-                    }
-                ]
-            }
-        ];
-        console.log(this.screenWidthData);
+                        adverds: tempWheels
+                    });
+                    formatedData.push({
+                        title: 'TYRES_ON_SALE',
+                        type: 'tyres',
+                        adverds: tempTyres
+                    });
+                    formatedData.push({
+                        title: 'SPACES_ON_SALE',
+                        type: 'spaces',
+                        adverds: tempSpasers
+                    })
+                }
+                console.log('FORMATED DATA');
+                console.log(formatedData);
+                $rootScope.adverdsArray = formatedData;
+            })
+        }
     };
 })();

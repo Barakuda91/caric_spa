@@ -70,13 +70,24 @@ module.exports = {
 
     get: function (req, res) {
         sails.log(currentName + '.get');
-        sails.models.adverts.find().limit(10).exec(function(err, rows) {
-            if (!err) {
-                res.json({status: true, data: rows})
-            } else {
-                res.json({status: false, data: err})
+        sails.models.adverts.native(function(err, collection) {
+            if (err) {
+                res.json({status: false, data: err});
             }
-        })
+            var filters = {};
+            if (sails.config.caric.advertSettingParamFilters[req.body.filters]) {
+                for (var key in sails.config.caric.advertSettingParamFilters[req.body.filters]) {
+                    filters[sails.config.caric.advertSettingParamFilters[req.body.filters][key]] = true;
+                }
+            }
+            collection.find({}, filters).toArray(function (err, rows) {
+                if (!err) {
+                    res.json({status: true, data: rows})
+                } else {
+                    res.json({status: false, data: err})
+                }
+            });
+        });
     }
 };
 
