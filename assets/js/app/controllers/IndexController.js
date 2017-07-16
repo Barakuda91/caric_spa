@@ -21,6 +21,7 @@
             $scope.$apply();
         });
 
+        /* массив размеров для бутсрап классов для главной страницы галереи */
         $scope.screenWidthData = {
             0: '1',
             1: '430',
@@ -48,40 +49,60 @@
                             var priceCombined = resData.data[key].price + currencySymbol;
 
                         }
-
                         switch (resData.data[key].advertType) {
                             case 'wheels':
+                                var advertUrl = Service.formatAdvertUrl(
+                                    {
+                                        id: resData.data[key]._id,
+                                        params: [resData.data[key].pcd, resData.data[key].diameter, resData.data[key].wheelWidth]
+                                    }
+                                );
                                 tempWheels.push(
                                     {
                                         type: resData.data[key].advertType,
                                         imgUrl: '/images/test_adv.jpg',
                                         price: priceCombined,
                                         params: [resData.data[key].pcd, resData.data[key].diameter, resData.data[key].wheelWidth],
-                                        id: resData.data[key].id
+                                        id: resData.data[key]._id,
+                                        url: advertUrl
                                     }
                                 );
                                 break;
 
                             case 'tyres':
+                                var advertUrl = Service.formatAdvertUrl(
+                                    {
+                                        id: resData.data[key]._id,
+                                        params: [resData.data[key].tyreWidth, resData.data[key].tyreHeight, resData.data[key].diameter]
+                                    }
+                                );
                                 tempTyres.push(
                                     {
                                         type: resData.data[key].advertType,
                                         imgUrl: '/images/test_adv.jpg',
                                         price: priceCombined,
                                         params: [resData.data[key].tyreWidth, resData.data[key].tyreHeight, resData.data[key].diameter],
-                                        id: resData.data[key].id
+                                        id: resData.data[key]._id,
+                                        url: advertUrl
                                     }
                                 );
                                 break;
 
                             case 'spaces':
+                                var advertUrl = Service.formatAdvertUrl(
+                                    {
+                                        id: resData.data[key]._id,
+                                        params: [resData.data[key].pcdSpacesFrom, resData.data[key].pcdSpacesTo, resData.data[key].spacesWidth],
+                                    }
+                                );
                                 tempSpasers.push(
                                     {
                                         type: resData.data[key].advertType,
                                         imgUrl: '/images/test_adv.jpg',
                                         price: priceCombined,
                                         params: [resData.data[key].pcdSpacesFrom, resData.data[key].pcdSpacesTo, resData.data[key].spacesWidth],
-                                        id: resData.data[key].id
+                                        id: resData.data[key]._id,
+                                        url: advertUrl
                                     }
                                 );
                                 break;
