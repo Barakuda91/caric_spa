@@ -2,7 +2,40 @@
     "use strict";
     var name = 'Service';
     var $log = angular.injector(['ng']).get('$log');
+    var $timeout = angular.injector(['ng']).get('$timeout');
     function Service() {
+
+        this.modal = function($rootScope, options) {
+            /*закрываем модалку*/
+            if(!options) {
+                $rootScope.modals.shadow = false;
+                return;
+            }
+
+            /*устанавливаем модалку*/
+            if(options.template) {
+                var temptlateUrl = '/templates/modals/'+options.template+'.html';
+            } else {
+                $log.error('options.template is require');
+                return;
+            }
+
+            $rootScope.modals = {
+                window: true,
+                content: temptlateUrl,
+                header: options.header || false,
+                crossButton: options.crossButton || true,
+                size: options.size || 'lg'
+            };
+            $rootScope.modals.shadow = true;
+
+            if(typeof options.delay == 'number') {
+                $timeout(function () {
+                    $rootScope.modals.shadow = false;
+                    $rootScope.$digest();
+                }, options.delay)
+            }
+        };
 
         this.getLocalizator = function($rootScope) {
             $log.debug(name+'.getLocalizator');

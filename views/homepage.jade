@@ -3,19 +3,10 @@ extends ./layout
 
 block body
   div(class="site_wrap")
+    div(ng-include="'view/modals.html'")
     div(ng-include="'view/header.html'")
     div(data-ng-view="")
 
-    div(class="modal-shadow" ng-if="modalStatus.shadow" ng-click="modalLoginOpenSwitcher()")
-      div(ng-class="modalWindowClass")
-        div(ng-if="modalStatus.reg_auth.open" class="modal-dialog")
-          div(class="modal-content" ng-click="$event.stopPropagation()")
-            div(class="modal-header")
-              button(type="button" class="close" data-dismiss="modal") &times;
-              h4(class="modal-title") Modal Header
-            div(class="modal-body") Some text in the modal
-
-            div(class="modal-footer") footer
 
   div(class="footer_wrap")
     div(class="container")
@@ -27,5 +18,7 @@ block body
 
   div(class="spinnerFullBlock" id="spinner")
     div
+
+
 
 

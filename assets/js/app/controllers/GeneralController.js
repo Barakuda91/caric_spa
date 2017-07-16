@@ -28,18 +28,6 @@
             return document.getElementById('spinner').className = "spinnerFullBlock spinnerOff";
         },1000);
 
-
-        $scope.tempUrl = '/modals/reg_auth.html';
-
-
-        // Service.modal('arvert_add_succes', {
-        //     size: '',
-        //     template: '',
-        //
-        // });
-        //
-        // Service.modal('arvert_add_succes');
-
         $rootScope.lang = $rootScope.lang || 'ru';
         $rootScope._    = $rootScope._    || Service.getLocalizator($rootScope);
 
@@ -60,11 +48,6 @@
         };
 
         /*--- модалки START ---*/
-        // TODO переделать модалки. структурировать код, вынести методы в сервис
-
-        $rootScope.modal = function(type) {
-
-        };
         $rootScope.modalStatus = {
             reg_auth: {
                 open: false,
@@ -89,11 +72,11 @@
             $log.debug(controllerName+'.modalLoginOpenSwitcher');
 
             if(type == 'open' ) {
-                $rootScope.modalStatus.shadow = true;
-                $rootScope.modalStatus.reg_auth.open = true;
+                Service.modal($rootScope,{
+                    template: 'reg_auth'
+                });
             } else {
-                $rootScope.modalStatus.reg_auth.open = false;
-                $rootScope.modalStatus.shadow = false;
+                Service.modal($rootScope);
             }
         };
 
@@ -125,7 +108,6 @@
             };
 
             io.socket.post('/api/user/'+type, data, function (resData) {
-                console.log(resData)
                 if (resData.status) {
                     $rootScope.userData = resData.data;
                     $rootScope.userData.auth = true;
