@@ -17,8 +17,6 @@
                         delay: 3000,
                         size: 'sm'
                     });
-                    $scope.$digest()
-                    alert('success');
                 }
             })
         }

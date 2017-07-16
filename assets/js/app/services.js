@@ -6,6 +6,7 @@
     function Service() {
 
         this.modal = function($rootScope, options) {
+            $log.debug(name+'.modal')
             /*закрываем модалку*/
             if(!options) {
                 $rootScope.modals.shadow = false;
@@ -28,7 +29,7 @@
                 size: options.size || 'lg'
             };
             $rootScope.modals.shadow = true;
-
+            $rootScope.$digest();
             if(typeof options.delay == 'number') {
                 $timeout(function () {
                     $rootScope.modals.shadow = false;
