@@ -123,9 +123,21 @@
             // }
         };
 
-        this.getAdvertsForManiPage = function (name) {
-            console.log(name + '.getAdvertsForManiPage');
+        this.formatAdvertUrl = function (obj) {
+            var formattedUrl = '/post/show/';
+            if (obj.id && obj.params) {
+                for (var key in obj.params) {
+                    if (obj.params[key]) {
+                        var temp = obj.params[key];
+                        temp = temp.split('_').join('-');
+                        temp = temp.split(' ').join('-');
+                        formattedUrl += temp + '-';
+                    }
+                }
+                formattedUrl += obj.id;
+            }
 
+            return formattedUrl;
         }
     }
 

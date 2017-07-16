@@ -110,6 +110,12 @@
                 middleware: 'getLocalization',
                 templateUrl: '/view/post/add.html'
             })
+            .when('/post/show/:id', {
+                controller: 'GeneralController',
+                //controllerAs: 'general',
+                middleware: 'getLocalization',
+                templateUrl: '/view/post/index.html'
+            })
             .when('/user/settings', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
