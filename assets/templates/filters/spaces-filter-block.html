@@ -5,13 +5,13 @@
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="settingParams.values.spacesType" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item.key}}" ng-repeat="item in settingParams.spacesType">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.spacesType" ng-disabled="item.disable">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
         <select ng-model="settingParams.values.material" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item.key}}" ng-repeat="item in settingParams.material">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.material" ng-disabled="item.disable">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
@@ -44,26 +44,26 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 text-right price-left">
                     <select ng-model="settingParams.values.pcdSpacesFrom" class="form-control form-control-sm">
                         <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                        <option value="{{item}}" ng-repeat="item in settingParams.pcd">{{item}}</option>
+                        <option value="{{item}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disable">{{item}}</option>
                     </select>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 text-right price-right">
                     <select ng-model="settingParams.values.pcdSpacesTo" class="form-control form-control-sm">
                         <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                        <option value="{{item}}" ng-repeat="item in settingParams.pcd">{{item}}</option>
+                        <option value="{{item}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disable">{{item}}</option>
                     </select>
                 </div>
             </div>
         </div>
         <select ng-if="settingParams.values.spacesType !== 'transitional'" ng-model="settingParams.values.pcdSpacesFrom" class="form-control form-control-sm">
                 <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                <option value="{{item}}" ng-repeat="item in settingParams.pcd">{{item}}</option>
+                <option value="{{item}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
         <select ng-model="settingParams.values.fastenersType" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item.key}}" ng-repeat="item in settingParams.fastenersType">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.fastenersType" ng-disabled="item.disable">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">

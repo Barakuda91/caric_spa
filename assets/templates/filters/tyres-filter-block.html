@@ -5,13 +5,13 @@
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="settingParams.values.tyreType" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item.key}}" ng-repeat="item in settingParams.tyreType">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.tyreType" ng-disabled="item.disable">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
         <select ng-model="settingParams.values.tyreSpeedIndex" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item}}" ng-repeat="item in settingParams.tyreSpeedIndex">{{item}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.tyreSpeedIndex" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
@@ -26,13 +26,13 @@
     <div class="col-lg-2 col-md-2 col-sm-2">
         <select ng-model="settingParams.values.diameter" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item}}" ng-repeat="item in settingParams.diameter">{{item}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.diameter" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
         <select ng-model="settingParams.values.tyreLoadIndex" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item}}" ng-repeat="item in settingParams.tyreLoadIndex">{{item}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.tyreLoadIndex" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small">
@@ -47,13 +47,13 @@
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="settingParams.values.tyreWidth" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item}}" ng-repeat="item in settingParams.tyreWidth">{{item}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.tyreWidth" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
         <select ng-model="settingParams.values.productionYear" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item}}" ng-repeat="item in settingParams.productionYear">{{item}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.productionYear" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
@@ -68,7 +68,7 @@
     <div class="col-lg-2 col-md-2 col-sm-2">
         <select ng-model="settingParams.values.tyreHeight" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item}}" ng-repeat="item in settingParams.tyreHeight">{{item}}</option>
+            <option value="{{item}}" ng-repeat="item in settingParams.tyreHeight" ng-disabled="item.disable">{{item}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
@@ -94,13 +94,13 @@
     <div class="col-lg-2 col-md-2 col-sm-2">
         <select ng-model="settingParams.values.tyreMaker" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item.key}}" ng-repeat="item in settingParams.tyreMaker">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.tyreMaker" ng-disabled="item.disable">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
         <select ng-model="settingParams.values.tyreModel" class="form-control form-control-sm">
             <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-            <option value="{{item.key}}" ng-repeat="item in settingParams.tyreModel">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in settingParams.tyreModel" ng-disabled="item.disable">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small vcenter">

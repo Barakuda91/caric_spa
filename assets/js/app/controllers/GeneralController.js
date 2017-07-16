@@ -164,13 +164,13 @@
                         advertDescription:  ''
 
                     };
-
                     if (!$rootScope.settingParams.defaultSelected) {
                         $rootScope.settingParams.values = Service.getDefaultSettingParamsValues(
                             $rootScope.settingParams,
                             {
                                 currency: $rootScope.settingParams.currency[0].key,
-                                advertType:$rootScope.settingParams.advertType[0].key
+                                advertType:$rootScope.settingParams.advertType[0].key,
+
                             },
                             false);
                     }
@@ -184,7 +184,7 @@
                 $rootScope.settingParams,
                 {
                     currency: $rootScope.settingParams.currency[0].key,
-                    advertType:$rootScope.settingParams.advertType[0].key
+                    advertType:$rootScope.settingParams.advertType[0].key,
                 },
                 false);
         }
@@ -194,7 +194,6 @@
             $rootScope.userData = {auth: false};
             localStorageService.remove('user_data');
         };
-
 
 
     }

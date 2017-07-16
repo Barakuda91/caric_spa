@@ -66,7 +66,6 @@
                                 tempTyres.push(
                                     {
                                         type: resData.data[key].advertType,
-                                        imgUrl: '/images/test_adv.jpg',
                                         price: priceCombined,
                                         params: [resData.data[key].tyreWidth, resData.data[key].tyreHeight, resData.data[key].diameter],
                                         id: resData.data[key].id
@@ -78,7 +77,6 @@
                                 tempSpasers.push(
                                     {
                                         type: resData.data[key].advertType,
-                                        imgUrl: '/images/test_adv.jpg',
                                         price: priceCombined,
                                         params: [resData.data[key].pcdSpacesFrom, resData.data[key].pcdSpacesTo, resData.data[key].spacesWidth],
                                         id: resData.data[key].id

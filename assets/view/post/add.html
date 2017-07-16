@@ -15,7 +15,7 @@
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3">
                 <select ng-model="settingParams.values.advertType" class="form-control form-control-sm">
-                    <option value="{{item.key}}" ng-repeat="item in settingParams.advertType">{{_[item.title]}}</option>
+                    <option value="{{item.key}}" ng-repeat="item in settingParams.advertType" ng-disabled="item.disable">{{_[item.title]}}</option>
                 </select>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 text-right">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 text-right price-right">
                             <select ng-model="settingParams.values.currency" class="form-control form-control-sm">
-                                <option value="{{item.key}}" ng-repeat="item in settingParams.currency">{{item.title}}</option>
+                                <option value="{{item.key}}" ng-repeat="item in settingParams.currency" ng-disabled="item.disable">{{item.title}}</option>
                             </select>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
             <div class="col-lg-2 col-md-2 col-sm-2 text-right">
                 <select ng-model="settingParams.values.advertDeliveryMethod" class="form-control form-control-sm">
                     <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                    <option value="{{item}}" ng-repeat="item in settingParams.delyveryMethod">{{_[item.title]}}</option>
+                    <option value="{{item}}" ng-repeat="item in settingParams.delyveryMethod" ng-disabled="item.disable">{{_[item.title]}}</option>
                 </select>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 small">
@@ -65,13 +65,13 @@
             <div class="col-lg-2 col-md-2 col-sm-2">
                 <select ng-model="settingParams.values.regions" class="form-control form-control-sm">
                     <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                    <option value="{{$index}}" ng-repeat="item in settingParams.regions">{{_[item.title]}}</option>
+                    <option value="{{$index}}" ng-repeat="item in settingParams.regions" ng-disabled="item.disable">{{_[item.title]}}</option>
                 </select>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2 text-right">
                 <select ng-model="settingParams.values.city" class="form-control form-control-sm">
                     <option ng-if="settingParams.defaultSelected" value="" disabled selected>{{_.PLEASE_SELECT}}</option>
-                    <option value="{{item}}" ng-repeat="item in settingParams.regions[settingParams.values.regions].cities">{{_[item.title]}}</option>
+                    <option value="{{item}}" ng-repeat="item in settingParams.regions[settingParams.values.regions].cities" ng-disabled="item.disable">{{_[item.title]}}</option>
                 </select>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 small">
