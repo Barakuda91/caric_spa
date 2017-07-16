@@ -76,12 +76,14 @@
                         </a>
                     </div>
                     <div ng-repeat="(j,el) in block.adverds" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xxs-12 text-center">
-                        <div ng-if="windowWidth >= screenWidthData[j]" class="addv-small-block inline main-auto-img" >
-                            <div data-id="{{el.id}}" class="info">
-                                <div class="price">{{el.price}}</div>
-                                <div class="params">{{el.params[0]}} {{el.params[1]}} {{el.params[2]}}</div></div>
-                            <div class="image" style="background-image: url({{el.imgUrl}})"></div>
-                        </div>
+                        <a ng-href="{{el.url}}">
+                            <div ng-if="windowWidth >= screenWidthData[j]" class="addv-small-block inline main-auto-img" >
+                                <div data-id="{{el.id}}" class="info">
+                                    <div class="price">{{el.price}}</div>
+                                    <div class="params">{{el.params[0]}} {{el.params[1]}} {{el.params[2]}}</div></div>
+                                <div class="image" style="background-image: url({{el.imgUrl}})"></div>
+                            </div>
+                        </a>
                     </div>
                     <!--<div class="logo_block_arrow_right">-->
                         <!--<i class="fa fa-angle-right fa-5x" aria-hidden="true"></i>-->
