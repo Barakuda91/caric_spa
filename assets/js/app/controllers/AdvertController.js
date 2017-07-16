@@ -10,11 +10,13 @@
 
             io.socket.post('/api/advert/save', $scope.settingParams.values, function (resData) {
                 if(resData.status) {
-//                    $rootScope.modal('success')
-                    console.log($rootScope.settingParams)
                     $scope.settingParams.values = Service.getDefaultSettingParamsValues($rootScope.settingParams);
+                    Service.modal($rootScope, {
+                        template: 'success',
+                        delay: 3000,
+                        size: 'sm'
+                    });
                     $scope.$digest()
-                    //alert('success');
 
                 }
             })
