@@ -4,8 +4,16 @@
 
     angular.module("General").controller("GeneralController", GeneralController);
 
-    GeneralController.$inject = ['$scope','$routeParams','$rootScope','Service','$timeout', 'md5', 'localStorageService','$log']
-    function GeneralController ($scope, $routeParams, $rootScope, Service,$timeout,md5,localStorageService,$log) {
+    GeneralController.$inject = [
+        '$scope',
+        '$rootScope',
+        'Service',
+        '$timeout',
+        'md5',
+        'localStorageService',
+        '$log',
+        '$templateCache'];
+    function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,$templateCache) {
         $log.debug('GET '+controllerName);
 
         if (localStorageService.get('user_data')) {
@@ -40,11 +48,6 @@
         };
 
         /*--- модалки START ---*/
-        // TODO переделать модалки. структурировать код, вынести методы в сервис
-
-        $rootScope.modal = function(type) {
-
-        };
         $rootScope.modalStatus = {
             reg_auth: {
                 open: false,
@@ -69,11 +72,11 @@
             $log.debug(controllerName+'.modalLoginOpenSwitcher');
 
             if(type == 'open' ) {
-                $rootScope.modalStatus.shadow = true;
-                $rootScope.modalStatus.reg_auth.open = true;
+                Service.modal($rootScope,{
+                    template: 'reg_auth'
+                });
             } else {
-                $rootScope.modalStatus.reg_auth.open = false;
-                $rootScope.modalStatus.shadow = false;
+                Service.modal($rootScope);
             }
         };
 
@@ -105,7 +108,6 @@
             };
 
             io.socket.post('/api/user/'+type, data, function (resData) {
-                console.log(resData)
                 if (resData.status) {
                     $rootScope.userData = resData.data;
                     $rootScope.userData.auth = true;
@@ -151,6 +153,7 @@
                         spacesType:     resData.data.spacesType,
                         fastenersType:  resData.data.fastenersType,
                         regions:        resData.data.regions,
+                        spacesWidth:    '',
                         price:          '',
                         centerHole:     '',
                         offset:         '',

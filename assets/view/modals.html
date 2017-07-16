@@ -1,0 +1,14 @@
+<div ng-if="modals.shadow" ng-click="modalLoginOpenSwitcher()" class="modal-shadow">
+    <div ng-class="modalWindowClass">
+        <div ng-if="modals.window" class="modal-dialog modal-{{modals.size}}">
+            <div ng-click="$event.stopPropagation()" class="modal-content">
+                <div class="modal-header">
+                    <button ng-if="modals.crossButton" type="button" ng-click="modalLoginOpenSwitcher()" class="close">&times;</button>
+                    <h4 ng-if="modals.header" class="modal-title">{{modals.header}}</h4>
+                </div>
+                <div ng-include="modals.content" class="modal-body"></div>
+                <div ng-if="modals.footer" class="modal-footer">{{modals.footer}}</div>
+            </div>
+        </div>
+    </div>
+</div>

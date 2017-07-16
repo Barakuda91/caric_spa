@@ -763,6 +763,25 @@ textarea.form-control{
     height: 120px;
 }
 
+.modal-dialog{
+    position: absolute;
+    left: 50%;
+    /* now you must set a margin left under zero - value is a half width your window */
+    margin-left: -300px;
+    /* this same situation is with height - example */
+    height: 500px;
+    width: 600px;
+    top: 50%;
+    margin-top: -250px;
+}
+.modal-dialog.modal-sm {
+    margin-left: -150px;
+}
+.modal-title {
+    text-align: center;
+    color: #0f0f0f;
+}
+
 
 /* custom classes */
 .width-auto {

@@ -5,9 +5,7 @@
 
     IndexController.$inject = ['$scope', '$routeParams', '$rootScope', 'Service', '$timeout', 'md5', 'localStorageService', '$log']
     function IndexController($scope, $routeParams, $rootScope, Service, $timeout, md5, localStorageService, $log) {
-        console.log('GET IndexController');
-
-        var w = angular.element(window);
+        $log.debug('GET IndexController');
 
         $scope.$watch( // TODO исправить
             function () {
@@ -19,7 +17,7 @@
             true
         );
 
-        w.bind('resize', function(){
+        angular.element(window).bind('resize', function(){
             $scope.$apply();
         });
 
