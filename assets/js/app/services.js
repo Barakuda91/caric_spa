@@ -70,6 +70,25 @@
             return e;
         };
 
+        // возаращает массив параметров [parameter], модифицированный если нужно
+        this.getSettingParameter = function(parameter,disabled) {
+            disabled = disabled || true;
+
+            if(typeof parameter[0] === 'string' ) {
+                parameter = parameter.map(function (el) {
+                    return {
+                        title: el,
+                        key: el
+                    }
+                })
+            }
+
+            if(disabled) {
+                parameter.unshift({title: 'PLEASE_SELECT', disabled: true, key: 'def_select'});
+            }
+            return parameter;
+        };
+
         this.getDefaultSettingParamsValues = function(settingParams, defaultValues, useSettingParams) {
             $log.debug(name+'.getDefaultSettingParamsValues');
             defaultValues    = defaultValues    || {};
@@ -80,47 +99,13 @@
             for(var setting in settingParams) {
                 var defEl = '';
 
-                if(settingParams[setting][0]) {
-                    defEl = (settingParams[setting][0].key) ? settingParams[setting][0].key : settingParams[setting][0];
+                if(settingParams[setting][1]) {
+                    defEl = (settingParams[setting][1].key) ? settingParams[setting][1].key : settingParams[setting][1];
                 }
-
-                return_[setting] = (useSettingParams && defaultValues[setting]) ? defaultValues[setting] : null;
+                return_[setting] = (useSettingParams && defaultValues[setting]) ? defaultValues[setting] : defEl;
             }
-
+console.log(return_)
             return return_;
-
-            // {
-            //     advertType:     defaultValues.advertType    || settingParams.advertType[0].key,
-            //     currency:       defaultValues.currency      || settingParams.currency[0].key,
-            //     productionYear: defaultValues.productionYear|| settingParams.productionYear[15],
-            //     pcd:            defaultValues.pcd           || settingParams.pcd[4],
-            //     pcdSpacesFrom:  defaultValues.pcdSpacesFrom || settingParams.pcd[6],
-            //     pcdSpacesTo:    defaultValues.pcdSpacesTo   || settingParams.pcd[8],
-            //     diameter:       defaultValues.diameter      || settingParams.diameter[0],
-            //     material:       defaultValues.material      || settingParams.material[0].key,
-            //     tyreType:       defaultValues.tyreType      || settingParams.tyreType[0].key,
-            //     tyreHeight:     defaultValues.tyreHeight    || settingParams.tyreHeight[0],
-            //     tyreWidth:      defaultValues.tyreWidth     || settingParams.tyreWidth[0],
-            //     tyreSpeedIndex: defaultValues.tyreSpeedIndex|| settingParams.tyreSpeedIndex[0],
-            //     tyreLoadIndex:  defaultValues.tyreLoadIndex || settingParams.tyreLoadIndex[0],
-            //     //tyreMaker:    defaultValues.tyreMaker     || settingParams.tyreMaker[0].key,
-            //     //tyreModel:    defaultValues.tyreModel     || settingParams.tyreModel[0].key,
-            //     wheelType:      defaultValues.wheelType     || settingParams.wheelType[0].key,
-            //     wheelWidth:     defaultValues.wheelWidth    || settingParams.wheelWidth[0],
-            //     //wheelMaker:   defaultValues.wheelMaker    || settingParams.wheelMaker[0].key,
-            //     //wheelModel:   defaultValues.wheelModel    || settingParams.wheelModel[0].key
-            //     spacesType:     defaultValues.spacesType    || settingParams.spacesType[0].key,
-            //     fastenersType:  defaultValues.fastenersType || settingParams.fastenersType[0].key,
-            //     price:              defaultValues.price     || '',
-            //     centerHole:         defaultValues.centerHole|| '',
-            //     offset:             defaultValues.offset    || '',
-            //     advertPhoneNumber:  defaultValues.advertPhoneNumber || '',
-            //     advertDescription:  defaultValues.advertDescription || '',
-            //     treadRest_1:        defaultValues.treadRest_1       || '',
-            //     treadRest_2:        defaultValues.treadRest_2       || '',
-            //     spacesCenterHole:   defaultValues.spacesCenterHole  || ''
-            //     // advertDeliveryMethod:   defaultValues.advertDeliveryMethod || settingParams.advertDeliveryMethod[0].key,
-            // }
         };
 
         this.formatAdvertUrl = function (obj) {
