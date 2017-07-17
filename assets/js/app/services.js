@@ -47,10 +47,10 @@
                 get: function(target, phrase) {
                     if (phrase in target) {
                         return (function($rootScope){
-                            if (typeof target[phrase][$rootScope.lang] == 'undefined') {
+                            if (typeof target[phrase][$rootScope.userData.language] == 'undefined') {
                                 return phrase;
                             } else {
-                                return target[phrase][$rootScope.lang].charAt(0).toUpperCase() + target[phrase][$rootScope.lang].slice(1);
+                                return target[phrase][$rootScope.userData.language].charAt(0).toUpperCase() + target[phrase][$rootScope.userData.language].slice(1);
                             }
                         })($rootScope);
                     } else {
@@ -94,17 +94,19 @@
             defaultValues    = defaultValues    || {};
             useSettingParams = useSettingParams || true;
             var return_      = {};
-            delete settingParams.defaultSelected;
 
             for(var setting in settingParams) {
                 var defEl = '';
-
                 if(settingParams[setting][1]) {
                     defEl = (settingParams[setting][1].key) ? settingParams[setting][1].key : settingParams[setting][1];
                 }
-                return_[setting] = (useSettingParams && defaultValues[setting]) ? defaultValues[setting] : defEl;
+
+                if(typeof settingParams[setting] == 'string') {
+                    return_[setting] = settingParams[setting];
+                } else {
+                    return_[setting] = (useSettingParams && defaultValues[setting]) ? defaultValues[setting] : settingParams[setting][0].key;
+                }
             }
-console.log(return_)
             return return_;
         };
 

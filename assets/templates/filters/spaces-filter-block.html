@@ -3,13 +3,13 @@
         {{_.TYPE}}
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="settingParams.values.spacesType" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in settingParams.spacesType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-model="setting.values.spacesType" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.spacesType" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select ng-model="settingParams.values.material" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in settingParams.material" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-model="setting.values.material" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.material" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
@@ -22,10 +22,10 @@
         {{_.CENTER_HOLE}}
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
-        <input type="text" ng-model="settingParams.values.spacesCenterHole" class="form-control form-control-sm">
+        <input type="text" ng-model="setting.values.spacesCenterHole" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <input type="text" ng-model="settingParams.values.spacesWidth" class="form-control form-control-sm">
+        <input type="text" ng-model="setting.values.spacesWidth" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small">
         {{_.WIDTH}}
@@ -37,27 +37,27 @@
         {{_.PCD}}
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <div class="row" ng-if="settingParams.values.spacesType === 'transitional'">
+        <div class="row" ng-if="setting.values.spacesType === 'transitional'">
             <div class="row-price">
                 <div class="col-lg-6 col-md-6 col-sm-6 text-right price-left">
-                    <select ng-model="settingParams.values.pcdSpacesFrom" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                    <select ng-model="setting.values.pcdSpacesFrom" class="form-control form-control-sm">
+                        <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
                     </select>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 text-right price-right">
-                    <select ng-model="settingParams.values.pcdSpacesTo" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                    <select ng-model="setting.values.pcdSpacesTo" class="form-control form-control-sm">
+                        <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
                     </select>
                 </div>
             </div>
         </div>
-        <select ng-if="settingParams.values.spacesType !== 'transitional'" ng-model="settingParams.values.pcdSpacesFrom" class="form-control form-control-sm">
-                <option value="{{item.key}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disabled">{{_[item.title]}}/option>
+        <select ng-if="setting.values.spacesType !== 'transitional'" ng-model="setting.values.pcdSpacesFrom" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select ng-model="settingParams.values.fastenersType" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in settingParams.fastenersType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-model="setting.values.fastenersType" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.fastenersType" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">

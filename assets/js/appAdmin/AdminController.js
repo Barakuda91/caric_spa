@@ -6,9 +6,7 @@
     AdminController.$inject = ['$scope', '$route','$routeParams','$filter','localStorageService','$log']
     function AdminController ($scope,$route,$routeParams,$filter,localStorageService,$log) {
         $log.debug('GET '+controllerName);
-console.log(localStorageService)
         $scope.localizationArray = {};
-        $scope.bdDump = 'saveUp';
 
 
         // загружаем список локализации
@@ -34,7 +32,8 @@ console.log(localStorageService)
             $log.debug(controllerName+'.addNewAlias');
             if ($scope.newAlias.length > 0 && !$scope.localizationArray[$scope.newAlias]) {
                 $scope.localizationArray[$scope.newAlias] = $scope.newTransl;
-                $scope.newAlias = $scope.newTransl = '';
+                $scope.newAlias = '';
+                $scope.newTransl = {};
             }
         };
 
@@ -42,9 +41,10 @@ console.log(localStorageService)
             $log.debug(controllerName+'.updateLocalization');
             io.socket.post('/api/params_settings/set_localization', $scope.localizationArray, function (resData) {
                 if(resData.status) {
-                    alert('Succsess');
+                    alert('DONE');
                 } else {
-                    alert('Error');
+                    console.log(resData);
+                    alert('ERROR SEE CONSOLE')
                 }
             });
         };
@@ -58,6 +58,7 @@ console.log(localStorageService)
         };
 
         $scope.aliasRemove = function (key) {
+            $log.debug(controllerName+'.aliasRemove');
             delete $scope.localizationArray[key];
         };
         

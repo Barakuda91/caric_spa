@@ -15,14 +15,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <!-- Login -->
-                <form ng-show="modalStatus.reg_auth.login.open" name="login">
+                <form ng-show="modal.reg_auth.login.open" name="login">
                     <div class="form-group">
                         <input
                                 type="email"
                                 name="email"
                                 required
                                 min-chars-length="5"
-                                ng-model="modalStatus.form.login.email"
+                                ng-model="modal.form.login.email"
                                 ng-model="email"
                                 class="form-control"
                                 placeholder="{{_.EMAIL}}"
@@ -34,7 +34,7 @@
                                 name="password"
                                 required
                                 min-chars-length="6"
-                                ng-model="modalStatus.form.login.password"
+                                ng-model="modal.form.login.password"
                                 ng-model="password"
                                 class="form-control"
                                 placeholder="{{_.PASSWORD}}">
@@ -84,13 +84,13 @@
                 <!-- Login END -->
 
                 <!-- Registration -->
-                <form ng-show="modalStatus.reg_auth.register.open" name="registration" >
+                <form ng-show="modal.reg_auth.register.open" name="registration" >
                     <div class="form-group">
                         <input
                                 type="text"
                                 name="username"
-                                ng-model="username"
                                 ng-model="modal.form.register.username"
+                                ng-model="username"
                                 required
                                 min-chars-length="3"
                                 class="form-control"
@@ -103,8 +103,8 @@
                         <input
                                 type="email"
                                 name="email"
+                                ng-model="modal.form.register.email"
                                 ng-model="email"
-                                ng-model="modalStatus.form.register.email"
                                 required
                                 min-chars-length="5"
                                 class="form-control"
@@ -117,8 +117,8 @@
                         <input
                                 type="password"
                                 name="password"
-                                ng-model="password"
                                 ng-model="modal.form.register.password"
+                                ng-model="password"
                                 required
                                 min-chars-length="6"
                                 class="form-control"
@@ -130,8 +130,8 @@
                         <input
                                 type="password"
                                 name="confirmPassword"
-                                ng-model="confirmPassword"
                                 ng-model="modal.form.register.confirmPassword"
+                                ng-model="confirmPassword"
                                 required
                                 min-chars-length="6"
                                 class="form-control"

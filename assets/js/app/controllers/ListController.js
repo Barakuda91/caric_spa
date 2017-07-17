@@ -9,13 +9,12 @@
         console.log('GET ListController');
         var _this = this;
 
-        $rootScope.settingParams.defaultSelected = true;
         $scope.listType = $routeParams.type;
         $scope.activList = {
             wheels: '',
             tyres: '',
             spaces: ''
-        }
+        };
         $scope.activList[$routeParams.type] = 'disabled';
     }
 })();

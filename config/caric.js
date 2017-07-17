@@ -15,5 +15,6 @@ module.exports.caric = {
         ],
         list: [],
         all: []
-    }
+    },
+    defaultLanguage: 'ru'
 };

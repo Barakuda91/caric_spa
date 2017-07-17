@@ -44,7 +44,6 @@
             .setPrefix('caric')
             .setDefaultToCookie(false);
 
-
         $middlewareProvider.map({
             'getLocalization': function () {
                 $log.debug('GET middleware.getLocalization');

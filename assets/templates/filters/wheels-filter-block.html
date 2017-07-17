@@ -3,13 +3,13 @@
         {{_.TYPE}}
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="settingParams.values.wheelType" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in settingParams.wheelType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-model="setting.values.wheelType" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.wheelType" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select ng-model="settingParams.values.wheelWidth" class="form-control form-control-sm">
-            <option value="{{item}}" ng-repeat="item in settingParams.wheelWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-model="setting.values.wheelWidth" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.wheelWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
@@ -22,10 +22,10 @@
         {{_.CENTER_HOLE}}
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <input ng-model="settingParams.values.centerHole" type="text" class="form-control form-control-sm">
+        <input ng-model="setting.values.centerHole" type="text" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <input ng-model="settingParams.values.offset" type="text" class="form-control form-control-sm">
+        <input ng-model="setting.values.offset" type="text" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
         {{_.OFFSET}}
@@ -37,13 +37,13 @@
         {{_.PCD}}
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="settingParams.values.pcd" class="form-control form-control-sm">
-            <option value="{{item}}" ng-repeat="item in settingParams.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-model="setting.values.pcd" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <select  ng-model="settingParams.values.diameter" class="form-control form-control-sm">
-            <option value="{{item}}" ng-repeat="item in settingParams.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select  ng-model="setting.values.diameter" class="form-control form-control-sm">
+            <option value="{{item.key}}" ng-repeat="item in setting.params.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small">
@@ -57,12 +57,12 @@
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
         <select ng-model="material" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in settingParams.wheelMaker" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in setting.params.wheelMaker" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="material" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in settingParams.wheelModel" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            <option value="{{item.key}}" ng-repeat="item in setting.params.wheelModel" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">

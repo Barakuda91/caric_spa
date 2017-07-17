@@ -32,6 +32,7 @@ module.exports.routes = {
   'post /api/user/login': 'UsersController.login',
   'post /api/user/register': 'UsersController.register',
   'post /api/user/forgot_password': 'UsersController.forgotPassword',
+  'post /api/user/change_language': 'UsersController.changeLanguage',
 
   'post /api/params_settings/get': 'Params_settingsController.get',
   'post /api/params_settings/get_localization': 'Params_settingsController.get_localization',

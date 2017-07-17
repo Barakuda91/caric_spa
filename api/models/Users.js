@@ -16,7 +16,10 @@ module.exports = {
       type: 'string',
       required: true
     },
-    email: 'string',
+    email:  {
+      type: 'string',
+      required: true
+    },
     firstName: 'string',
     lastName: 'string',
     status: {
@@ -24,26 +27,10 @@ module.exports = {
       enum: ['admin', 'moderator', 'user'],
       defaultsTo: 'user'
     },
-    dateRegistration: 'string',
-    dateLastVisit: 'string'
-  },
-
-  newUser: function () {
-    sails.log(currentName+'.newUser');
-
-    sails.models.users.create({
-      username: 'Barakuda',
-      passwordHash: '1111',
-      email: 'barakudatm@gmail.com',
-      firstName: 'Alexksandr',
-      lastName: 'Istomin',
-      status: 'admin'
-    }).exec(function (err, finn){
-      console.log(err, finn)
-    });
-  },
-  auth: function () {
-    sails.log(currentName+'.auth');
-
+    language: {
+      type: 'string',
+      enum: ['ru', 'en', 'ua'],
+      defaultsTo: 'ru'
+    }
   }
 };
