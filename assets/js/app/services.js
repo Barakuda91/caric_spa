@@ -29,7 +29,6 @@
                 size: options.size || 'lg'
             };
             $rootScope.modals.shadow = true;
-            $rootScope.$digest();
             if(typeof options.delay == 'number') {
                 $timeout(function () {
                     $rootScope.modals.shadow = false;

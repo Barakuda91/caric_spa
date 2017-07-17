@@ -163,9 +163,9 @@
                 if (resData.status) {
                     $rootScope.userData = resData.data;
                     $rootScope.userData.auth = true;
-                    $rootScope.modal.reg_auth.open = false;
-                    resData.auth = true;
-                    localStorageService.set('user_data', resData.data);
+                    localStorageService.set('user_data', $rootScope.userData);
+                    Service.modal($rootScope);
+                    $rootScope.$digest();
                 } else {
                     alert(resData.data)
                 }

@@ -528,6 +528,7 @@ div.main-auto-img {
 div.main-disk-img {
     margin-top: 6px;
 }
+
 div.search-input-div {
     position: relative;
     padding: 10px;
@@ -790,9 +791,11 @@ textarea.form-control{
     text-align: center;
     color: #0f0f0f;
 }
-
-
 /* custom classes */
+
+.z_index_1{
+    z-index: 1 !important;
+}
 .width-auto {
     width: auto;
 }
