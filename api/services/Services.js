@@ -14,6 +14,7 @@ module.exports = {
                         token: token,
                         firstName: data.firstName,
                         lastName: data.lastName,
+                        username: data.username,
                         status: data.status,
                         language: data.language,
                         id: data.id

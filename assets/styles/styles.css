@@ -123,6 +123,15 @@ fieldset[disabled] .btn-orange.active {
     font-weight: bold;
 }
 
+.header{
+    position: relative;
+}
+
+.header_center_text{
+    font-family:"Pantonl", Arial, sans-serif;
+    font-size: small;
+    margin-top: 25px;
+}
 
 .m_logo{
     font-family: 'Pantonb', "Trebuchet MS", Arial, sans-serif;

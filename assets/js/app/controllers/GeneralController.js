@@ -182,6 +182,7 @@
                         params: {
                             advertType: Service.getSettingParameter(resData.data.advertType),
                             currency: Service.getSettingParameter(resData.data.currency),
+                            priceFor: Service.getSettingParameter(resData.data.priceFor),
                             productionYear: Service.getSettingParameter(resData.data.productionYear),
                             pcd: Service.getSettingParameter(resData.data.pcd),
                             pcdSpacesFrom: Service.getSettingParameter(resData.data.pcd),
@@ -204,6 +205,7 @@
                             fastenersType: Service.getSettingParameter(resData.data.fastenersType),
                             regions: Service.getSettingParameter(resData.data.regions),
                             deliveryMethod: Service.getSettingParameter(resData.data.deliveryMethod),
+                            quantity: '',
                             spacesWidth: '',
                             price: '',
                             centerHole: '',
@@ -220,7 +222,8 @@
                             {
                                 currency: 'usd',
                                 advertType: 'wheels',
-                                regions: '0'
+                                regions: '0',
+                                priceFor: 'for_the_whole_lot'
                             },
                             false);
                 } else {
