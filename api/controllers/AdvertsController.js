@@ -90,6 +90,22 @@ module.exports = {
         });
     },
 
+    get_one: function (req, res) {
+        sails.log(currentName + '.getOne');
+        sails.models.adverts.native(function(err, collection) {
+            if (err) {
+                res.json({status: false, data: err});
+            }
+            collection.find({_id: req.body.id}).toArray(function (err, row) {
+                if (!err) {
+                    res.json({status: true, data: row})
+                } else {
+                    res.json({status: false, data: err})
+                }
+            });
+        });
+    },
+
     upload: function(req, res) {
         console.log('body' , req.data)
     }

@@ -256,6 +256,30 @@
             defaultUserData();
         };
 
+        $rootScope.$watch( // TODO исправить
+            function () {
+                return window.innerWidth;
+            },
+            function (value) {
+                $rootScope.windowWidth = value;
+            },
+            true
+        );
+
+        angular.element(window).bind('resize', function(){
+            $rootScope.$apply();
+        });
+
+        /* массив размеров для бутсрап классов для главной страницы галереи */
+        $rootScope.screenWidthData = {
+            0: '1',
+            1: '430',
+            2: '768',
+            3: '992',
+            4: '1200',
+            5: '1200'
+        };
+
         // устанавливает параметры по умолчанию для пользовательского объекта___________________________________________
         function defaultUserData() {
             $rootScope.userData = {

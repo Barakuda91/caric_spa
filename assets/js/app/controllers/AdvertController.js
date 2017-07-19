@@ -75,5 +75,19 @@
                 }
             })
         }
+        console.log('$routeParams');
+        console.log($routeParams);
+        /* инфа по обьяве храним в рутскопе если нету тянем из базы */
+        if (!$rootScope.advertInfo) {
+            var urlId = $routeParams.id;
+            var advertId = urlId.split('-').pop();
+            console.log(advertId);
+            io.socket.post('/api/post/getone', {id: advertId}, function (resData) {
+                console.log('answer');
+                console.log(resData);
+                $rootScope.advertInfo = resData;
+            })
+        }
+
     }
 })();

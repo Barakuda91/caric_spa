@@ -7,32 +7,8 @@
     function IndexController($scope, $routeParams, $rootScope, Service, $timeout, md5, localStorageService, $log) {
         $log.debug('GET IndexController');
 
-        $scope.$watch( // TODO исправить
-            function () {
-                return window.innerWidth;
-            },
-            function (value) {
-                $scope.windowWidth = value;
-            },
-            true
-        );
-
-        angular.element(window).bind('resize', function(){
-            $scope.$apply();
-        });
-
-        /* массив размеров для бутсрап классов для главной страницы галереи */
-        $scope.screenWidthData = {
-            0: '1',
-            1: '430',
-            2: '768',
-            3: '992',
-            4: '1200',
-            5: '1200'
-        };
-
         /* забираем из базы все обьявы и гереним галереи по типам */
-        if (!$rootScope.adverdsArray) {
+        if (!$rootScope.advertsArray) {
             io.socket.post('/api/post/get', {filters:'index'}, function (resData) {
                 console.log('GET ADVERTS ---');
                 console.log(resData);
@@ -109,22 +85,22 @@
                     formatedData.push({
                         title: 'WHEELS_ON_SALE',
                         type: 'wheels',
-                        adverds: tempWheels
+                        adverts: tempWheels
                     });
                     formatedData.push({
                         title: 'TYRES_ON_SALE',
                         type: 'tyres',
-                        adverds: tempTyres
+                        adverts: tempTyres
                     });
                     formatedData.push({
                         title: 'SPACES_ON_SALE',
                         type: 'spaces',
-                        adverds: tempSpasers
+                        adverts: tempSpasers
                     })
                 }
                 console.log('FORMATED DATA');
                 console.log(formatedData);
-                $rootScope.adverdsArray = formatedData;
+                $rootScope.advertsArray = formatedData;
             })
         }
     };
