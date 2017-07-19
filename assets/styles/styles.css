@@ -193,7 +193,11 @@ fieldset[disabled] .btn-orange.active {
 }
 
 
-.main_slider_wrap { padding: 2rem 0; background: url("../images/banner.jpg") top center/cover no-repeat;}
+.main_slider_wrap {
+    padding: 2rem 0;
+    background: url("../images/banner_1.jpg") top center/cover no-repeat;
+    height: 37%;
+}
 .main_slider_wrap .container .row>div.content { padding: 10px;  background: #fff; }
 
 .stylish-input-group .input-group-addon{
@@ -373,10 +377,6 @@ fieldset[disabled] .btn-orange.active {
             background: #FF7200;
         }
 
-        .main_slider_wrap{
-            padding: 7rem 0;
-        }
-
         .info_block_wrap span{
             padding: 5rem;
             font-size: 3rem;
@@ -426,10 +426,6 @@ fieldset[disabled] .btn-orange.active {
         display: inline-block;
         vertical-align: top;
         width: 49%;
-    }
-
-    .main_slider_wrap{
-        padding: 10rem 0;
     }
     .info_block_wrap span{
         padding: 3rem;
@@ -665,6 +661,17 @@ ul#main-line-menu li.active a {
     margin-top: 2px;
     margin-bottom: 2px;
 }
+
+
+
+.filter-block-row .required{
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    font-size: large;
+    color: #b90707;
+}
+
 .addv-small-block-row {
     margin-bottom: 20px;
 }
@@ -790,6 +797,23 @@ textarea.form-control{
 .modal-title {
     text-align: center;
     color: #0f0f0f;
+}
+.m_srch{
+    margin: auto;
+    width: 200px;
+    opacity: 0.76;
+    -webkit-transition: 0.3s ease-in all;
+    transition: 0.3s ease-in all;
+
+}
+.m_srch{ opacity: 0.76; width: 200px;}
+.m_srch.active { opacity: 1; width: 400px;}
+.m_srch{ opacity: 0.76;; width: 200px; }
+.m_srch.active{ opacity: 1;  width: 400px;}
+
+
+.m_logo, .m_slogan {
+    text-shadow: 0px 0px 1px black;
 }
 /* custom classes */
 

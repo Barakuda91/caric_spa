@@ -1,6 +1,6 @@
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        {{_.TYPE}}
+        {{_.TYPE}} <span ng-if="setting.required[setting.values.advertType].wheelType" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="setting.values.wheelType" class="form-control form-control-sm">
@@ -13,13 +13,13 @@
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.WIDTH}}
+        {{_.WIDTH}} <span ng-if="setting.required[setting.values.advertType].wheelWidth" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-        {{_.CENTER_HOLE}}
+        {{_.CENTER_HOLE}} <span ng-if="setting.required[setting.values.advertType].centerHole" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
         <input ng-model="setting.values.centerHole" type="text" class="form-control form-control-sm" placeholder="mm">
@@ -28,13 +28,13 @@
         <input ng-model="setting.values.offset" type="text" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.OFFSET}}
+        {{_.OFFSET}} <span ng-if="setting.required[setting.values.advertType].offset" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        {{_.PCD}}
+        {{_.PCD}} <span ng-if="setting.required[setting.values.advertType].pcd" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="setting.values.pcd" class="form-control form-control-sm">
@@ -47,13 +47,13 @@
         </select>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small">
-        {{_.DIAMETER}}
+        {{_.DIAMETER}} <span ng-if="setting.required[setting.values.advertType].diameter" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-        {{_.MAKER}}
+        {{_.MAKER}} <span ng-if="setting.required[setting.values.advertType].wheelMaker" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
         <select ng-model="material" class="form-control form-control-sm">
@@ -66,6 +66,6 @@
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.MODEL}}
+        {{_.MODEL}} <span ng-if="setting.required[setting.values.advertType].wheelModel" class="required">*</span>
     </div>
 </div>

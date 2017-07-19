@@ -16,6 +16,16 @@
     function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,$templateCache) {
         $log.debug('GET '+controllerName);
 
+        // сработает при получении или потере фокуса полем ввода поискового запроса
+        $rootScope.searchInputFocus = function(type) {
+            if(type) {
+                $rootScope.searchInputBlock = 'active';
+            } else {
+                $rootScope.searchInputBlock = '';
+            }
+
+        };
+
         $rootScope.defaultUserData = function() {
             $rootScope.userData = {
                 auth: false,
@@ -175,14 +185,30 @@
         /*--- настройки модалок END ---*/
 
         /*--- загрузка Params settings  ---*/
+
+        // пока что помещаю массив настроек сюда, в дальнейшем можно будет вынести в конфиги
+        var requiredSetting = {
+                wheels: {
+                    wheelType:  true,
+                    wheelWidth: true,
+                    pcd: true,
+                    diameter: true
+                },
+                tiers: {
+
+                },
+                spacers: {}
+        };
+
+
         if(!$rootScope.setting) {
             io.socket.post('/api/params_settings/get', {}, function (resData) {
                 if (resData.status) {
                     $rootScope.setting = {
                         params: {
-                            advertType: Service.getSettingParameter(resData.data.advertType),
-                            currency: Service.getSettingParameter(resData.data.currency),
-                            priceFor: Service.getSettingParameter(resData.data.priceFor),
+                            advertType: Service.getSettingParameter(resData.data.advertType, false),
+                            currency: Service.getSettingParameter(resData.data.currency, false),
+                            priceFor: Service.getSettingParameter(resData.data.priceFor, false),
                             productionYear: Service.getSettingParameter(resData.data.productionYear),
                             pcd: Service.getSettingParameter(resData.data.pcd),
                             pcdSpacesFrom: Service.getSettingParameter(resData.data.pcd),
@@ -205,7 +231,7 @@
                             fastenersType: Service.getSettingParameter(resData.data.fastenersType),
                             regions: Service.getSettingParameter(resData.data.regions),
                             deliveryMethod: Service.getSettingParameter(resData.data.deliveryMethod),
-                            quantity: '',
+                            quantity: Service.getSettingParameter(resData.data.quantity, false),
                             spacesWidth: '',
                             price: '',
                             centerHole: '',
@@ -215,15 +241,18 @@
                             spacesCenterHole: '',
                             advertPhoneNumber: '',
                             advertDescription: ''
-                        }
+                        },
+                        required: requiredSetting
                     };
+                    console.log($rootScope.setting )
                         $rootScope.setting.values = Service.getDefaultSettingParamsValues(
                             $rootScope.setting.params,
                             {
                                 currency: 'usd',
                                 advertType: 'wheels',
                                 regions: '0',
-                                priceFor: 'for_the_whole_lot'
+                                priceFor: 'for_the_whole_lot',
+                                quantity: '4'
                             },
                             false);
                 } else {
@@ -237,6 +266,8 @@
                     currency: 'usd',
                     advertType: 'wheels',
                     regions: '0',
+                    priceFor: 'for_the_whole_lot',
+                    quantity: '4'
                 },
                 false);
         }

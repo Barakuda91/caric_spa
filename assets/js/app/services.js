@@ -71,7 +71,10 @@
 
         // возаращает массив параметров [parameter], модифицированный если нужно
         this.getSettingParameter = function(parameter,disabled) {
-            disabled = disabled || true;
+
+            if(typeof disabled == 'undefined') {
+                disabled = true;
+            }
 
             if(typeof parameter[0] === 'string' ) {
                 parameter = parameter.map(function (el) {

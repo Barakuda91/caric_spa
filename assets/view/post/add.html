@@ -3,10 +3,18 @@
         <div ng-include="'templates/modals/auth.html'"></div>
     </div>
     <div ng-if="userData.auth" class="content_block">
-
-        <div class="row filter-block-row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2></h2>
+        <div class="row filter-block-row small">
+            <div class="col-lg-1 col-md-1 col-sm-1">
+            </div>
+            <div class="col-lg-11 col-md-11 col-sm-11">
+                <span class="required">*</span> поля отмеченые звездочкой обязательны к выбору или заполнению
+            </div>
+        </div>
+        <div class="row filter-block-row  small bottom-line-x1">
+            <div class="col-lg-1 col-md-1 col-sm-1">
+            </div>
+            <div class="col-lg-11 col-md-11 col-sm-11">
+                кликнув на название поля, вы получите больше информации о параметре
             </div>
         </div>
         <div class="row filter-block-row">
@@ -43,11 +51,13 @@
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3">
                 <select ng-model="setting.values.priceFor" class="form-control form-control-sm">
-                    <option value="{{item.key}}" ng-repeat="item in setting.params.priceFor" ng-disabled="item.disable">{{_[item.title]}}</option>
+                    <option value="{{item.key}}" ng-repeat="item in setting.params.priceFor" ng-disabled="item.disabled">{{_[item.title]}}</option>
                 </select>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-                <input type="text" ng-model="setting.values.quantity" class="form-control form-control-sm">
+                <select ng-model="setting.values.quantity" class="form-control form-control-sm">
+                    <option value="{{item.key}}" ng-repeat="item in setting.params.quantity" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                </select>
             </div>
             <div class="col-lg-4 col-md-3 col-sm-3 small">
                 {{_.QUANTITY}}
@@ -114,7 +124,5 @@
                 <div class="btn btn-sm btn-orange" ng-click="advertSubmit()">{{_.ADVERT_SUBBMIT}}</div>
             </div>
         </div>
-
     </div>
-
 </div>
