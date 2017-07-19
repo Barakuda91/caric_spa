@@ -1,5 +1,5 @@
 <div class="row filter-block-row">
-    <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
+    <div class="col-lg-4 col-md-3 col-sm-3 text-right small" ng-click="getModalWithDescription('TYPE')">
         {{_.TYPE}} <span ng-if="setting.required[setting.values.advertType].wheelType" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
@@ -12,13 +12,13 @@
             <option value="{{item.key}}" ng-repeat="item in setting.params.wheelWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
-    <div class="col-lg-4 col-md-3 col-sm-3 small">
+    <div class="col-lg-4 col-md-3 col-sm-3 small" ng-click="getModalWithDescription('WIDTH')">
         {{_.WIDTH}} <span ng-if="setting.required[setting.values.advertType].wheelWidth" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
-    <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
+    <div class="col-lg-4 col-md-4 col-sm-3 text-right small" ng-click="getModalWithDescription('CENTER_HOLE')">
         {{_.CENTER_HOLE}} <span ng-if="setting.required[setting.values.advertType].centerHole" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
@@ -27,13 +27,13 @@
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
         <input ng-model="setting.values.offset" type="text" class="form-control form-control-sm" placeholder="mm">
     </div>
-    <div class="col-lg-4 col-md-3 col-sm-3 small">
+    <div class="col-lg-4 col-md-3 col-sm-3 small" ng-click="getModalWithDescription('OFFSET')">
         {{_.OFFSET}} <span ng-if="setting.required[setting.values.advertType].offset" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
-    <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
+    <div class="col-lg-4 col-md-3 col-sm-3 text-right small" ng-click="getModalWithDescription('PCD')">
         {{_.PCD}} <span ng-if="setting.required[setting.values.advertType].pcd" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
@@ -46,13 +46,13 @@
             <option value="{{item.key}}" ng-repeat="item in setting.params.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 small">
+    <div class="col-lg-4 col-md-4 col-sm-4 small" ng-click="getModalWithDescription('DIAMETER')">
         {{_.DIAMETER}} <span ng-if="setting.required[setting.values.advertType].diameter" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
-    <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
+    <div class="col-lg-4 col-md-4 col-sm-3 text-right small" ng-click="getModalWithDescription('MAKER')">
         {{_.MAKER}} <span ng-if="setting.required[setting.values.advertType].wheelMaker" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
@@ -65,7 +65,7 @@
             <option value="{{item.key}}" ng-repeat="item in setting.params.wheelModel" ng-disabled="item.disabled">{{_[item.title]}}</option>
         </select>
     </div>
-    <div class="col-lg-4 col-md-3 col-sm-3 small">
+    <div class="col-lg-4 col-md-3 col-sm-3 small" ng-click="getModalWithDescription('MODEL')">
         {{_.MODEL}} <span ng-if="setting.required[setting.values.advertType].wheelModel" class="required">*</span>
     </div>
 </div>

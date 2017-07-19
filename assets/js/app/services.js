@@ -1,6 +1,7 @@
 (function() {
     "use strict";
     var name = 'Service';
+    var defaultParameterKeyName = 'def_select';
     var $log = angular.injector(['ng']).get('$log');
     var $timeout = angular.injector(['ng']).get('$timeout');
     function Service() {
@@ -9,7 +10,9 @@
             $log.debug(name+'.modal')
             /*закрываем модалку*/
             if(!options) {
-                $rootScope.modals.shadow = false;
+                delete $rootScope.modals;
+
+//                $rootScope.modals.shadow = false;
                 return;
             }
 
@@ -21,13 +24,21 @@
                 return;
             }
 
+
             $rootScope.modals = {
                 window: true,
                 content: temptlateUrl,
                 header: options.header || false,
-                crossButton: options.crossButton || true,
+                crossButton: options.crossButton || false,
+                okButton: options.okButton || false,
                 size: options.size || 'lg'
             };
+
+            switch(options.status) {
+                case 'success': $rootScope.modals.statusIcon = 'fa-thumbs-o-up fa-3x green'; break;
+                case 'error': $rootScope.modals.statusIcon = 'fa-thumbs-o-down fa-3x red'; break;
+            }
+
             $rootScope.modals.shadow = true;
             if(typeof options.delay == 'number') {
                 $timeout(function () {
@@ -86,7 +97,7 @@
             }
 
             if(disabled) {
-                parameter.unshift({title: 'PLEASE_SELECT', disabled: true, key: 'def_select'});
+                parameter.unshift({title: 'PLEASE_SELECT', disabled: true, key: defaultParameterKeyName});
             }
             return parameter;
         };

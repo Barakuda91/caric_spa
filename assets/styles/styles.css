@@ -661,8 +661,12 @@ ul#main-line-menu li.active a {
     margin-top: 2px;
     margin-bottom: 2px;
 }
-
-
+.filter-block-row > .small:hover{
+    text-shadow: 0 0 1px #ff7200;
+}
+.filter-block-row > .small {
+    cursor: pointer;
+}
 
 .filter-block-row .required{
     position: absolute;
@@ -755,6 +759,18 @@ ul#main-line-menu li.active a {
 .modal-shadow.ng-enter.ng-enter-active { opacity: 1; }  /* окончание анимации */
 .modal-shadow.ng-leave { opacity: 1;  }                 /* начало анимации исчезающего элемента - leave */
 .modal-shadow.ng-leave.ng-leave-active { opacity: 0;  } /* окончание анимации */
+
+.modal-content .fa.red {
+    color: red;
+}
+.modal-content .fa.green {
+    color: green;
+}
+.modal-content .fa {
+    top: 0;
+    position: absolute;
+    left: 0;
+}
 
 .content_block {
     border: 1px solid #d9d9d9;

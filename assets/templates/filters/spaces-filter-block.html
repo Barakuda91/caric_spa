@@ -1,6 +1,6 @@
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        {{_.TYPE}}
+        {{_.TYPE}} <span ng-if="setting.required[setting.values.advertType].spacesType" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <select ng-model="setting.values.spacesType" class="form-control form-control-sm">
@@ -13,13 +13,13 @@
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.MATERIAL}}
+        {{_.MATERIAL}} <span ng-if="setting.required[setting.values.advertType].material" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-        {{_.CENTER_HOLE}}
+        {{_.CENTER_HOLE}} <span ng-if="setting.required[setting.values.advertType].spacesCenterHole" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
         <input type="text" ng-model="setting.values.spacesCenterHole" class="form-control form-control-sm" placeholder="mm">
@@ -28,13 +28,13 @@
         <input type="text" ng-model="setting.values.spacesWidth" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small">
-        {{_.WIDTH}}
+        {{_.WIDTH}} <span ng-if="setting.required[setting.values.advertType].spacesWidth" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        {{_.PCD}}
+        {{_.PCD}} <span ng-if="setting.required[setting.values.advertType].pcdSpacesFrom" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <div class="row" ng-if="setting.values.spacesType === 'transitional'">
@@ -61,6 +61,6 @@
         </select>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.FASTENERS_TYPE}}
+        {{_.FASTENERS_TYPE}} <span ng-if="setting.required[setting.values.advertType].fastenersType" class="required">*</span>
     </div>
 </div>

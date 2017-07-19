@@ -16,6 +16,19 @@
     function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,$templateCache) {
         $log.debug('GET '+controllerName);
 
+        // дефаултный ключ пункта "выберете"
+        $rootScope.defaultParameterKeyName = 'def_select';
+
+        // вызывает модальное онко при клике на название параметра в фильтре
+        $rootScope.getModalWithDescription = function(type) {
+            $rootScope.modal.blockTextName = type+'_TEXT';
+            Service.modal($rootScope, {
+                size: 'sm',
+                okButton: true,
+                header: type,
+                template: 'parameter_description'
+            })
+        };
         // сработает при получении или потере фокуса полем ввода поискового запроса
         $rootScope.searchInputFocus = function(type) {
             if(type) {
@@ -44,7 +57,7 @@
                 // если пользователь зашел впервые - устанавливаем ему user_data, сохраняя её в память
                 $rootScope.defaultUserData();
             }
-            $log.log($rootScope.userData);
+            $log.log('userData', $rootScope.userData);
         }
 
         // перехватываем пост для того, чтобы добавить токен в каждый запрос
@@ -121,7 +134,8 @@
 
             if(type == 'open' ) {
                 Service.modal($rootScope,{
-                    template: 'reg_auth'
+                    template: 'reg_auth',
+                    crossButton: true
                 });
             } else {
                 Service.modal($rootScope);
@@ -194,10 +208,16 @@
                     pcd: true,
                     diameter: true
                 },
-                tiers: {
-
+                tyres: {
+                    tyreType: true,
+                    diameter: true,
+                    tyreWidth: true,
+                    tyreHeight: true
                 },
-                spacers: {}
+                spaces: {
+                    pcdSpacesFrom: true,
+                    spacesWidth: true
+                }
         };
 
 
