@@ -3,9 +3,36 @@
     var controllerName = 'AdvertController';
     angular.module("General").controller("AdvertController", AdvertController);
 
-    AdvertController.$inject = ['$scope','$routeParams','$rootScope','Service','$log']
-    function AdvertController ($scope,$routeParams,$rootScope,Service,$log) {
+    AdvertController.$inject = ['$scope','$routeParams','$rootScope','Service','$log','Upload','$timeout']
+    function AdvertController ($scope,$routeParams,$rootScope,Service,$log,Upload,$timeout) {
         $log.debug('GET '+controllerName);
+        $scope.upload = function (dataUrl, name) {
+            Upload.upload({
+                url: '/api/post/upload',
+                data: {
+                    file: Upload.dataUrltoBlob(dataUrl, name)
+                },
+            }).then(function (response) {
+                $timeout(function () {
+                    $scope.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0) $scope.errorMsg = response.status
+                    + ': ' + response.data;
+            }, function (evt) {
+                $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+            });
+        }
+
+
+
+
+
+
+
+
+
+
         $scope.advertSubmit = function() {
             var setting = $scope.setting;
             for (var parameter in setting.required[setting.values.advertType]) {

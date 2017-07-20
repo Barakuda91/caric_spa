@@ -3,6 +3,7 @@
         <div ng-include="'templates/modals/auth.html'"></div>
     </div>
     <div ng-if="userData.auth" class="content_block">
+
         <div class="row filter-block-row small">
             <div class="col-lg-1 col-md-1 col-sm-1">
             </div>
@@ -105,7 +106,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row filter-block-row">
             <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
                 Описание
             </div>
@@ -117,7 +118,27 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row filter-block-row">
+            <div class="col-lg-4 text-right small">{{_.ADD_PHOTO}}</div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-6" style="line-height: 110px;" ng-repeat="file in files">
+                        <div class="advert-block-upload-img">
+                            <img ngf-thumbnail="file" ngf-size="{ width: 150, height: 100, quality: 1}">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="advert-block-upload-new" ngf-select ngf-multiple="true" ng-model="files" name="file" ngf-pattern="'image/*'"
+                             ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+
+        <div class="row filter-block-row">
             <div class="col-lg-8 col-md-4 col-sm-4 text-right small">
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 text-left small">

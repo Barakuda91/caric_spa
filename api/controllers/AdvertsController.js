@@ -88,6 +88,10 @@ module.exports = {
                 }
             });
         });
+    },
+
+    upload: function(req, res) {
+        console.log('body' , req.data)
     }
 };
 

@@ -8,7 +8,8 @@
             'angular-md5',
             'LocalStorageModule',
             'ngResource',
-            'ngAnimate'
+            'ngAnimate',
+            'ngFileUpload'
         ])
         .config(GeneralConfig)
         .directive('minCharsLength', function() {

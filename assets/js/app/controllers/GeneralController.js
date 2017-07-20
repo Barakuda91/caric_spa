@@ -12,10 +12,9 @@
         'md5',
         'localStorageService',
         '$log',
-        '$templateCache'];
-    function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,$templateCache) {
+        'Upload'];
+    function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,Upload) {
         $log.debug('GET '+controllerName);
-
         // дефаултный ключ пункта "выберете"
         $rootScope.defaultParameterKeyName = 'def_select';
 

@@ -831,6 +831,39 @@ textarea.form-control{
 .m_logo, .m_slogan {
     text-shadow: 0px 0px 1px black;
 }
+.advert-block-upload-img,.advert-block-upload-new {
+    width: 164px;
+    height: 120px;
+}
+.advert-block-upload-img {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    vertical-align: middle;
+    background: #ececec;
+}
+.advert-block-upload-img img{
+    width: 150px;
+}
+.advert-block-upload-new {
+    border: 1px dashed #ff7200;
+    border-radius: 4px;
+}
+.advert-block-upload-new div{
+    margin: 6px;
+    width: 150px;
+    height: 106px;
+    background: rgba(60, 60, 60, 0.3) url(/images/plus_icon.png) center center no-repeat;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
 /* custom classes */
 
 .z_index_1{
