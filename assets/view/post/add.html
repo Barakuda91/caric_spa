@@ -20,7 +20,7 @@
         </div>
         <div class="row filter-block-row">
             <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-                {{_.ADD_ADVERT_PLEASE_TYPE}}
+                {{_.ADD_ADVERT_PLEASE_TYPE}} <span ng-if="setting.required[setting.values.advertType].advertType" class="required">*</span>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3">
                 <select ng-model="setting.values.advertType" class="form-control form-control-sm">
@@ -42,13 +42,13 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-3 col-sm-3 small">
-                {{_.PRICE}}
+                {{_.PRICE}} <span ng-if="setting.required[setting.values.advertType].price" class="required">*</span>
             </div>
         </div>
 
         <div class="row filter-block-row">
             <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-                {{_.PRICE_FOR}}
+                {{_.PRICE_FOR}} <span ng-if="setting.required[setting.values.advertType].priceFor" class="required">*</span>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-3">
                 <select ng-model="setting.values.priceFor" class="form-control form-control-sm">
@@ -61,7 +61,7 @@
                 </select>
             </div>
             <div class="col-lg-4 col-md-3 col-sm-3 small">
-                {{_.QUANTITY}}
+                {{_.QUANTITY}} <span ng-if="setting.required[setting.values.advertType].quantity" class="required">*</span>
             </div>
         </div>
 
@@ -71,7 +71,7 @@
 
         <div class="row filter-block-row">
             <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-                {{_.PHONE_NUMBER}}
+                {{_.PHONE_NUMBER}} <span ng-if="setting.required[setting.values.advertType].advertPhoneNumber" class="required">*</span>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2">
                 <input type="text" ng-model="setting.values.advertPhoneNumber" class="form-control form-control-sm" placeholder="+3(XXX)XXX-XX-XX">
@@ -82,13 +82,13 @@
                 </select>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 small">
-                {{_.DELIVERY_METHOD}}
+                {{_.DELIVERY_METHOD}} <span ng-if="setting.required[setting.values.advertType].deliveryMethod" class="required">*</span>
             </div>
         </div>
 
         <div class="row filter-block-row">
             <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-                {{_.REGION}}
+                {{_.REGION}} <span ng-if="setting.required[setting.values.advertType].regions" class="required">*</span>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-2">
                 <select ng-model="setting.values.regions" class="form-control form-control-sm">
@@ -102,13 +102,13 @@
                 </select>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 small">
-                {{_.CITY}}
+                {{_.CITY}} <span ng-if="setting.required[setting.values.advertType].city" class="required">*</span>
             </div>
         </div>
 
         <div class="row filter-block-row">
             <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
-                Описание
+                {{_.DESCRIPTION}}  <span ng-if="setting.required[setting.values.advertType].advertDescription" class="required">*</span>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 ">
                 <textarea ng-model="setting.values.advertDescription" class="form-control"></textarea>

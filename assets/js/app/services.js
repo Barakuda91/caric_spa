@@ -16,34 +16,33 @@
                 return;
             }
 
-            /*устанавливаем модалку*/
-            if(options.template) {
-                var temptlateUrl = '/templates/modals/'+options.template+'.html';
-            } else {
-                $log.error('options.template is require');
-                return;
-            }
-
-
             $rootScope.modals = {
                 window: true,
-                content: temptlateUrl,
                 header: options.header || false,
                 crossButton: options.crossButton || false,
                 okButton: options.okButton || false,
                 size: options.size || 'lg'
             };
 
+            /*устанавливаем модалку*/
+            if(options.template) {
+                $rootScope.modals.content = '/templates/modals/'+options.template+'.html';
+            }
+
+
             switch(options.status) {
                 case 'success': $rootScope.modals.statusIcon = 'fa-thumbs-o-up fa-3x green'; break;
                 case 'error': $rootScope.modals.statusIcon = 'fa-thumbs-o-down fa-3x red'; break;
             }
-
             $rootScope.modals.shadow = true;
+            $rootScope.$digest();
+
             if(typeof options.delay == 'number') {
                 $timeout(function () {
-                    $rootScope.modals.shadow = false;
-                    $rootScope.$digest();
+                    if($rootScope.modals) {
+                        delete $rootScope.modals;
+                        $rootScope.$digest();
+                    }
                 }, options.delay)
             }
         };

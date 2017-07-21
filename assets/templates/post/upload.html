@@ -4,12 +4,31 @@
         <div class="row">
             <div class="col-lg-6" style="line-height: 110px;" ng-repeat="file in files">
                 <div class="advert-block-upload-img">
-                    <img ngf-thumbnail="file" ngf-size="{ width: 150, height: 100, quality: 1}">
+                    <img ngf-thumbnail="file"
+                         ngf-size="{ width: 150, height: 110, quality: 1}"
+                         ng-click="deleteImage(files, file)"
+                    >
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="advert-block-upload-new" ngf-select ngf-multiple="true" ng-model="files" name="file" ngf-pattern="'image/*'"
-                     ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">
+                <div class="advert-block-upload-new"
+                     ng-hide="files.length >= 10"
+                     ngf-select
+                     ngf-drop
+                     ngf-change="upload($newFiles, $invalidFiles)"
+                     ng-model="files"
+                     ngf-multiple="true"
+                     ngf-drag-over-class="drag_over"
+                     ngf-max-files="10"
+                     ngf-keep="'distinct'"
+                     ngf-capture="'camera'"
+                     name="file"
+                     ngf-pattern="'image/*'"
+                     ngf-accept="'image/*'"
+                     ngf-max-size="2MB"
+                     ngf-min-height="400"
+                     ngf-min-width="400"
+                >
                     <div></div>
                 </div>
             </div>

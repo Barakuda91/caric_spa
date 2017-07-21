@@ -799,16 +799,18 @@ textarea.form-control{
 .modal-dialog{
     position: absolute;
     left: 50%;
-    /* now you must set a margin left under zero - value is a half width your window */
-    margin-left: -300px;
-    /* this same situation is with height - example */
-    height: 500px;
-    width: 600px;
     top: 50%;
     margin-top: -250px;
 }
 .modal-dialog.modal-sm {
-    margin-left: -150px;
+    height: 400px;
+    width: 400px;
+    margin-left: -200px;
+}
+.modal-dialog.modal-lg {
+    height: 500px;
+    width: 600px;
+    margin-left: -300px;
 }
 .modal-title {
     text-align: center;
@@ -837,13 +839,18 @@ textarea.form-control{
 }
 .advert-block-upload-img {
     border: 1px solid #ccc;
+    background: #ececec;
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
-    background: #ececec;
 }
 .advert-block-upload-img img{
-    width: 150px;
+    max-width: 150px;
+    max-height: 110px;
+}
+.drag_over{
+    border: 1px solid #ff7200;
+    background: #ff7200;
 }
 .advert-block-upload-new {
     border: 1px dashed #ff7200;

@@ -9,7 +9,8 @@
             'LocalStorageModule',
             'ngResource',
             'ngAnimate',
-            'ngFileUpload'
+            'ngFileUpload',
+            'ngSanitize'
         ])
         .config(GeneralConfig)
         .directive('minCharsLength', function() {
@@ -27,7 +28,12 @@
                     mCtrl.$parsers.push(minCharsLength);
                 }
             };
-        });
+        }).filter('asHTML', function($sce) {
+        return function(input) {
+            console.log('223--------------')
+            return $sce.getTrustedHtml(input);
+        };
+    });
 
 
     GeneralConfig.$inject = [// при минификации минификатор не сможет изменить название переменной, если она в строке
@@ -35,9 +41,11 @@
         '$locationProvider',
         '$middlewareProvider',
         'localStorageServiceProvider',
-        '$logProvider'];
+        '$logProvider',
+        '$sanitizeProvider'
+    ];
 
-    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider,localStorageServiceProvider,$logProvider) {
+    function GeneralConfig ($routeProvider, $locationProvider, $middlewareProvider,localStorageServiceProvider,$logProvider,$sanitizeProvider) {
         var $log = angular.injector(['ng']).get('$log');
         $logProvider.debugEnabled(true);
 
