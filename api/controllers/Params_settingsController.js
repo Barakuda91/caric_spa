@@ -128,13 +128,31 @@ module.exports = {
     // вернёт все данные из params_settings_____________________________________________________________________________
     get: function(req,res) {
         sails.log(currentName + '.get');
-        sails.models.params_settings.find().limit(1).exec(function(err, row){
-            if (!err) {
-                res.json({status: true, data: row[0]})
-            } else {
-                res.json({status: false, data: err})
-            }
-        });
+
+
+        switch (req.body.type) {
+
+            // производители всех типов
+            case "MAKERS_ALL": break;
+
+            // производители определённого типа (wheels, tyres)
+            case "MAKERS_BY_TYPE": break;
+
+            // список регионов с городами
+            case "REGIONS": break;
+        }
+
+        if (!req.body.type) {
+            sails.models.params_settings.find().limit(1).exec(function (err, row) {
+                if (!err) {
+                    res.json({status: true, data: row[0]})
+                } else {
+                    res.json({status: false, data: err})
+                }
+            });
+        } else {
+
+        }
     },
 
     // вернёт массив алиасов переводов__________________________________________________________________________________

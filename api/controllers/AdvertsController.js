@@ -17,6 +17,7 @@ module.exports = {
             price: req.body.price,
             currency: req.body.currency,
             advertPhoneNumber: req.body.advertPhoneNumber,
+            advertDescription: req.body.advertDescription,
             advertDeliveryMethod: req.body.advertDeliveryMethod,
 
         };
