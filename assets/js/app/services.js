@@ -137,6 +137,27 @@
             }
 
             return formattedUrl;
+        },
+
+        this.createAdvertTitleByType = function (obj) {
+            var title;
+            if (obj.advertType) {
+                switch (obj.advertType) {
+                    case 'wheels':
+                        title = [obj.pcd, obj.diameter, obj.wheelWidth].join(' ');
+                        break;
+
+                    case 'tires':
+                        title = [obj.tyreWidth, obj.tyreHeight, obj.diameter].join(' ');
+                        break;
+
+                    case 'spacers':
+                        title = [obj.pcdSpacesFrom, obj.pcdSpacesTo, obj.spacesWidth].join(' ');
+                        break;
+                }
+            }
+
+            return title;
         }
     }
 

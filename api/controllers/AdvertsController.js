@@ -91,6 +91,17 @@ module.exports = {
         });
     },
 
+    get_one: function (req, res) {
+        sails.log(currentName + '.get_one');
+        sails.models.adverts.findOne({id: req.body.id}).exec(function(err, rows) {
+            if (!err) {
+                res.json({status: true, data: rows})
+            } else {
+                res.json({status: false, data: err})
+            }
+        });
+    },
+
     upload: function(req, res) {
         console.log('body' , req.data)
     }
