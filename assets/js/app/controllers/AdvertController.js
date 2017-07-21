@@ -84,6 +84,7 @@
             io.socket.post('/api/post/get_one', {id: advertId}, function (resData) {
                 console.log('answer');
                 console.log(resData.data);
+                resData.data.title = Service.createAdvertTitleByType(resData.data);
                 $rootScope.advertInfo = resData.data;
             });
         }

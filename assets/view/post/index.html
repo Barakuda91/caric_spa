@@ -10,15 +10,15 @@
 {{advertInfo.id}}
 <div class="container class-bg" ng-controller="AdvertController">
     <div class="row" data-id="{{advertInfo.id}}">
-        <div class="col-xs-12 visible-md visible-sm visible-xs">nazvanie</div>
+        <div class="col-xs-12 visible-md visible-sm visible-xs">{{advertInfo.title}}</div>
         <div class="col-lg-6">
             <div class="col-xs-12">
                 foto main
             </div>
-            <div class="col-xs-12">cena</div>
+            <div class="col-xs-12">{{advertInfo.price}}{{advertInfo.currency}}</div>
         </div>
         <div class="col-lg-6">
-            <div class="col-xs-12 hidden-md hidden-sm hidden-xs">nazvanie</div>
+            <div class="col-xs-12 hidden-md hidden-sm hidden-xs">{{advertInfo.title}}</div>
             <div class="col-xs-12 hidden-sm hidden-xs">
                 <div class="col-md-4">foto1</div>
                 <div class="col-md-4">foto2</div>

@@ -148,9 +148,11 @@
                         break;
 
                     case 'tires':
+                        title = [obj.tyreWidth, obj.tyreHeight, obj.diameter].join(' ');
                         break;
 
                     case 'spacers':
+                        title = [obj.pcdSpacesFrom, obj.pcdSpacesTo, obj.spacesWidth].join(' ');
                         break;
                 }
             }
