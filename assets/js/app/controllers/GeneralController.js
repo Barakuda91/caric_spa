@@ -79,8 +79,6 @@
         // если в локальной базе нет параметров - загружаем их
         //if(!$rootScope.setting.params) {
         if (true) {
-
-
             io.socket.post('/api/params_settings/get', {}, function (resData) {
                 if (resData.status) {
                     $rootScope.setting.params = {
@@ -206,35 +204,34 @@
         $rootScope.modelLoginSwitch = function (type) {
             $log.debug(controllerName+'.modelLoginSwitch+');
 
-            $rootScope.modal.reg_auth.login.open = false;
-            $rootScope.modal.reg_auth.register.open = false;
-            $rootScope.modal.reg_auth[type].open = true;
+            $rootScope.reg_auth.login.open = false;
+            $rootScope.reg_auth.register.open = false;
+            $rootScope.reg_auth[type].open = true;
         };
 
         // включение отключение блока "забыл пароль"____________________________________________________________________
         $rootScope.modelLoginForgot = function () {
             $log.debug(controllerName+'.modelLoginForgot');
 
-            $rootScope.modal.reg_auth.forgot.open = !$rootScope.modal.reg_auth.forgot.open;
+            $rootScope.reg_auth.forgot.open = !$rootScope.reg_auth.forgot.open;
         };
 
         // функция авторизации, регистрации, восстановления пароля______________________________________________________
         $rootScope.loginFormFunction = function(type) {
             var data = {};
-
             switch (type) {
                 case "login":
                     data = {
-                        email: $rootScope.modal.form[type].email,
-                        password: md5.createHash($rootScope.modal.form[type].password || '')
+                        email: $rootScope.reg_auth.form[type].email,
+                        password: md5.createHash($rootScope.reg_auth.form[type].password || '')
                     };
                     break;
                 case "register":
                     data = {
-                        username: $rootScope.modal.form[type].username,
-                        email: $rootScope.modal.form[type].email,
-                        password: md5.createHash($rootScope.modal.form[type].password || ''),
-                        confirmPassword: md5.createHash($rootScope.modal.form[type].confirmPassword || '')
+                        username: $rootScope.reg_auth.form[type].username,
+                        email: $rootScope.reg_auth.form[type].email,
+                        password: md5.createHash($rootScope.reg_auth.form[type].password || ''),
+                        confirmPassword: md5.createHash($rootScope.reg_auth.form[type].confirmPassword || '')
                     };
                     break;
                 case "":

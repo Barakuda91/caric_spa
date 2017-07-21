@@ -22,7 +22,7 @@
                                 name="email"
                                 required
                                 min-chars-length="5"
-                                ng-model="form.login.email"
+                                ng-model="reg_auth.form.login.email"
                                 ng-model="email"
                                 class="form-control"
                                 placeholder="{{_.EMAIL}}"
@@ -34,13 +34,13 @@
                                 name="password"
                                 required
                                 min-chars-length="6"
-                                ng-model="form.login.password"
+                                ng-model="reg_auth.form.login.password"
                                 ng-model="password"
                                 class="form-control"
                                 placeholder="{{_.PASSWORD}}">
                     </div>
                     <div class="form-group text-center">
-                        <input type="checkbox" id="remember" ng-model="tatus.form.login.remember">
+                        <input type="checkbox" id="remember" ng-model="reg_auth.form.login.remember">
                         <label for="remember">{{_.REMEMBER_ME}}</label>
                     </div>
                     <div class="form-group">
@@ -67,7 +67,7 @@
                     <div ng-show="reg_auth.forgot.open">
                         {{_.FORGOT_PASSWORD_TEXT}}
                         <div class="form-group">
-                            <input class="form-control" ng-model="tatus.form.forgot.email" placeholder="{{_.EMAIL}}" value="">
+                            <input class="form-control" ng-model="reg_auth.form.forgot.email" placeholder="{{_.EMAIL}}" value="">
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -89,7 +89,7 @@
                         <input
                                 type="text"
                                 name="username"
-                                ng-model="form.register.username"
+                                ng-model="reg_auth.form.register.username"
                                 ng-model="username"
                                 required
                                 min-chars-length="3"
@@ -97,13 +97,13 @@
                                 placeholder="{{_.USERNAME}}"
                                 value="">
                         <i ng-if="registration.username.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <i ng-hide="registration.username.$untouched"  ng-if="form.register.username.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        <i ng-hide="registration.username.$untouched"  ng-if="reg_auth.form.register.username.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
                     </div>
                     <div class="form-group">
                         <input
                                 type="email"
                                 name="email"
-                                ng-model="form.register.email"
+                                ng-model="reg_auth.form.register.email"
                                 ng-model="email"
                                 required
                                 min-chars-length="5"
@@ -117,7 +117,7 @@
                         <input
                                 type="password"
                                 name="password"
-                                ng-model="form.register.password"
+                                ng-model="reg_auth.form.register.password"
                                 ng-model="password"
                                 required
                                 min-chars-length="6"
@@ -130,7 +130,7 @@
                         <input
                                 type="password"
                                 name="confirmPassword"
-                                ng-model="form.register.confirmPassword"
+                                ng-model="reg_auth.form.register.confirmPassword"
                                 ng-model="confirmPassword"
                                 required
                                 min-chars-length="6"
@@ -155,3 +155,4 @@
         </div>
     </div>
 </div>
+{{reg_auth.form.login}}
