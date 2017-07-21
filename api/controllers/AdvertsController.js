@@ -91,18 +91,13 @@ module.exports = {
     },
 
     get_one: function (req, res) {
-        sails.log(currentName + '.getOne');
-        sails.models.adverts.native(function(err, collection) {
-            if (err) {
-                res.json({status: false, data: err});
+        sails.log(currentName + '.get_one');
+        sails.models.adverts.findOne({id: req.body.id}).exec(function(err, rows) {
+            if (!err) {
+                res.json({status: true, data: rows})
+            } else {
+                res.json({status: false, data: err})
             }
-            collection.find({_id: req.body.id}).toArray(function (err, row) {
-                if (!err) {
-                    res.json({status: true, data: row})
-                } else {
-                    res.json({status: false, data: err})
-                }
-            });
         });
     },
 

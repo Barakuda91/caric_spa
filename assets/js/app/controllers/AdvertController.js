@@ -79,18 +79,14 @@
         console.log($routeParams);
         /* инфа по обьяве храним в рутскопе если нету тянем из базы */
         if ($routeParams.id) {
-            if (!$rootScope.advertInfo) {
-                var urlId = $routeParams.id;
-                var advertId = urlId.split('-').pop();
-                console.log(advertId);
-                io.socket.post('/api/post/get_one', {id: advertId}, function (resData) {
-                    console.log('answer');
-                    console.log(resData);
-                    $rootScope.advertInfo = resData;
-                })
-            }
+            var urlId = $routeParams.id;
+            var advertId = urlId.split('-').pop();
+            io.socket.post('/api/post/get_one', {id: advertId}, function (resData) {
+                console.log('answer');
+                console.log(resData.data);
+                $rootScope.advertInfo = resData.data;
+            });
         }
-
 
     }
 })();

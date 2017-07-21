@@ -137,6 +137,25 @@
             }
 
             return formattedUrl;
+        },
+
+        this.createAdvertTitleByType = function (obj) {
+            var title;
+            if (obj.advertType) {
+                switch (obj.advertType) {
+                    case 'wheels':
+                        title = [obj.pcd, obj.diameter, obj.wheelWidth].join(' ');
+                        break;
+
+                    case 'tires':
+                        break;
+
+                    case 'spacers':
+                        break;
+                }
+            }
+
+            return title;
         }
     }
 
