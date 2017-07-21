@@ -40,6 +40,7 @@ module.exports.routes = {
 
   'post /api/post/save': 'AdvertsController.save',
   'post /api/post/get': 'AdvertsController.get',
+  'post /api/post/get_one': 'AdvertsController.get_one',
   'post /api/post/upload': 'AdvertsController.upload',
 
   'post /api/admin/dump/set': 'Params_settingsController.save_dump_in_file',
