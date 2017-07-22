@@ -16,7 +16,27 @@
     function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,Upload) {
         $log.debug('GET '+controllerName);
 
-        /*------------------------------------------------- установки ------------------------------------------------*/
+
+        $rootScope.searchBlockFocus = function(){
+            console.log('focus');
+
+            $rootScope.searchItemList = 'show'
+        };
+
+        $rootScope.searchBlockBlur = function(){
+            console.log('blur');
+
+            $timeout(function(){ $rootScope.searchItemList = ''; }, 200);
+        };
+
+        $rootScope.chooseItem = function( item ){
+            $rootScope.disabledBlock = true;
+            $rootScope.setting.values.models = item.key;
+            $rootScope.searchItemList = '';
+        }
+
+
+/*------------------------------------------------- установки ------------------------------------------------*/
         // дефаултный ключ пункта "выберете"
         $rootScope.defaultParameterKeyName = 'def_select';
 
@@ -79,9 +99,27 @@
         // если в локальной базе нет параметров - загружаем их
         //if(!$rootScope.setting.params) {
         if (true) {
+            io.socket.post('/api/params_settings/get', {type: 'MAKERS_ALL'}, function (resData) {
+                var params = {
+                    tyreMaker: [],
+                    wheelMaker: []
+                };
+                resData.data.forEach(function(el) {
+                    params[el.type+'Maker'].push({
+                        key: el.key,
+                        title: el.key,
+                        models: el.models
+                    })
+                });
+                $rootScope.setting.params = Object.assign({},$rootScope.setting.params,
+                    {
+                        tyreMaker: Service.getSettingParameter(params.tyreMaker),
+                        wheelMaker: Service.getSettingParameter(params.wheelMaker)
+                    });
+            });
             io.socket.post('/api/params_settings/get', {}, function (resData) {
                 if (resData.status) {
-                    $rootScope.setting.params = {
+                    $rootScope.setting.params = Object.assign({},$rootScope.setting.params,{
                         advertType: Service.getSettingParameter(resData.data.advertType, false),
                         currency: Service.getSettingParameter(resData.data.currency, false),
                         priceFor: Service.getSettingParameter(resData.data.priceFor, false),
@@ -93,16 +131,12 @@
                         material: Service.getSettingParameter(resData.data.material),
                         tyreType: Service.getSettingParameter(resData.data.tyreType),
                         tyreHeight: Service.getSettingParameter(resData.data.tyreHeight),
-                        //tyreMaker:      Service.getSettingParameter(resData.data.tyreMaker),
-                        //tyreModel:      Service.getSettingParameter(resData.data.tyreModel),
                         tyreWidth: Service.getSettingParameter(resData.data.tyreWidth),
                         tyreSpeedIndex: Service.getSettingParameter(resData.data.tyreSpeedIndex),
                         tyreLoadIndex: Service.getSettingParameter(resData.data.tyreLoadIndex),
                         wheelType: Service.getSettingParameter(resData.data.wheelType),
                         wheelWidth: Service.getSettingParameter(resData.data.wheelWidth),
                         wheelEt: Service.getSettingParameter(resData.data.wheelEt),
-                        //wheelMaker:     Service.getSettingParameter(resData.data.wheelMaker),
-                        //wheelModel:     Service.getSettingParameter(resData.data.wheelModel),
                         spacesType: Service.getSettingParameter(resData.data.spacesType),
                         fastenersType: Service.getSettingParameter(resData.data.fastenersType),
                         regions: Service.getSettingParameter(resData.data.regions),
@@ -117,7 +151,7 @@
                         spacesCenterHole: '',
                         advertPhoneNumber: '',
                         advertDescription: ''
-                    };
+                    });
 
                     $rootScope.setting.values = Service.getDefaultSettingParamsValues(
                         $rootScope.setting.params,
@@ -125,6 +159,8 @@
                             currency: 'usd',
                             advertType: 'wheels',
                             regions: '0',
+                            wheelMaker: '0',
+                            tyresMaker: '0',
                             priceFor: 'for_the_whole_lot',
                             quantity: '4'
                         },
@@ -133,6 +169,7 @@
                 } else {
                     $log.error(resData.data)
                 }
+                console.log('paramss done',$rootScope.setting.params)
             });
         } else {
             $rootScope.setting.values = Service.getDefaultSettingParamsValues(
@@ -141,6 +178,8 @@
                     currency: 'usd',
                     advertType: 'wheels',
                     regions: '0',
+                    wheelMaker: '0',
+                    tyresMaker: '0',
                     priceFor: 'for_the_whole_lot',
                     quantity: '4'
                 },

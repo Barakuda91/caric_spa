@@ -129,30 +129,29 @@ module.exports = {
     get: function(req,res) {
         sails.log(currentName + '.get');
 
-
+console.log(req.body)
         switch (req.body.type) {
 
             // производители всех типов
-            case "MAKERS_ALL": break;
+            case "MAKERS_ALL": sails.models.makers.get(res); break;
 
             // производители определённого типа (wheels, tyres)
             case "MAKERS_BY_TYPE": break;
 
             // список регионов с городами
             case "REGIONS": break;
+
+            default:
+                sails.models.params_settings.find().limit(1).exec(function (err, row) {
+                    if (!err) {
+                        res.json({status: true, data: row[0]})
+                    } else {
+                        res.json({status: false, data: err})
+                    }
+                });
+            break;
         }
 
-        if (!req.body.type) {
-            sails.models.params_settings.find().limit(1).exec(function (err, row) {
-                if (!err) {
-                    res.json({status: true, data: row[0]})
-                } else {
-                    res.json({status: false, data: err})
-                }
-            });
-        } else {
-
-        }
     },
 
     // вернёт массив алиасов переводов__________________________________________________________________________________
