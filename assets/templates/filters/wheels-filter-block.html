@@ -60,6 +60,19 @@
     .dropdown {
         padding-left: 10px !important;
     }
+    .sort-desc {
+        content: "";
+        width: 0;
+        height: 0;
+        background: #555;
+        position: absolute;
+        right: 22px;
+        top: 50%;
+        margin-top: -3px;
+        border-width: 6px 3px 0 3px;
+        border-style: solid;
+        border-color: transparent #fff
+    }
 
     .list {
         width: 165px;
@@ -118,16 +131,27 @@
         {{_.MAKER}} <span ng-if="setting.required[setting.values.advertType].wheelMaker" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
-        <select ng-model="setting.values.wheelMaker" class="form-control form-control-sm">
-            <option value="{{$index}}" ng-repeat="item in setting.params.wheelMaker" ng-disabled="item.disabled">{{_[item.title]}}</option>
+        <select ng-change="selectParamsChange()" ng-model="setting.values.wheelMaker" class="form-control form-control-sm">
+            <option value="{{$index}}" ng-repeat="item in setting.params.wheelMaker" ng-disabled="item.disabled">
+                {{_[item.title]}}
+            </option>
         </select>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <input type="text" ng-model="setting.values.models" ng-focus="searchBlockFocus()" ng-blur="searchBlockBlur()" class="dropdown form-control form-control-sm" />
+        <input type="text"
+               ng-model="searchBlockValue"
+               value="searchBlockValue"
+               ng-focus="searchBlockFocus()"
+               ng-blur="searchBlockBlur()"
+               ng-disabled="searchBlockDisabled"
+               placeholder="{{searchBlockPlaceholder}}"
+               class="dropdown form-control form-control-sm"
+        />
+        <i ng-if="setting.params.wheelMaker[setting.values.wheelMaker].models.length > 0" class="sort-desc"></i>
         <div class="search-item-list" ng-class="searchItemList">
            <ul class="list" >
                 <li ng-repeat="item in setting.params.wheelMaker[setting.values.wheelMaker].models | filter:setting.values.models" ng-click="chooseItem( item )">
-                    <span>{{ item.key }}</span>
+                    <span>{{ item.title }}</span>
                 </li>
            </ul>
         </div>

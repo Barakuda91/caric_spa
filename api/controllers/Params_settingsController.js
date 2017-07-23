@@ -129,7 +129,6 @@ module.exports = {
     get: function(req,res) {
         sails.log(currentName + '.get');
 
-console.log(req.body)
         switch (req.body.type) {
 
             // производители всех типов

@@ -4,7 +4,9 @@ module.exports = {
     },
 
     get: function (res) {
-        sails.models.makers.find().exec(function(err, rows) {
+        sails.models.makers.find().sort('title ASC').exec(function(err, rows) {
+
+
             if(!err) {
                 res.json({
                     status: true,

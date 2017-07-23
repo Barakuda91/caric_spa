@@ -16,25 +16,8 @@
     function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,Upload) {
         $log.debug('GET '+controllerName);
 
-
-        $rootScope.searchBlockFocus = function(){
-            console.log('focus');
-
-            $rootScope.searchItemList = 'show'
-        };
-
-        $rootScope.searchBlockBlur = function(){
-            console.log('blur');
-
-            $timeout(function(){ $rootScope.searchItemList = ''; }, 200);
-        };
-
-        $rootScope.chooseItem = function( item ){
-            $rootScope.disabledBlock = true;
-            $rootScope.setting.values.models = item.key;
-            $rootScope.searchItemList = '';
-        }
-
+        $rootScope.searchBlockDisabled = true;
+        $rootScope.searchBlockPlaceholder = 'Выберите производителя'
 
 /*------------------------------------------------- установки ------------------------------------------------*/
         // дефаултный ключ пункта "выберете"
@@ -107,7 +90,7 @@
                 resData.data.forEach(function(el) {
                     params[el.type+'Maker'].push({
                         key: el.key,
-                        title: el.key,
+                        title: el.title,
                         models: el.models
                     })
                 });
@@ -187,6 +170,34 @@
         }
         /*-------------------------------------------------- установки [END] -----------------------------------------*/
         /*-------------------------------------------------- функции -------------------------------------------------*/
+
+        // TODO сделать универсальные функции работы с полями выбора
+        // вызывается когда изменилось значение выпадающего списка параметра
+        $rootScope.selectParamsChange = function (param) {
+            $rootScope.searchBlockDisabled = false;
+            $rootScope.searchBlockPlaceholder = ''
+            $rootScope.setting.values.models = '';
+        };
+        // фокус на блоке выбора модели
+        $rootScope.searchBlockFocus = function(){
+            console.log('focus');
+
+            $rootScope.searchItemList = 'show'
+        };
+        // блюр с поля выбора
+        $rootScope.searchBlockBlur = function(){
+            console.log('blur');
+
+            $timeout(function(){ $rootScope.searchItemList = ''; }, 200);
+        };
+        // ивент выбора элемента из выпадающего кастомного списка
+        $rootScope.chooseItem = function( item ){
+            $rootScope.disabledBlock = true;
+            $rootScope.setting.values.models = item.key;
+            $rootScope.searchBlockValue = item.title;
+            $rootScope.searchItemList = '';
+        }
+
         // вызывает модальное окно при клике на название параметра в фильтре
         $rootScope.getModalWithDescription = function(type) {
             $rootScope.modal.blockTextName = type+'_TEXT';
