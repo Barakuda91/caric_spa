@@ -301,20 +301,11 @@ fieldset[disabled] .btn-orange.active {
 
 /*}*/
 .logo_block_arrow_right, .logo_block_arrow_left{
-    display: inline-block;
     position: absolute;
-    width: 50px;
-    height: 192px;
-    margin-top: 60px;
-    padding-top: 50px;
+    margin-top: 5px;
     color: #ccc;
 }
-.logo_block_arrow_right{
-    padding-left: 23px;
-}
-.logo_block_arrow_left{
-    margin-left: -35px;
-}
+
 .logo_block_arrow_right:hover, .logo_block_arrow_left:hover{
     color: #a7a7a7;
     cursor: pointer;
@@ -345,6 +336,31 @@ fieldset[disabled] .btn-orange.active {
     padding:1rem 0;
 }
 
+
+.logo_block_arrow_right{
+    margin-left: 540px;
+}
+.logo_block_arrow_left{
+    margin-left: -25px;
+}
+
+@media (max-width: 1200px) {
+    .logo_block_arrow_right {
+        margin-left: 880px;
+        margin-top: 15px;
+    }
+
+    .logo_block_arrow_left {
+        margin-left: 0px;
+        margin-top: 15px;
+    }
+
+
+    .thumbnail-advert-show img {
+        width: 200px;
+        margin: auto;
+    }
+}
 /* Extra small devices (phones, less than 768px) */
 
 
@@ -1012,3 +1028,16 @@ textarea.form-control{
     border-left: 0px;
 }
 
+/* advert page start */
+img.main-image-center {
+    margin: 0 auto;
+}
+
+.advert-price-block {
+    font-size: large;
+    color: #ff7200;
+}
+
+.thumbnail-advert-hide {
+    display: none;
+}

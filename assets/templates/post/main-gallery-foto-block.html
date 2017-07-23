@@ -1,0 +1,29 @@
+<ul class="slide-list">
+    <li ng-repeat="s in slides" ng-click="showGallery(s.index)">
+        <div ng-if="$index == 0">
+            <img ng-src="{{s.src}}"
+                 alt="alter description"
+                 data-index="{{s.index}}"
+                 class="img-responsive main-image-center"
+                 width="500"
+            />
+        </div>
+        <div ng-if="$index > 0">
+            <img ng-src="{{s.src}}"
+                 alt="alter description"
+                 data-index="{{s.index}}"
+                 class="img-responsive main-image-center"
+                 width="500"
+                 style="display: none;"
+            />
+        </div>
+    </li>
+</ul>
+<div ng-photoswipe
+     slides="slides"
+     open="open"
+     slide-selector=".slide-list > li > div > img"
+     on-close="closeGallery()"
+     options="opts"
+>
+</div>
