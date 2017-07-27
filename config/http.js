@@ -35,7 +35,7 @@ module.exports.http = {
       'cookieParser',
       'session',
       'myRequestLogger',
-      //'bodyParser',
+      'bodyParser',
       'handleBodyParserError',
       'compress',
       'methodOverride',
@@ -60,7 +60,6 @@ module.exports.http = {
         return next();
     },
 
-
   /***************************************************************************
   *                                                                          *
   * The body parser that will handle incoming multipart HTTP requests. By    *
@@ -76,7 +75,7 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-   // bodyParser: require('skipper')({strict: true})
+   bodyParser: require('skipper')({strict: true})
 
   },
 

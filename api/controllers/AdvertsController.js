@@ -102,8 +102,21 @@ module.exports = {
         });
     },
 
-    upload: function(req, res) {
-        console.log('body' , req.data)
+    upload_file: function(req, res) {
+        req.file('image').upload({
+            adapter: require('skipper-gridfs'),
+            uri: "mongodb://localhost:27017/caric_spa.images",
+        },function (err, uploadedFiles) {
+            if (err) {
+                console.log('err')
+                console.log(err)
+            //    return res.negotiate(err);
+            }
+console.log('RTYTRTRTYRYTRYTR')
+            // return res.json({
+            //     message: uploadedFiles.length + ' file(s) uploaded successfully!'
+            // });
+        });
     }
 };
 

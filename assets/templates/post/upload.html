@@ -15,7 +15,7 @@
                      ng-hide="files.length >= 10"
                      ngf-select
                      ngf-drop
-                     ngf-change="upload($newFiles, $invalidFiles)"
+                     ngf-change="upload($files, $newFiles, $invalidFiles)"
                      ng-model="files"
                      ngf-multiple="true"
                      ngf-drag-over-class="drag_over"

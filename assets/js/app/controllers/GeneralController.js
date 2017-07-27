@@ -16,15 +16,12 @@
     function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,Upload) {
         $log.debug('GET '+controllerName);
 
-        $rootScope.searchBlockDisabled = true;
-        $rootScope.searchBlockPlaceholder = 'Выберите производителя'
-
-/*------------------------------------------------- установки ------------------------------------------------*/
+        /*------------------------------------------------- установки ------------------------------------------------*/
         // дефаултный ключ пункта "выберете"
         $rootScope.defaultParameterKeyName = 'def_select';
 
         // устанавливает объект переводов
-        $rootScope._    = $rootScope._    || Service.getLocalizator($rootScope);
+        var _ = $rootScope._ = $rootScope._    || Service.getLocalizator($rootScope);
 
         // объект настроек по умолчанию для модального окна авторизации
         $rootScope.reg_auth = {
@@ -43,26 +40,51 @@
             }
         };
 
-        // массив настроек обязательных полей при подаче объявления_____________________________________________________
-        var requiredSetting = {
+        // массив настроек полей при подаче объявления_____________________________________________________
+        var advertAddSettingParams = {
+            errorClass: {},
+            general: {
+                advertType: {},
+                currency: {},
+                priceFor: {},
+                quantity: {},
+                price: {required: true},
+                advertPhoneNumber: {required: true},
+                advertDescription: {},
+                regions: {required: true},
+                city : {required: true}
+            },
             wheels: {
-                wheelType:  true,
-                wheelWidth: true,
-                pcd: true,
-                diameter: true,
-                price: true
+                centerHole: {},
+                offset: {},
+                wheelMaker: {},
+                wheelModel: {},
+                wheelType:  {required: true},
+                wheelWidth: {required: true},
+                pcd: {required: true},
+                diameter: {required: true},
             },
             tyres: {
-                tyreType: true,
-                diameter: true,
-                tyreWidth: true,
-                tyreHeight: true,
-                price: true
+                tyreType: {required: true},
+                tyreSpeedIndex: {},
+                diameter: {required: true},
+                tyreLoadIndex: {},
+                tyreWidth: {required: true},
+                productionYear: {},
+                tyreHeight: {required: true},
+                treadRest_1: {},
+                treadRest_2: {},
+                tyreMaker: {},
+                tyreModel: {}
             },
             spaces: {
-                pcdSpacesFrom: true,
-                spacesWidth: true,
-                price: true
+                spacesType: {},
+                material: {},
+                centerHole: {},
+                fastenersType: {},
+                spacesWidth: {required: true},
+                pcdSpacesFrom: {required: true},
+                pcdSpacesTo: {}
             }
         };
 
@@ -72,8 +94,19 @@
             // вытягиваем список параметров из локалдьной базы
             params: localStorageService.get('settingParameters') || {},
             // устанавливаем массив обязательных полей
-            required: requiredSetting,
-            values: {}
+            advertAddSettingParams: advertAddSettingParams,
+            values: {},
+            // кастомные списки выпадающие.
+            customSelect: {
+                wheelModel: {
+                    disabled: true,
+                    placeholder: 'SELECT_MAKER'
+                },
+                tyreModel: {
+                    disabled: true,
+                    placeholder: 'SELECT_MAKER'
+                }
+            }
         };
 
         // установка значений параметров для фильтров, подачи объявлений и т.д__________________________________________
@@ -82,10 +115,11 @@
         // если в локальной базе нет параметров - загружаем их
         //if(!$rootScope.setting.params) {
         if (true) {
+            // получить список всей макеров
             io.socket.post('/api/params_settings/get', {type: 'MAKERS_ALL'}, function (resData) {
                 var params = {
                     tyreMaker: [],
-                    wheelMaker: []
+                    wheelMaker: [],
                 };
                 resData.data.forEach(function(el) {
                     params[el.type+'Maker'].push({
@@ -97,7 +131,9 @@
                 $rootScope.setting.params = Object.assign({},$rootScope.setting.params,
                     {
                         tyreMaker: Service.getSettingParameter(params.tyreMaker),
-                        wheelMaker: Service.getSettingParameter(params.wheelMaker)
+                        wheelMaker: Service.getSettingParameter(params.wheelMaker),
+                        tyreModel: [],
+                        wheelModel: []
                     });
             });
             io.socket.post('/api/params_settings/get', {}, function (resData) {
@@ -153,6 +189,7 @@
                     $log.error(resData.data)
                 }
                 console.log('paramss done',$rootScope.setting.params)
+                console.log($rootScope.setting.values)
             });
         } else {
             $rootScope.setting.values = Service.getDefaultSettingParamsValues(
@@ -172,31 +209,62 @@
         /*-------------------------------------------------- функции -------------------------------------------------*/
 
         // TODO сделать универсальные функции работы с полями выбора
-        // вызывается когда изменилось значение выпадающего списка параметра
-        $rootScope.selectParamsChange = function (param) {
-            $rootScope.searchBlockDisabled = false;
-            $rootScope.searchBlockPlaceholder = ''
-            $rootScope.setting.values.models = '';
+        /* вызывается когда изменилось значение выпадающего списка параметра
+         * нужно взять подсписок у текущего элемента,
+         * и добавть этот подсписок в новый элемент
+         * */
+        $rootScope.customSelectInputChange = function (type, target) {
+            $rootScope.setting.customSelect[type].disabled = false;
+            $rootScope.setting.customSelect[type].placeholder = '';
+            if(
+                $rootScope.setting.params[target][$rootScope.setting.values[target]].models &&
+                $rootScope.setting.params[target][$rootScope.setting.values[target]].models.length > 0)
+            {
+                $rootScope.setting.customSelect[type].mainDivClass = 'select-list';
+            } else {
+                $rootScope.setting.customSelect[type].mainDivClass = '';
+            }
+            $rootScope.setting.customSelect[type].value = '';
         };
         // фокус на блоке выбора модели
-        $rootScope.searchBlockFocus = function(){
+        //$rootScope.searchBlockFocus = function(){
+        $rootScope.customSelectFocus = function(type){
             console.log('focus');
 
-            $rootScope.searchItemList = 'show'
+            $rootScope.setting.customSelect[type].itemListClass = 'show'
         };
-        // блюр с поля выбора
-        $rootScope.searchBlockBlur = function(){
+
+        /*
+         * при потери фокуса следует закрыть выпадающий список
+         * */
+        $rootScope.customSelectBlur = function(type){
             console.log('blur');
 
-            $timeout(function(){ $rootScope.searchItemList = ''; }, 200);
+            $timeout(function(){
+                $rootScope.setting.customSelect[type].itemListClass = '';
+                var title = $rootScope.setting.customSelect[type].value;
+                if(
+                    !$rootScope.setting.values[type] ||
+                    (
+                        true
+                    )) {
+                        var item = {
+                            new_key: true,
+                            title: title.toUpperCase(),
+                            key: title.toLowerCase().replace(/\s/g, '_'),
+                        };
+                        $rootScope.setting.values[type] = item;
+                        console.log(item)
+                    }
+            }, 50);
         };
+
         // ивент выбора элемента из выпадающего кастомного списка
-        $rootScope.chooseItem = function( item ){
-            $rootScope.disabledBlock = true;
-            $rootScope.setting.values.models = item.key;
-            $rootScope.searchBlockValue = item.title;
-            $rootScope.searchItemList = '';
-        }
+        $rootScope.customSelectChooseItem = function( item, type ){
+            $rootScope.setting.values[type] = {key: item.key, title: item.title};
+            $rootScope.setting.customSelect[type].value = item.title;
+            $rootScope.setting.customSelect[type].itemListClass = '';
+        };
 
         // вызывает модальное окно при клике на название параметра в фильтре
         $rootScope.getModalWithDescription = function(type) {
@@ -296,7 +364,7 @@
                     Service.modal($rootScope);
                     $rootScope.$digest();
                 } else {
-                    alert(resData.data)
+                    $log.error(resData.data)
                 }
             })
         };
@@ -337,7 +405,7 @@
                 language: 'ru'
             };
             localStorageService.set('user_data', $rootScope.userData)
-        };
+        }
         /*-------------------------------------------------- функции [END] -------------------------------------------*/
         /*-------------------------------------------------- код, который отрабатывает при загрузке контроллера ------*/
         // загрузка контроллера после обновления страницы_______________________________________________________________

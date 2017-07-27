@@ -12,7 +12,7 @@ head
   // STYLES
   link(rel="stylesheet", href="/styles/addgrid.css")
   link(rel="stylesheet", href="/styles/font-awesome.min.css")
-  link(rel="stylesheet", href="/styles/importer.css")
+  //link(rel="stylesheet", href="/styles/importer.css")
   link(rel="stylesheet", href="/styles/styles.css")
   // STYLES END
   base(href="/")
@@ -23,7 +23,7 @@ html(data-ng-app='General')
     block body
 
     // TEMPLATES
-    script(type="text/javascript", src="/jst.js")
+    //script(type="text/javascript", src="/jst.js")
     // TEMPLATES END
 
     //-
@@ -45,6 +45,7 @@ html(data-ng-app='General')
           + Change the order of your scripts
           + Import scripts from other directories
           + Use a different preprocessor, like TypeScript
+    script(src="/js/dependencies/sails.io.js")
     script(src="/vendor/jquery/dist/jquery.min.js")
     script(src="/vendor/angular/angular.min.js")
     script(src="/vendor/angular-resource/angular-resource.min.js")
@@ -59,7 +60,6 @@ html(data-ng-app='General')
     script(src="/vendor/bootstrap/dist/js/bootstrap.min.js")
     script(src="https://use.fontawesome.com/44919449a8.js")
     // SCRIPTS
-    script(src="/js/dependencies/sails.io.js")
     script(src="/js/app/module.js")
     script(src="/js/app/controllers/AdvertController.js")
     script(src="/js/app/controllers/GeneralController.js")

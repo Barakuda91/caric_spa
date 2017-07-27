@@ -1,66 +1,83 @@
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        {{_.TYPE}} <span ng-if="setting.required[setting.values.advertType].spacesType" class="required">*</span>
+        {{_.TYPE}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].spacesType.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="setting.values.spacesType" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.spacesType" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.spacesType" ng-model="setting.values.spacesType" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.spacesType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select ng-model="setting.values.material" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.material" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.material" ng-model="setting.values.material" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.material" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.MATERIAL}} <span ng-if="setting.required[setting.values.advertType].material" class="required">*</span>
+        {{_.MATERIAL}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].material.required" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-        {{_.CENTER_HOLE}} <span ng-if="setting.required[setting.values.advertType].spacesCenterHole" class="required">*</span>
+        {{_.CENTER_HOLE}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].spacesCenterHole.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
-        <input type="text" ng-model="setting.values.spacesCenterHole" class="form-control form-control-sm" placeholder="mm">
+        <input ng-class="setting.advertAddSettingParams.errorClass.spacesCenterHole" type="text" ng-model="setting.values.spacesCenterHole" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <input type="text" ng-model="setting.values.spacesWidth" class="form-control form-control-sm" placeholder="mm">
+        <input ng-class="setting.advertAddSettingParams.errorClass.spacesWidth" type="text" ng-model="setting.values.spacesWidth" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small">
-        {{_.WIDTH}} <span ng-if="setting.required[setting.values.advertType].spacesWidth" class="required">*</span>
+        {{_.WIDTH}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].spacesWidth.required" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-        {{_.PCD}} <span ng-if="setting.required[setting.values.advertType].pcdSpacesFrom" class="required">*</span>
+        {{_.PCD}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].pcdSpacesFrom.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
         <div class="row" ng-if="setting.values.spacesType === 'transitional'">
             <div class="row-price">
                 <div class="col-lg-6 col-md-6 col-sm-6 text-right price-left">
-                    <select ng-model="setting.values.pcdSpacesFrom" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.pcdSpacesFrom" ng-model="setting.values.pcdSpacesFrom" class="form-control form-control-sm">
+                            <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 text-right price-right">
-                    <select ng-model="setting.values.pcdSpacesTo" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.pcdSpacesFrom"
+                                ng-model="setting.values.pcdSpacesTo"
+                                class="form-control form-control-sm">
+                            <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-        <select ng-if="setting.values.spacesType !== 'transitional'" ng-model="setting.values.pcdSpacesFrom" class="form-control form-control-sm">
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.pcdSpacesFrom"
+                    ng-if="setting.values.spacesType !== 'transitional'"
+                    ng-model="setting.values.pcdSpacesFrom"
+                    class="form-control form-control-sm">
                 <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+            </select>
+        </div>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select ng-model="setting.values.fastenersType" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.fastenersType" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.fastenersType" ng-model="setting.values.fastenersType" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.fastenersType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small">
-        {{_.FASTENERS_TYPE}} <span ng-if="setting.required[setting.values.advertType].fastenersType" class="required">*</span>
+        {{_.FASTENERS_TYPE}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].fastenersType.required" class="required">*</span>
     </div>
 </div>

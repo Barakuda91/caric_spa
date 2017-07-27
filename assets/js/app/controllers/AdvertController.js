@@ -13,67 +13,115 @@
             console.log(files, file);
         };
 
-        $scope.upload = function(new_files, invalid) {
-            console.log(new_files, invalid)
-        }
-        //
-        // $scope.upload = function (dataUrl, name) {
-        //     Upload.upload({
-        //         url: '/api/post/upload',
-        //         data: {
-        //             file: Upload.dataUrltoBlob(dataUrl, name)
-        //         }
-        //     }).then(function (response) {
-        //         $timeout(function () {
-        //             $scope.result = response.data;
-        //         });
-        //     }, function (response) {
-        //         if (response.status > 0) {$scope.errorMsg = response.status
-        //             + ': ' + response.data;}
-        //     }, function (evt) {
-        //         $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-        //     });
+        // $scope.upload2 = function(new_files, invalid) {
+        //     console.log(new_files, invalid)
         // }
-        //
-        //
+
+        $scope.upload = function (files,errorFiles) {
+
+            if (files && files.length) {
+                for (var i = 0; i < files.length; i++) {
+                    fileUpload(files[i])
+                }
+            }
+        }
 
 
 
+        function fileUpload(file) {
+            Upload.upload({
+                url: '/api/post/upload_file',
+                data: {image: file, 'username': 'file_'+Date.now()}
+            }).then(function (resp) {
+                console.log('Success uploaded. Response: ' + resp.data);
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ');
+            });
+        }
 
 
 
-
-
+        // обработчик нажатия кнопки подачи объявления
         $scope.advertSubmit = function() {
             var setting = $scope.setting;
-            for (var parameter in setting.required[setting.values.advertType]) {
-                if(setting.values[parameter] === $rootScope.defaultParameterKeyName || setting.values[parameter] == '') {
-                    $rootScope.modal = {
-                      errorText: $rootScope._.PLEASE_SELECT_ALL_ELEMENTS
-                    };
-                    Service.modal($rootScope, {
-                        template: 'error',
-                        status: 'error',
-                        header: 'MISSING_REQUIRED_PARAMETER',
-                        size: 'sm',
-                        okButton: true
-                    });
-                    return;
+            var advertArray = {};
+            var badField = [];
+            var showModalError = false;
+
+            /* пройтись по массиву основных параметров, и наполнить массив конкртеного объявления
+             * */
+            for (var parameter in setting.advertAddSettingParams.general) {
+                if(checkOnRequired(parameter, 'general'))
+                {
+                    advertArray[parameter] = setting.values[parameter];
+                    setting.advertAddSettingParams.errorClass[parameter] = '';
+                } else {
+                    showModalError = true;
+                    setting.advertAddSettingParams.errorClass[parameter] = 'required';
                 }
             }
 
-            io.socket.post('/api/post/save', setting.values, function (resData) {
-                if(resData.status) {
-                    setting.values = Service.getDefaultSettingParamsValues(setting.params);
-                    Service.modal($rootScope, {
-                        status: 'success',
-                        header: 'ADVERT_ADD_SUCCESS',
-                        okButton: true,
-                        delay: 3000,
-                        size: 'sm'
-                    });
+            for (var parameter in setting.advertAddSettingParams[setting.values.advertType]) {
+                if(checkOnRequired(parameter, setting.values.advertType)) {
+                    advertArray[parameter] = setting.values[parameter];
+                    setting.advertAddSettingParams.errorClass[parameter] = '';
+                } else {
+                    showModalError = true;
+                    setting.advertAddSettingParams.errorClass[parameter] = 'required';
                 }
-            })
+            }
+
+            function checkOnRequired (parameter, type) {
+                if(setting.advertAddSettingParams[type][parameter].required) {
+                    var value = setting.values[parameter];
+                    if (value === $rootScope.defaultParameterKeyName || typeof value == 'undefined'  || value.length == 0 ) {
+                        return false
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            }
+            console.log(advertArray)
+            if (showModalError) {
+
+                $timeout(function(){
+                    angular.element("select.form-control-sm.required").change(function(e){
+                            setting.advertAddSettingParams.errorClass = {};
+                            $rootScope.$digest();
+                        }
+                    )},200);
+
+                $rootScope.modal = {
+                    errorText: $rootScope._.PLEASE_SELECT_ALL_ELEMENTS
+                };
+
+                Service.modal($rootScope, {
+                    template: 'error',
+                    status: 'error',
+                    header: 'MISSING_REQUIRED_PARAMETER',
+                    size: 'sm',
+                    okButton: true
+                });
+            } else {
+                return;
+                io.socket.post('/api/post/save', setting.values, function (resData) {
+                    if(resData.status) {
+                        setting.values = Service.getDefaultSettingParamsValues(setting.params);
+                        Service.modal($rootScope, {
+                            status: 'success',
+                            header: 'ADVERT_ADD_SUCCESS',
+                            okButton: true,
+                            delay: 3000,
+                            size: 'sm'
+                        });
+                    }
+                })
+            }
         }
         console.log('$routeParams');
         console.log($routeParams);

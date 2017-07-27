@@ -197,6 +197,7 @@ fieldset[disabled] .btn-orange.active {
     padding: 2rem 0;
     background: url("../images/banner_1.jpg") top center/cover no-repeat;
     height: 37%;
+    min-height: 320px;
 }
 .main_slider_wrap .container .row>div.content { padding: 10px;  background: #fff; }
 
@@ -218,10 +219,15 @@ fieldset[disabled] .btn-orange.active {
     margin: 2rem 0;
 
 }
+
+
 .form-control.form-control-sm {
     height: 25px;
     padding: 3px 6px;
     font-size: 12px;
+}
+.form-control.form-control-sm.required{
+    box-shadow: 0px 0px 4px 1px red;
 }
 .list-custom ul{
     margin: 2rem 0;
@@ -668,7 +674,7 @@ ul#main-line-menu li.active a {
     cursor: pointer;
 }
 
-.filter-block-row .required{
+.filter-block-row span.required{
     position: absolute;
     right: 0px;
     left: 0px;
@@ -863,6 +869,90 @@ textarea.form-control{
     background: rgba(60, 60, 60, 0.3) url(/images/plus_icon.png) center center no-repeat;
     opacity: 0.3;
     cursor: pointer;
+}
+
+
+.dropdown::-webkit-input-placeholder {color:#555;}
+.dropdown::-moz-placeholder          {color:#555;}/* Firefox 19+ */
+.dropdown:-moz-placeholder           {color:#555;}/* Firefox 18- */
+.dropdown:-ms-input-placeholder      {color:#555;}
+.dropdown {
+    padding-left: 7px !important;
+}
+.list {
+    width: 165px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.66);
+    border-radius: 2px;
+    -webkit-transition: opacity 0.4s;
+    transition: opacity 0.4s;
+    z-index: 3;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-size: 12px;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: normal;;
+}
+
+.list li {
+    cursor: pointer;
+}
+
+.list li:hover {
+    background: #456ed3;
+    color: white;
+}
+.list span{
+    padding-left: 10px;
+}
+.show .list {
+    margin-left: 0;
+    opacity: 1;
+}
+
+.list li .amount {
+    display: inline-block;
+    padding: 2px 3px;
+    background-color: rgb(83, 177, 211);
+    border-radius: 3px;
+    margin: 0 0 3px 10px;
+    font-size: 65%;
+    color: white;
+}
+
+
+.select-list {
+    position: relative;
+}
+.select-list:after, .sort-desc {
+    content: "▼";
+    color: #ff7200;
+    padding: 0 8px;
+    font-size: 12px;
+    position: absolute;
+    right: 8px;
+    top: 4px;
+    z-index: 1;
+    text-align: center;
+    width: 10%;
+    height: 100%;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.form-control-sm {
+    padding-right: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 

@@ -128,7 +128,6 @@ module.exports = {
     // вернёт все данные из params_settings_____________________________________________________________________________
     get: function(req,res) {
         sails.log(currentName + '.get');
-
         switch (req.body.type) {
 
             // производители всех типов
@@ -142,6 +141,7 @@ module.exports = {
 
             default:
                 sails.models.params_settings.find().limit(1).exec(function (err, row) {
+
                     if (!err) {
                         res.json({status: true, data: row[0]})
                     } else {
@@ -150,7 +150,6 @@ module.exports = {
                 });
             break;
         }
-
     },
 
     // вернёт массив алиасов переводов__________________________________________________________________________________

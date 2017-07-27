@@ -1,4 +1,7 @@
 module.exports.caric = {
+
+    /*-------------------CONFIGURATION_VARIABLES-----------------------------*/
+
     rootName: '/home/alex/work/caric_spa',
     templates: {
         addvBlocks: {
@@ -16,5 +19,10 @@ module.exports.caric = {
         list: [],
         all: []
     },
-    defaultLanguage: 'ru'
+    defaultLanguage: 'ru',
+
+    /*-------------------ANOTHER_VARIABLES-----------------------------------*/
+
+    multipart: null,
+
 };

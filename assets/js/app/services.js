@@ -35,13 +35,17 @@
                 case 'error': $rootScope.modals.statusIcon = 'fa-thumbs-o-down fa-3x red'; break;
             }
             $rootScope.modals.shadow = true;
-            $rootScope.$digest();
+            if(!$rootScope.$$phase) {
+                $rootScope.$digest();
+            }
 
             if(typeof options.delay == 'number') {
                 $timeout(function () {
                     if($rootScope.modals) {
                         delete $rootScope.modals;
-                        $rootScope.$digest();
+                        if(!$rootScope.$$phase) {
+                            $rootScope.$digest();
+                        }
                     }
                 }, options.delay)
             }
@@ -93,6 +97,8 @@
                         key: el
                     }
                 })
+            } else if(parameter.length === 0 ) {
+                return;
             }
 
             if(disabled) {
@@ -103,20 +109,23 @@
 
         this.getDefaultSettingParamsValues = function(settingParams, defaultValues, useSettingParams) {
             $log.debug(name+'.getDefaultSettingParamsValues');
+
             defaultValues    = defaultValues    || {};
             useSettingParams = useSettingParams || true;
             var return_      = {};
 
             for(var setting in settingParams) {
-                var defEl = '';
-                if(settingParams[setting][1]) {
-                    defEl = (settingParams[setting][1].key) ? settingParams[setting][1].key : settingParams[setting][1];
-                }
+                if(settingParams[setting].length > 0) {
+                    var defEl = '';
+                    if (settingParams[setting][1]) {
+                        defEl = (settingParams[setting][1].key) ? settingParams[setting][1].key : settingParams[setting][1];
+                    }
 
-                if(typeof settingParams[setting] == 'string') {
-                    return_[setting] = settingParams[setting];
-                } else {
-                    return_[setting] = (useSettingParams && defaultValues[setting]) ? defaultValues[setting] : settingParams[setting][0].key;
+                    if (typeof settingParams[setting] == 'string') {
+                        return_[setting] = settingParams[setting];
+                    } else {
+                        return_[setting] = (useSettingParams && defaultValues[setting]) ? defaultValues[setting] : settingParams[setting][0].key;
+                    }
                 }
             }
             return return_;

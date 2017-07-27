@@ -1,17 +1,35 @@
-function getArgSumm() {
-
-    var summ = 0;
-    for(var i in arguments) {
-        var int = Number(arguments[i]);
-        if(typeof int == 'number' && !isNaN(int)) {
-            summ += Number(arguments[i])
-        }
+var queue = [
+    {
+        name: 'Artur Moongose',
+        rank: 2
+    },{
+        name: 'Stas Middleware',
+        rank: 7
+    },{
+        name: 'Alex Skiper',
+        rank: 12
+    },{
+        name: 'Volodomir Stylis',
+        rank: 3
+    },{
+        name: 'Semen Seriy',
+        rank: 5
     }
-    return summ;
+];
+
+function getQueueByRank (queue) {
+    return queue.sort(function(a, b) {
+        return (a.rank > b.rank)
+    })
 }
-var arr = [1,2,3,4,5,6,7,8];
+function getMiddleRank (queue) {
+    var summ = 0, count = 0;
+    queue.forEach(function(el){
+        summ += el.rank;
+        count++;
+    })
+    return summ/count;
+}
 
-
-
-
-console.log(getArgSumm.apply(this, arr));
+console.log(getQueueByRank(queue));
+console.log(getMiddleRank(queue));

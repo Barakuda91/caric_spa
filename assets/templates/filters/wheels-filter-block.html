@@ -1,162 +1,101 @@
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small" ng-click="getModalWithDescription('TYPE')">
-        {{_.TYPE}} <span ng-if="setting.required[setting.values.advertType].wheelType" class="required">*</span>
+        {{_.TYPE}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].wheelType.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="setting.values.wheelType" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.wheelType" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.wheelType" ng-model="setting.values.wheelType" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.wheelType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <select ng-model="setting.values.wheelWidth" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.wheelWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.wheelWidth"  ng-model="setting.values.wheelWidth" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.wheelWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small" ng-click="getModalWithDescription('WIDTH')">
-        {{_.WIDTH}} <span ng-if="setting.required[setting.values.advertType].wheelWidth" class="required">*</span>
+        {{_.WIDTH}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].wheelWidth.required" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small" ng-click="getModalWithDescription('CENTER_HOLE')">
-        {{_.CENTER_HOLE}} <span ng-if="setting.required[setting.values.advertType].centerHole" class="required">*</span>
+        {{_.CENTER_HOLE}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].centerHole.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <input ng-model="setting.values.centerHole" type="text" class="form-control form-control-sm" placeholder="mm">
+        <input ng-class="setting.advertAddSettingParams.errorClass.centerHole" ng-model="setting.values.centerHole" type="text" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-        <input ng-model="setting.values.offset" type="text" class="form-control form-control-sm" placeholder="mm">
+        <input ng-class="setting.advertAddSettingParams.errorClass.offset" ng-model="setting.values.offset" type="text" class="form-control form-control-sm" placeholder="mm">
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small" ng-click="getModalWithDescription('OFFSET')">
-        {{_.OFFSET}} <span ng-if="setting.required[setting.values.advertType].offset" class="required">*</span>
+        {{_.OFFSET}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].offset.required" class="required">*</span>
     </div>
 </div>
 
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-3 col-sm-3 text-right small" ng-click="getModalWithDescription('PCD')">
-        {{_.PCD}} <span ng-if="setting.required[setting.values.advertType].pcd" class="required">*</span>
+        {{_.PCD}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].pcd.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <select ng-model="setting.values.pcd" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.pcd" ng-model="setting.values.pcd" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.pcd" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-        <select  ng-model="setting.values.diameter" class="form-control form-control-sm">
-            <option value="{{item.key}}" ng-repeat="item in setting.params.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
-        </select>
+        <div class="select-list">
+            <select ng-class="setting.advertAddSettingParams.errorClass.diameter" ng-model="setting.values.diameter" class="form-control form-control-sm">
+                <option value="{{item.key}}" ng-repeat="item in setting.params.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 small" ng-click="getModalWithDescription('DIAMETER')">
-        {{_.DIAMETER}} <span ng-if="setting.required[setting.values.advertType].diameter" class="required">*</span>
+        {{_.DIAMETER}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].diameter.required" class="required">*</span>
     </div>
 </div>
-
-<style>
-
-    .dropdown::-webkit-input-placeholder {color:#555;}
-    .dropdown::-moz-placeholder          {color:#555;}/* Firefox 19+ */
-    .dropdown:-moz-placeholder           {color:#555;}/* Firefox 18- */
-    .dropdown:-ms-input-placeholder      {color:#555;}
-    .dropdown {
-        padding-left: 10px !important;
-    }
-    .sort-desc {
-        content: "";
-        width: 0;
-        height: 0;
-        background: #555;
-        position: absolute;
-        right: 22px;
-        top: 50%;
-        margin-top: -3px;
-        border-width: 6px 3px 0 3px;
-        border-style: solid;
-        border-color: transparent #fff
-    }
-
-    .list {
-        width: 165px;
-        list-style-type: none;
-        margin: 0;
-        opacity: 0;
-        padding: 0;
-        position: absolute;
-        margin-left: -1000px;
-        background: white;
-        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.66);
-        border-radius: 2px;
-        -webkit-transition: opacity 0.4s;
-        transition: opacity 0.4s;
-        z-index: 3;
-        font-family: "Trebuchet MS", Arial, sans-serif;
-        font-size: 12px;
-        font-stretch: normal;
-        font-style: normal;
-        font-variant-caps: normal;
-        font-variant-ligatures: normal;
-        font-variant-numeric: normal;
-        font-weight: normal;;
-    }
-
-    .list li {
-        cursor: pointer;
-    }
-
-    .list li:hover {
-        background: #456ed3;
-        color: white;
-    }
-    .list span{
-        padding-left: 10px;
-    }
-    .show .list {
-        margin-left: 0;
-        opacity: 1;
-    }
-
-    .list li .amount {
-        display: inline-block;
-        padding: 2px 3px;
-        background-color: rgb(83, 177, 211);
-        border-radius: 3px;
-        margin: 0 0 3px 10px;
-        font-size: 65%;
-        color: white;
-    }
-
-
-</style>
 <div class="row filter-block-row">
     <div class="col-lg-4 col-md-4 col-sm-3 text-right small" ng-click="getModalWithDescription('MAKER')">
-        {{_.MAKER}} <span ng-if="setting.required[setting.values.advertType].wheelMaker" class="required">*</span>
+        {{_.MAKER}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].wheelMaker.required" class="required">*</span>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-2">
-        <select ng-change="selectParamsChange()" ng-model="setting.values.wheelMaker" class="form-control form-control-sm">
-            <option value="{{$index}}" ng-repeat="item in setting.params.wheelMaker" ng-disabled="item.disabled">
-                {{_[item.title]}}
-            </option>
-        </select>
+        <div class="select-list">
+            <select
+                    ng-class="setting.advertAddSettingParams.errorClass.wheelMaker"
+                    ng-change="customSelectInputChange('wheelModel','wheelMaker')"
+                    ng-model="setting.values.wheelMaker"
+                    class="form-control form-control-sm">
+                <option value="{{$index}}" ng-repeat="item in setting.params.wheelMaker" ng-disabled="item.disabled">
+                    {{_[item.title]}}
+                </option>
+            </select>
+        </div>
     </div>
     <div class="col-lg-2 col-md-3 col-sm-3">
-        <input type="text"
-               ng-model="searchBlockValue"
-               value="searchBlockValue"
-               ng-focus="searchBlockFocus()"
-               ng-blur="searchBlockBlur()"
-               ng-disabled="searchBlockDisabled"
-               placeholder="{{searchBlockPlaceholder}}"
-               class="dropdown form-control form-control-sm"
-        />
-        <i ng-if="setting.params.wheelMaker[setting.values.wheelMaker].models.length > 0" class="sort-desc"></i>
-        <div class="search-item-list" ng-class="searchItemList">
-           <ul class="list" >
-                <li ng-repeat="item in setting.params.wheelMaker[setting.values.wheelMaker].models | filter:setting.values.models" ng-click="chooseItem( item )">
-                    <span>{{ item.title }}</span>
-                </li>
-           </ul>
+        <div  ng-class="setting.customSelect['wheelModel'].mainDivClass">
+            <input type="text"
+                   ng-class="setting.advertAddSettingParams.errorClass.wheelModel"
+                   ng-model="setting.customSelect['wheelModel'].value"
+                   ng-focus="customSelectFocus('wheelModel')"
+                   ng-blur="customSelectBlur('wheelModel')"
+                   ng-disabled="setting.customSelect['wheelModel'].disabled"
+                   placeholder="{{_[setting.customSelect['wheelModel'].placeholder]}}"
+                   class="dropdown form-control form-control-sm"
+            />
+            <div class="search-item-list" ng-class="setting.customSelect['wheelModel'].itemListClass">
+                <ul class="list" >
+                    <li ng-repeat="item in setting.params.wheelMaker[setting.values.wheelMaker].models | filter:setting.customSelect['wheelModel'].value" ng-click="customSelectChooseItem( item, 'wheelModel' )">
+                        <span>{{_[item.title] }}</span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="col-lg-4 col-md-3 col-sm-3 small" ng-click="getModalWithDescription('MODEL')">
-        {{_.MODEL}} <span ng-if="setting.required[setting.values.advertType].wheelModel" class="required">*</span> {{vallur}}
+        {{_.MODEL}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].wheelModel.required" class="required">*</span> {{vallur}}
     </div>
 </div>
