@@ -7,6 +7,24 @@
     function AdvertController ($scope,$routeParams,$rootScope,Service,$log,Upload,$timeout) {
         $log.debug('GET '+controllerName);
 
+        $scope.showParamsBlock = function(){
+            console.log('_____________________')
+            $scope.showParamsBlockClass = 'show';
+        };
+
+        var advert_setting = {};
+        io.socket.post('/api/post/create', function (resData) {
+            if(resData.status) {
+                console.log('ID____', resData)
+
+                advert_setting.post_id = resData.data.post_id
+            } else {
+                alert('create new id error')
+            }
+        })
+
+
+
         $scope.deleteImage = function(files, file) {
             console.log(files, file);
             delete files[file]
@@ -29,17 +47,24 @@
 
 
         function fileUpload(file) {
-            Upload.upload({
-                url: '/api/post/upload_file',
-                data: {image: file, 'username': 'file_'+Date.now()}
-            }).then(function (resp) {
-                console.log('Success uploaded. Response: ' + resp.data);
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-            }, function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ');
-            });
+            console.log(file);
+            // file.name = advert_setting.post_id;
+            if (advert_setting.post_id) {
+                Upload.upload({
+                    url: '/api/post/update_photo',
+                    data: { image: file},
+                    headers: {'post_id': advert_setting.post_id}
+                }).then(function (resp) {
+                    console.log('Success uploaded. Response: ', resp.data);
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
+                }, function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ');
+                });
+            } else {
+                console.log(advert_setting)
+            }
         }
 
 
@@ -109,7 +134,7 @@
                 });
             } else {
                 return;
-                io.socket.post('/api/post/save', setting.values, function (resData) {
+                io.socket.post('/api/post/update', setting.values, function (resData) {
                     if(resData.status) {
                         setting.values = Service.getDefaultSettingParamsValues(setting.params);
                         Service.modal($rootScope, {

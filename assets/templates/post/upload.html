@@ -15,7 +15,7 @@
                      ng-hide="files.length >= 10"
                      ngf-select
                      ngf-drop
-                     ngf-change="upload($files, $newFiles, $invalidFiles)"
+                     ngf-change="upload($newFiles, $invalidFiles)"
                      ng-model="files"
                      ngf-multiple="true"
                      ngf-drag-over-class="drag_over"
@@ -25,7 +25,7 @@
                      name="file"
                      ngf-pattern="'image/*'"
                      ngf-accept="'image/*'"
-                     ngf-max-size="2MB"
+                     ngf-max-size="20MB"
                      ngf-min-height="400"
                      ngf-min-width="400"
                 >

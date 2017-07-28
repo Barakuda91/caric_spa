@@ -38,10 +38,12 @@ module.exports.routes = {
   'post /api/params_settings/get_localization': 'Params_settingsController.get_localization',
   'post /api/params_settings/set_localization': 'Params_settingsController.set_localization',
 
-  'post /api/post/save': 'AdvertsController.save',
+
+  'post /api/post/create':'AdvertsController.create',
+  'post /api/post/update': 'AdvertsController.update',
   'post /api/post/get': 'AdvertsController.get',
   'post /api/post/get_one': 'AdvertsController.get_one',
-  'post /api/post/upload_file': 'AdvertsController.upload_file',
+  'post /api/post/update_photo': 'AdvertsController.update_photo',
 
   'post /api/admin/dump/set': 'Params_settingsController.save_dump_in_file',
   'post /api/admin/dump/get': 'Params_settingsController.restore_dump_from_file',

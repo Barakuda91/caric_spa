@@ -9,9 +9,45 @@ module.exports = {
 	index: function (req, res) {
 	    console.log('HERE222');
     },
-    save: function (req, res) {
-        sails.log(currentName + '.save');
+    create: function (req, res) {
+        sails.log(currentName + '.create');
+
+        var user = Services.getDataFromToken(req.body.token, function (err,data) {
+            var saveObject = {
+                user: data.email,
+                status: 'crate' // create, active, inactive, delete
+            }
+
+            sails.models.adverts.create(saveObject).exec(function (err, resData) {
+                if(!err) {
+                    res.json({status: true, data: {post_id:resData.id}});
+                } else {
+                    res.json({status: false});
+                }}
+            );
+        });
+    },
+    update_photo: function (req, res) {
+        sails.log(currentName + '.update_photo');
+// TODO сделать удаление про коле или ерроре, сделать переименование файлов при записи
+        var dirToSave = sails.config.caric.post_images_path+'/'+req.headers.post_id;
+
+        req.file('image').upload({
+            dirname: dirToSave
+            // adapter: require('skipper-gridfs'),
+            // uri: "mongodb://root:qwe123@localhost:27017/caric_spa"
+        }, function (err, uploadedFiles) {
+            if (err) {
+                console.log(err)
+                return res.json({status: false});
+            }
+            return res.json({status: true, data: {filename: uploadedFiles.filename}});
+        });
+    },
+    update: function (req, res) {
+        sails.log(currentName + '.update');
         console.log(req.body);
+        
         var saveObject = {
             advertType: req.body.advertType,
             price: req.body.price,
@@ -99,23 +135,6 @@ module.exports = {
             } else {
                 res.json({status: false, data: err})
             }
-        });
-    },
-
-    upload_file: function(req, res) {
-        req.file('image').upload({
-            adapter: require('skipper-gridfs'),
-            uri: "mongodb://localhost:27017/caric_spa.images",
-        },function (err, uploadedFiles) {
-            if (err) {
-                console.log('err')
-                console.log(err)
-            //    return res.negotiate(err);
-            }
-console.log('RTYTRTRTYRYTRYTR')
-            // return res.json({
-            //     message: uploadedFiles.length + ' file(s) uploaded successfully!'
-            // });
         });
     }
 };

@@ -1,5 +1,4 @@
 var fs = require('fs');
-var jwt = require('json-web-token');
 var config = sails.config.caric;
 module.exports = {
 
@@ -8,7 +7,7 @@ module.exports = {
                 email: data.email,
                 passwordHash: data.passwordHash
             };
-            jwt.encode(config.secret, objectData, function (err, token) {
+        sails.jwt.encode(config.secret, objectData, function (err, token) {
                 if (!err) {
                     cb(null, {
                         token: token,
@@ -25,6 +24,6 @@ module.exports = {
             })
     },
     getDataFromToken: function (token, cb) {
-        jwt.decode(config.secret, token,cb)
+        sails.jwt.decode(config.secret, token,cb)
     }
 };

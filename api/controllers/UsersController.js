@@ -48,6 +48,7 @@ module.exports = {
 					}).then(function(rows) {
 						Services.createDataWithToken(rows, function(err, data) {
 							if (!err) {
+								Mailer.sendWelcomeMail({email: req.body.email, name: req.body.username});
 								res.json({status: true, data: data})
 							} else {
 								res.json({status: false, data: err})

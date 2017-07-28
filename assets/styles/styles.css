@@ -4,16 +4,16 @@
 @font-face {
     font-family: 'Pantonl';
     src: url('/styles/fonts/Pantonlightcaps.woff2') format('woff2'),
-         url('/styles/fonts/Pantonlightcaps.woff') format('woff'),
-         url('/styles/fonts/Pantonlightcaps.ttf') format('truetype');
+    url('/styles/fonts/Pantonlightcaps.woff') format('woff'),
+    url('/styles/fonts/Pantonlightcaps.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 @font-face {
     font-family: 'Pantonb';
     src: url('/styles/fonts/Pantonblackcaps.woff2') format('woff2'),
-        url('/styles/fonts/Pantonblackcaps.woff') format('woff'),
-        url('/styles/fonts/Pantonblackcaps.ttf') format('truetype');
+    url('/styles/fonts/Pantonblackcaps.woff') format('woff'),
+    url('/styles/fonts/Pantonblackcaps.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
 }
@@ -201,6 +201,8 @@ fieldset[disabled] .btn-orange.active {
 }
 .main_slider_wrap .container .row>div.content { padding: 10px;  background: #fff; }
 
+.site-wrap .container { position: relative;}
+
 .stylish-input-group .input-group-addon{
     background: white !important;
 }
@@ -214,7 +216,7 @@ fieldset[disabled] .btn-orange.active {
     background:transparent;
 }
 .form-control
-/*INFO BLOCK*/
+    /*INFO BLOCK*/
 .info_block_wrap{
     margin: 2rem 0;
 
@@ -292,10 +294,10 @@ fieldset[disabled] .btn-orange.active {
     z-index: 1;
 }
 /*.addv-small-block:hover{*/
-    /*!*    -webkit-transform: scale(1.1);*/
-        /*-ms-transform: scale(1.1);*/
-        /*transform: scale(1.1);*!*/
-    /*box-shadow: 5px 5px 5px 5px #ccc;*/
+/*!*    -webkit-transform: scale(1.1);*/
+/*-ms-transform: scale(1.1);*/
+/*transform: scale(1.1);*!*/
+/*box-shadow: 5px 5px 5px 5px #ccc;*/
 
 /*}*/
 .logo_block_arrow_right, .logo_block_arrow_left{
@@ -360,33 +362,33 @@ fieldset[disabled] .btn-orange.active {
 
 @media (min-width: 768px) {
 
-        .navbar-brand-centered{
-            position: absolute;
-            left: 50%;
-            display: block;
-            text-align: center;
-            background-color: #ffffff;
-            height: auto;
-            z-index: 10000;
-            box-shadow: 2px 5px 5px #333333;
-        }
-        .navbar>.container .navbar-brand-centered,
-        .navbar>.container-fluid .navbar-brand-centered {
-            margin-left: -7.5rem;
-        }
+    .navbar-brand-centered{
+        position: absolute;
+        left: 50%;
+        display: block;
+        text-align: center;
+        background-color: #ffffff;
+        height: auto;
+        z-index: 10000;
+        box-shadow: 2px 5px 5px #333333;
+    }
+    .navbar>.container .navbar-brand-centered,
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -7.5rem;
+    }
 
 
-        .navbar-default .navbar-nav > .open > a,
-        .navbar-default .navbar-nav > .open > a:focus,
-        .navbar-default .navbar-nav > .open > a:hover{
-            color: #ffffff;
-            background: #FF7200;
-        }
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:focus,
+    .navbar-default .navbar-nav > .open > a:hover{
+        color: #ffffff;
+        background: #FF7200;
+    }
 
-        .info_block_wrap span{
-            padding: 5rem;
-            font-size: 3rem;
-        }
+    .info_block_wrap span{
+        padding: 5rem;
+        font-size: 3rem;
+    }
 
 }
 
@@ -719,16 +721,16 @@ ul#main-line-menu li.active a {
 .spinnerFullBlock div {
     position: relative;
     z-index: 4;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background-image: url('/images/spinner.gif');
     top: 50%;
 
-    margin: -50px auto auto auto;
+    margin: -100px auto auto auto;
 }
 /*.modal-animation {*/
-    /*-webkit-transition: 0.6s linear all;*/
-    /*transition: 0.6s linear all;*/
+/*-webkit-transition: 0.6s linear all;*/
+/*transition: 0.6s linear all;*/
 /*}*/
 /*.modal-animation.ng-enter { top: -300px; }                  !* начало анимации появившегося элемента - enter *!*/
 /*.modal-animation.ng-enter.ng-enter-active { top: 30px; }    !* окончание анимации *!*/
@@ -751,9 +753,9 @@ ul#main-line-menu li.active a {
 }
 
 /*@-webkit-keyframes fadein{*/
-    /*0% { opacity:1; }*/
-    /*66% { opacity:1; }*/
-    /*100% { opacity:0; }*/
+/*0% { opacity:1; }*/
+/*66% { opacity:1; }*/
+/*100% { opacity:0; }*/
 /*}*/
 
 .modal-shadow {
@@ -782,7 +784,21 @@ ul#main-line-menu li.active a {
     border: 1px solid #d9d9d9;
     background-color: #fff;
     margin: 10px auto;
+    min-height: 600px;
 }
+/*.spinner-show-row { display: none !important;}*/
+/*.spinner-show-row.show { display: block !important;}*/
+/*.spinner-hide-row {*/
+    /*min-height: 106px;*/
+    /*display: block !important;*/
+    /*background-color: #ffdec4;*/
+    /*background-image: url('/images/spinner.gif');*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+/*}*/
+
+/*.spinner-hide-row.show{ display: none !important; }*/
+
 .form-group {
     position: relative;
 }

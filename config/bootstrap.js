@@ -11,8 +11,7 @@
 
 module.exports.bootstrap = function(cb) {
 
-  var multipart = require('connect-multiparty');
-  sails.config.caric.multipart = multipart;
+    sails.jwt = require('json-web-token');
 
 
   // It's very important to trigger this callback method when you are finished

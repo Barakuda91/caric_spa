@@ -20,9 +20,5 @@ module.exports.caric = {
         all: []
     },
     defaultLanguage: 'ru',
-
-    /*-------------------ANOTHER_VARIABLES-----------------------------------*/
-
-    multipart: null,
-
+    post_images_path: require('process').cwd()+'/post_store'
 };

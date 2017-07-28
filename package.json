@@ -30,8 +30,10 @@
     "sails": "~0.12.13",
     "sails-disk": "^0.10.10",
     "sails-hook-autoreload": "^0.14.1",
+    "sails-hook-email": "^0.12.1",
     "sails-mongo": "^0.12.2",
     "skipper": "^0.8.2",
+    "skipper-disk": "^0.5.9",
     "skipper-gridfs": "^0.5.3"
   },
   "scripts": {
@@ -43,6 +45,6 @@
     "type": "git",
     "url": "git://github.com/Barakuda91/caric.com.git"
   },
-  "author": "alex",
+  "author": "Barakuda_tm",
   "license": ""
 }

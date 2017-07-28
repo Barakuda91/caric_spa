@@ -3,10 +3,8 @@
         <div ng-include="'templates/modals/auth.html'"></div>
     </div>
     <div ng-if="userData.auth" class="content_block">
-
         <div class="row filter-block-row small">
-            <div class="col-lg-1 col-md-1 col-sm-1">
-            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1"></div>
             <div class="col-lg-11 col-md-11 col-sm-11">
                 <span class="required">*</span> поля отмеченые звездочкой обязательны к выбору или заполнению
             </div>
@@ -73,10 +71,15 @@
             </div>
         </div>
 
-        <div ng-if="setting.values.advertType === 'wheels'" ng-include="'/templates/filters/wheels-filter-block.html'"></div>
-        <div ng-if="setting.values.advertType === 'tyres'"  ng-include="'/templates/filters/tyres-filter-block.html'"></div>
-        <div ng-if="setting.values.advertType === 'spaces'" ng-include="'/templates/filters/spaces-filter-block.html'"></div>
-
+            <div ng-if="setting.values.advertType === 'wheels'"
+                 ng-include="'/templates/filters/wheels-filter-block.html'"
+            ></div>
+            <div ng-if="setting.values.advertType === 'tyres'"
+                 ng-include="'/templates/filters/tyres-filter-block.html'"
+            ></div>
+            <div ng-if="setting.values.advertType === 'spaces'"
+                 ng-include="'/templates/filters/spaces-filter-block.html'"
+            ></div>
         <div class="row filter-block-row">
             <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
                 {{_.PHONE_NUMBER}} <span ng-if="setting.advertAddSettingParams.general.advertPhoneNumber.required" class="required">*</span>
@@ -147,4 +150,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>{{showParamsBlockClass}}11
