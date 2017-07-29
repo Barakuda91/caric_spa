@@ -1,0 +1,25 @@
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <p>Вася Пупкин</p>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <p>{{_.PHONE_NUMBER}}: {{advertInfo.advertPhoneNumber}}</p>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <p>{{_.REGION}}: {{advertInfo.regions}}</p>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <p>{{_.CITY}}: {{advertInfo.city}}</p>
+</div>
+
+
+<div ng-switch="advertInfo.advertType" class="additional-info-main-wrapper">
+    <div ng-switch-when="wheels">
+        <div ng-include="'templates/post/type/wheels.html'"></div>
+    </div>
+    <div ng-switch-when="tyres">
+        <div ng-include="'templates/post/type/tyres.html'"></div>
+    </div>
+    <div ng-switch-when="spaces">
+        <div ng-include="'templates/post/type/spaces.html'"></div>
+    </div>
+</div>

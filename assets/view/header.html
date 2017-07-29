@@ -12,17 +12,6 @@
                                 <div class="slogan text-right text-uppercase">{{_.LOGO_TAGLINE}}</div>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12 text-xs-center text-xxs-center">
-                            <button type="button" class="btn btn-sm"  ng-class="localizationButton.ru" ng-click="changelang('ru')">
-                                ru
-                            </button>
-                            <button type="button" class="btn btn-sm" ng-class="localizationButton.ua" ng-click="changelang('ua')">
-                                ua
-                            </button>
-                            <button type="button" class="btn btn-sm" ng-class="localizationButton.en" ng-click="changelang('en')">
-                                en
-                            </button>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 col-xxs-12 text-xs-center text-xxs-center">
@@ -34,8 +23,11 @@
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-xxs-12 text-right text-xs-center text-xxs-center">
-                    <div class="form-group"></div>
-
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12 text-xs-center text-xxs-center">
+                        <a class="localization-links" ng-class="localizationButton.ru" ng-click="changelang('ru')">ru</a>
+                        <a class="localization-links" ng-class="localizationButton.ua" ng-click="changelang('ua')">ua</a>
+                        <a class="localization-links" ng-class="localizationButton.en" ng-click="changelang('en')">en</a>
+                    </div>
                     <button ng-hide="userData.auth" type="button" class="btn btn-orange btn-lg" ng-click="modalLoginOpenSwitcher('open')">
                         {{_.LOGIN}}/{{_.REGISTRATION}}
                     </button>

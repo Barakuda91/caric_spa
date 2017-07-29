@@ -10,7 +10,8 @@
             'ngResource',
             'ngAnimate',
             'ngFileUpload',
-            'ngSanitize'
+            'ngSanitize',
+            'ngPhotoswipe'
         ])
         .config(GeneralConfig)
         .directive('minCharsLength', function() {
