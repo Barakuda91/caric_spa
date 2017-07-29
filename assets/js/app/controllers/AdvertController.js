@@ -89,7 +89,6 @@ console.log('files upload + ' + files.length)
         // обработчик нажатия кнопки подачи объявления
         $scope.advertSubmit = function() {
             var setting = $scope.setting;
-            var advertArray = {};
             var badField = [];
             var showModalError = false;
 
@@ -98,7 +97,7 @@ console.log('files upload + ' + files.length)
             for (var parameter in setting.advertAddSettingParams.general) {
                 if(checkOnRequired(parameter, 'general'))
                 {
-                    advertArray[parameter] = setting.values[parameter];
+                    advert_setting[parameter] = setting.values[parameter];
                     setting.advertAddSettingParams.errorClass[parameter] = '';
                 } else {
                     showModalError = true;
@@ -108,7 +107,7 @@ console.log('files upload + ' + files.length)
 
             for (var parameter in setting.advertAddSettingParams[setting.values.advertType]) {
                 if(checkOnRequired(parameter, setting.values.advertType)) {
-                    advertArray[parameter] = setting.values[parameter];
+                    advert_setting[parameter] = setting.values[parameter];
                     setting.advertAddSettingParams.errorClass[parameter] = '';
                 } else {
                     showModalError = true;
@@ -128,9 +127,8 @@ console.log('files upload + ' + files.length)
                     return true;
                 }
             }
-            console.log(advertArray)
-            if (showModalError) {
 
+            if (showModalError) {
                 $timeout(function(){
                     angular.element("select.form-control-sm.required").change(function(e){
                             setting.advertAddSettingParams.errorClass = {};
@@ -150,8 +148,8 @@ console.log('files upload + ' + files.length)
                     okButton: true
                 });
             } else {
-                return;
-                io.socket.post('/api/post/update', setting.values, function (resData) {
+
+                io.socket.post('/api/post/update', advert_setting, function (resData) {
                     if(resData.status) {
                         setting.values = Service.getDefaultSettingParamsValues(setting.params);
                         Service.modal($rootScope, {
@@ -165,8 +163,7 @@ console.log('files upload + ' + files.length)
                 })
             }
         }
-        console.log('$routeParams');
-        console.log($routeParams);
+
         /* инфа по обьяве храним в рутскопе если нету тянем из базы */
         if ($routeParams.id) {
             var urlId = $routeParams.id;
