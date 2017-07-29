@@ -32,24 +32,18 @@
         <div class="col-xs-12 text-center"><h1>{{advertInfo.title}}</h1></div>
     </div>
     <div class="row" data-id="{{advertInfo.id}}">
-        <div class="col-lg-6">
-            <div class="col-xs-12 hidden-md hidden-sm hidden-xs">
-                <div ng-include="'templates/post/contacts-block.html'"></div>
+        <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="col-xs-12 main-additional-info-wrapper">
+                <div ng-include="'templates/post/additional-info-block.html'"></div>
             </div>
-            <div class="col-xs-12 hidden-md hidden-sm hidden-xs">
-                <div ng-include="'templates/post/input-messages-block.html'"></div>
+            <div class="col-xs-12 post-description-block-big-screen">
+                {{advertInfo.description}}
             </div>
         </div>
         <div class="col-lg-6">
+            <div class="col-xs-12 text-center advert-price-block">{{advertInfo.price}} {{advertInfo.currency}}</div>
             <div class="col-xs-12 text-center main-photo-wrapper">
                 <div ng-include="'templates/post/main-gallery-foto-block.html'"></div>
-            </div>
-            <div class="col-xs-12 text-center advert-price-block">{{advertInfo.price}} {{advertInfo.currency}}</div>
-            <div class="col-xs-12 visible-md visible-sm visible-xs">
-                <div ng-include="'templates/post/contacts-block.html'"></div>
-            </div>
-            <div class="col-xs-12 visible-md visible-sm visible-xs">
-                <div ng-include="'templates/post/input-messages-block.html'"></div>
             </div>
         </div>
     </div>
@@ -68,14 +62,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-xs-12">
-            <div ng-include="'templates/post/output-messages-block.html'"></div>
-        </div>
-        <div class="col-lg-6 col-xs-12">
+        <div class="col-xs-12 visible-md visible-sm visible-xs additional-info-small-dev">
             <div ng-include="'templates/post/additional-info-block.html'"></div>
         </div>
-        <div class="col-xs-12 post-description-block">
+        <div class="col-xs-12 visible-md visible-sm visible-xs">
             {{advertInfo.description}}
+        </div>
+        <div class="col-xs-12">
+            <div ng-include="'templates/post/messages-block.html'"></div>
         </div>
     </div>
 </div>

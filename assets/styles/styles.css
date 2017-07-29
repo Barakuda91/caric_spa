@@ -479,6 +479,12 @@ fieldset[disabled] .btn-orange.active {
 
 }
 
+@media (max-width: 768px) {
+    div.additional-info-small-dev {
+        text-align: center;
+    }
+}
+
 /* for higher resolutions (android and retina) */
 
 @media screen and (-webkit-min-device-pixel-ratio: 1.5),
@@ -1115,10 +1121,12 @@ div.contacts-map-container {
     background-color: #2b542c;
 }
 
-div.input-messages-wrapper {
+div.messages-wrapper {
     height: 225px;
     background-color: #2b669a;
     margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .main-slider-block-wrapper {
@@ -1135,8 +1143,23 @@ div.main-output-messages-wrapper {
 }
 
 div.additional-info-main-wrapper {
-    background-color: salmon;
-    height: 150px;
+    min-height: 225px;
+
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+div.post-description-block-big-screen {
+    height: 295px;
     margin-top: 10px;
     margin-left: 0px;
+    overflow: hidden;
 }
+
+a.localization-links {
+    margin: 5px;
+}
+a.localization-links:hover {
+    cursor: pointer;
+}
+
