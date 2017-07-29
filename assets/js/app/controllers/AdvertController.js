@@ -37,20 +37,22 @@
 
 
         $scope.uploads = [];
-        $scope.filesCount = 0;
-
+        var uploadArray = {};
+        var filesCount = 0;
+        var uploadStatus = false;
 
 
         $scope.upload = function (files,errorFiles) {
 console.log('files upload + ' + files.length)
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
-                    console.log('in for + '+i);
                     $scope.uploads[$scope.filesCount] = files[i];
+                    uploadArray[i] = true;
                     fileUpload(files[i], $scope.filesCount++);
                 }
             }
-        }
+        };
+
         function fileUpload(file, count) {
             console.log(file);
             // file.name = advert_setting.post_id;

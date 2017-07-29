@@ -4,10 +4,6 @@
  * @description :: Server-side logic for managing adverts
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-var maxConcurrent = 1;
-var maxQueue = Infinity;
-var Queue = require('promise-queue');
-var queue = new Queue(maxConcurrent, maxQueue);
 var currentName= 'AdvertsController';
 module.exports = {
     get_image: function (req, res) {
