@@ -48,29 +48,36 @@ console.log('files upload + ' + files.length)
                 for (var i = 0; i < files.length; i++) {
                     $scope.uploads[$scope.filesCount] = files[i];
                     uploadArray[i] = true;
-                    fileUpload(files[i], $scope.filesCount++);
+                    fileUpload(files[i]);
                 }
             }
         };
 
+        $scope.$watch('uploads', function(newQ, oldQ){
+            console.log(newQ, oldQ);
+        })
+
+
         function fileUpload(file, count) {
-            console.log(file);
-            // file.name = advert_setting.post_id;
             if (advert_setting.post_id) {
                 Upload.upload({
                     url: '/api/post/update_photo',
                     data: { image: file},
                     headers: {'post_id': advert_setting.post_id}
                 }).then(function (resp) {
-                    console.log('Success uploaded. Response: ', resp.data);
+                    //console.log('Success uploaded. Response: ', resp.data);
+
+                    console.log($scope.uploads,56)
                     $scope.filesCount++;
                 }, function (resp) {
-                    console.log('Error status: ' + resp.status);
-                    delete $scope.uploads[count];
+                    //console.log('Error status: ' + resp.status);
+                    //delete $scope.uploads[count];
                 }, function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ', $scope.uploads);
-                    $scope.uploads[count].style = progressPercentage + '% ';
+                    //console.log('progress: ' + progressPercentage + '% ', $scope.uploads);
+
+
+                    //$scope.uploads[count].style = progressPercentage + '% ';
                 });
             } else {
                 console.log(advert_setting)
