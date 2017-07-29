@@ -865,6 +865,13 @@ textarea.form-control{
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
+    position: relative;
+}
+.advert-block-upload-img .process{
+    height: 5px;
+    background: lime;
+    width: 0;
+    position: absolute;
 }
 .advert-block-upload-img img{
     max-width: 150px;
@@ -886,6 +893,7 @@ textarea.form-control{
     opacity: 0.3;
     cursor: pointer;
 }
+
 
 
 .dropdown::-webkit-input-placeholder {color:#555;}
@@ -970,8 +978,6 @@ textarea.form-control{
     -moz-appearance: none;
     appearance: none;
 }
-
-
 
 
 

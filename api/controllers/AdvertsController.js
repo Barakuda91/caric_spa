@@ -4,18 +4,27 @@
  * @description :: Server-side logic for managing adverts
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-var currentName = 'AdvertsController';
+var maxConcurrent = 1;
+var maxQueue = Infinity;
+var Queue = require('promise-queue');
+var queue = new Queue(maxConcurrent, maxQueue);
+var currentName= 'AdvertsController';
 module.exports = {
-	index: function (req, res) {
-	    console.log('HERE222');
+    get_image: function (req, res) {
+        var path_arr = req.path.split('_');
+        console.log(path_arr);
+
+        res.sendfile('post_store/597a56a19579b86e16302b7e/357dbe0c-9772-46e1-b54f-686dad255ca4.jpg');
+
     },
     create: function (req, res) {
         sails.log(currentName + '.create');
 
-        var user = Services.getDataFromToken(req.body.token, function (err,data) {
+        Services.getDataFromToken(req.body.token, function (err,data) {
             var saveObject = {
                 user: data.email,
-                status: 'crate' // create, active, inactive, delete
+                filesCount: 0,
+                status: 'create' // create, active, inactive, delete
             }
 
             sails.models.adverts.create(saveObject).exec(function (err, resData) {
@@ -32,22 +41,31 @@ module.exports = {
 // TODO сделать удаление про коле или ерроре, сделать переименование файлов при записи
         var dirToSave = sails.config.caric.post_images_path+'/'+req.headers.post_id;
 
-        req.file('image').upload({
-            dirname: dirToSave
-            // adapter: require('skipper-gridfs'),
-            // uri: "mongodb://root:qwe123@localhost:27017/caric_spa"
-        }, function (err, uploadedFiles) {
-            if (err) {
-                console.log(err)
-                return res.json({status: false});
-            }
-            return res.json({status: true, data: {filename: uploadedFiles.filename}});
+        sails.models.adverts.findOne({id: req.headers.post_id}).exec(function(err, row){
+
+
+                console.log('first ',row.filesCount)
+
+                row.filesCount++;
+                console.log('Second');
+                req.file('image').upload({
+                    dirname: dirToSave
+                }, function (err, uploadedFiles) {
+                    if (err) {
+                        console.log(err);
+                        return res.json({status: false});
+                    }
+                    console.log(row.filesCount, uploadedFiles)
+                    return uploadedFiles.filename;
+                    //row.save(function(err, row) { console.log(err, row) });
+                    //return res.json({status: true, data: {filename: uploadedFiles.filename}});
+                });
         });
     },
     update: function (req, res) {
         sails.log(currentName + '.update');
         console.log(req.body);
-        
+
         var saveObject = {
             advertType: req.body.advertType,
             price: req.body.price,
@@ -70,7 +88,7 @@ module.exports = {
                     wheelMaker: req.body.wheelMaker,
                     wheelModel: req.body.wheelModel
                 });
-            break;
+                break;
             case 'tyres':
                 Object.assign(saveObject, {
                     tyreType: req.body.tyreType,
@@ -83,7 +101,7 @@ module.exports = {
                     treadRest_1: req.body.treadRest_1,
                     treadRest_2: req.body.treadRest_2
                 });
-            break;
+                break;
             case 'spaces':
                 Object.assign(saveObject, {
                     spacesType: req.body.spacesType,
@@ -93,7 +111,7 @@ module.exports = {
                     pcdSpacesFrom :req.body.pcdSpacesFrom,
                     pcdSpacesTo :req.body.pcdSpacesTo
                 });
-            break;
+                break;
         }
         sails.models.adverts.create(saveObject).exec(function (err, resData) {
             if(!err) {
