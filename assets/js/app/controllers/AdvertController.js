@@ -231,6 +231,14 @@ console.log('files upload + ' + files.length)
                 resData.data.informationBlock = resData.data.id + ' ' + resData.data.advertType + ' ' + resData.data.createdAt;
 
                 $scope.advertInfo = resData.data;
+
+
+                /* авто выравнивание фотки по высоте для 1200 и больше екранов */
+                var originData = {
+                    src: '/images/test-advert-foto/2560x1600_2.jpg',
+                    w: 2560, h: 1600, index: 0
+                }
+                Service.allignImageInBlock($rootScope.windowWidth, originData);
             });
 
             /* slider gallery super tru */
@@ -239,25 +247,32 @@ console.log('files upload + ' + files.length)
                 history: false
             };
 
-            $scope.slides = [{
-                src: '/images/test-advert-foto/2560x1600_2.jpg',
-                w: 2560, h: 1600, index: 0
-            }, {
-                src: '/images/test-advert-foto/930x620.jpg',
-                w: 930, h: 620, index: 1
-            }, {
-                src: '/images/test-advert-foto/1000x600.jpg',
-                w: 1000, h: 600, index: 2
-            }, {
-                src: '/images/test-advert-foto/1181x699.jpg',
-                w: 1181, h: 699, index: 3
-            }, {
-                src: '/images/test-advert-foto/1920x1200.jpg',
-                w: 1920, h: 1200, index: 4
-            }, {
-                src: '/images/test-advert-foto/2560x1600.jpg',
-                w: 2560, h: 1600, index: 5
-            }];
+            $scope.slides = [
+                {
+                    src: '/images/test-advert-foto/2560x1600_2.jpg',
+                    w: 2560, h: 1600, index: 0
+                },
+                {
+                    src: '/images/test-advert-foto/930x620.jpg',
+                    w: 930, h: 620, index: 1
+                },
+                {
+                    src: '/images/test-advert-foto/1000x600.jpg',
+                    w: 1000, h: 600, index: 2
+                },
+                {
+                    src: '/images/test-advert-foto/1181x699.jpg',
+                    w: 1181, h: 699, index: 3
+                },
+                {
+                    src: '/images/test-advert-foto/1920x1200.jpg',
+                    w: 1920, h: 1200, index: 4
+                },
+                {
+                    src: '/images/test-advert-foto/2560x1600.jpg',
+                    w: 2560, h: 1600, index: 5
+                }
+            ];
 
             $scope.slidesCount = $scope.slides.length;
 
@@ -286,25 +301,26 @@ console.log('files upload + ' + files.length)
                         angular.element(this).show();
                     }
                 });
+                Service.allignImageInBlock($rootScope.windowWidth);
             };
 
             /* дефалтное значение рендера */
             $scope.firstRender = true;
 
             $scope.galleryRotateLeft = function () {
-                var currentIndex = angular.element('div.thumbnail-advert-show:first img').data('index');
+                var currentIndex = angular.element('div.thumbnail-advert-show:first div').data('index');
                 $scope.firstRender = false;
                 $scope.currentSlides = [];
                 var temp1 = [];
                 var elemIndex = currentIndex + 1;
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i < 6; i++) {
                     if ($scope.slides[elemIndex]) {
                         temp1.push($scope.slides[elemIndex]);
                         elemIndex = elemIndex + 1;
                     }
                 }
                 var temp2 = [];
-                var diff = 3 - temp1.length;
+                var diff = 6 - temp1.length;
                 for (var i = 0; i < diff; i++) {
                     temp2.push($scope.slides[i]);
                 }
@@ -313,12 +329,12 @@ console.log('files upload + ' + files.length)
             };
 
             $scope.galleryRotateRight = function () {
-                var currentIndex = angular.element('div.thumbnail-advert-show:last img').data('index');
+                var currentIndex = angular.element('div.thumbnail-advert-show:last div').data('index');
                 $scope.firstRender = false;
                 $scope.currentSlides = [];
                 var temp1 = [];
                 var elemIndex = currentIndex - 1;
-                for (var i = 0; i < 3; i++) {
+                for (var i = 0; i < 6; i++) {
                     if ($scope.slides[elemIndex]) {
                         temp1.push($scope.slides[elemIndex]);
                         elemIndex = elemIndex - 1;
@@ -326,7 +342,7 @@ console.log('files upload + ' + files.length)
                 }
                 temp1.sort(function(a, b) {return a.index -b.index});
                 var temp2 = [];
-                var diff = 3 - temp1.length;
+                var diff = 6 - temp1.length;
                 var elemIndex = $scope.slides.length - 1;
                 for (var i = 0; i < diff; i++) {
                     temp2.push($scope.slides[elemIndex]);
@@ -336,6 +352,8 @@ console.log('files upload + ' + files.length)
 
                 $scope.currentSlides = temp2.concat(temp1);
             }
+
+
         }
 
     }

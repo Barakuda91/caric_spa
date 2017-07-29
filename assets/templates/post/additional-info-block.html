@@ -1,0 +1,11 @@
+<div ng-switch="advertInfo.advertType" class="additional-info-main-wrapper">
+    <div ng-switch-when="wheels">
+        <div ng-include="'templates/post/type/wheels.html'"></div>
+    </div>
+    <div ng-switch-when="tyres">
+        <div ng-include="'templates/post/type/tyres.html'"></div>
+    </div>
+    <div ng-switch-when="spaces">
+        <div ng-include="'templates/post/type/spaces.html'"></div>
+    </div>
+</div>

@@ -1,4 +1,14 @@
 
+.view-wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+.post-main-wrapper {
+    margin: 0 auto;
+
+}
+
 /* MEDIA QUERIES
 *********************************************/
 @font-face {
@@ -301,8 +311,8 @@ fieldset[disabled] .btn-orange.active {
 
 /*}*/
 .logo_block_arrow_right, .logo_block_arrow_left{
-    position: absolute;
-    margin-top: 5px;
+    margin-top: 20px;
+    padding: 0;
     color: #ccc;
 }
 
@@ -310,7 +320,15 @@ fieldset[disabled] .btn-orange.active {
     color: #a7a7a7;
     cursor: pointer;
 }
+.gallery-slides-block {
+    padding: 0;
 
+}
+.no-slider-class {
+    width: 200px;
+    float: left;
+
+}
 .footer_wrap{
     background: #FF7200;
     color:#ffffff;
@@ -337,29 +355,24 @@ fieldset[disabled] .btn-orange.active {
 }
 
 
-.logo_block_arrow_right{
-    margin-left: 540px;
+
+.thumbnail-advert-show {
+    padding: 2px;
+    margin: 0;
+    height: 120px;
 }
-.logo_block_arrow_left{
-    margin-left: -25px;
+.img-slider-photo {
+    height: 120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 @media (max-width: 1200px) {
-    .logo_block_arrow_right {
-        margin-left: 880px;
-        margin-top: 15px;
+    .main-photo-wrapper {
+        height: auto;
     }
 
-    .logo_block_arrow_left {
-        margin-left: 0px;
-        margin-top: 15px;
-    }
-
-
-    .thumbnail-advert-show img {
-        width: 200px;
-        margin: auto;
-    }
 }
 /* Extra small devices (phones, less than 768px) */
 
@@ -616,6 +629,9 @@ div.main_search_block.show-search {
     h1, h2, h3, h4, h5 {
         border-bottom:2px solid #FF7200;
     }
+    .contacts-wrapper {
+        text-align: center;
+    }
 }
 @media (min-width:768px) and (max-width:991px){
     h1 {
@@ -632,7 +648,11 @@ div.main_search_block.show-search {
         font-size: 30px;
     }
 }
-
+@media (min-width: 1200px) {
+    .main-photo-wrapper {
+        height: 500px;
+    }
+}
 div.bottom-line-x1 {
     border-bottom: 1px solid #FF7200;
 }
@@ -799,8 +819,8 @@ ul#main-line-menu li.active a {
 .content_block {
     border: 1px solid #d9d9d9;
     background-color: #fff;
-    margin: 10px auto;
     min-height: 600px;
+    margin: 0px auto;
 }
 /*.spinner-show-row { display: none !important;}*/
 /*.spinner-show-row.show { display: block !important;}*/
@@ -1036,8 +1056,87 @@ img.main-image-center {
 .advert-price-block {
     font-size: large;
     color: #ff7200;
+    height: 50px;
+    padding: 15px;
+    background-color: #5bc0de;
 }
 
 .thumbnail-advert-hide {
     display: none;
+}
+
+.main-photo-wrapper {
+    padding: 0;
+    margin: 0;
+
+    background: #f1f1f1;
+}
+
+
+
+.img-viewport-main {
+    vertical-align: middle;
+}
+
+.post-main-wrapper {
+    background-color: white;
+}
+
+.post-description-block {
+    margin-top: 10px;
+}
+
+div.no-slider-block {
+    overflow: hidden;
+}
+
+div.no-slider-block ul {
+    position: relative;
+    float: left;
+    left: 50%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+div.no-slider-block ul li {
+    position: relative;
+    float: left;
+    right: 50%;
+    padding: 10px;
+}
+
+div.no-slider-block ul li div.thumbnail-advert-show {
+    width: 200px;
+}
+
+div.contacts-map-container {
+    height: 250px;
+    background-color: #2b542c;
+}
+
+div.input-messages-wrapper {
+    height: 225px;
+    background-color: #2b669a;
+    margin-top: 10px;
+}
+
+.main-slider-block-wrapper {
+    margin-top: 10px;
+}
+
+div.main-output-messages-wrapper {
+    background-color: sandybrown;
+    height: 150px;
+    padding: 0px;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+div.additional-info-main-wrapper {
+    background-color: salmon;
+    height: 150px;
+    margin-top: 10px;
+    margin-left: 0px;
 }

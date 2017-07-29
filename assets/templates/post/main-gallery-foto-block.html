@@ -1,19 +1,19 @@
-<ul class="slide-list">
+<ul class="slide-list main-post-image-list">
     <li ng-repeat="s in slides" ng-click="showGallery(s.index)">
-        <div ng-if="$index == 0">
+        <div ng-if="$index == 0" class="img-viewport-main">
             <img ng-src="{{s.src}}"
                  alt="alter description"
                  data-index="{{s.index}}"
                  class="img-responsive main-image-center"
-                 width="500"
+
             />
         </div>
-        <div ng-if="$index > 0">
+        <div ng-if="$index > 0" class="img-viewport-main">
             <img ng-src="{{s.src}}"
                  alt="alter description"
                  data-index="{{s.index}}"
                  class="img-responsive main-image-center"
-                 width="500"
+
                  style="display: none;"
             />
         </div>
