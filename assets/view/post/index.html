@@ -1,33 +1,75 @@
 <style>
     /* advert page start*/
-    .class-bg div {
-        border:1px solid green;
+    /*.class-bg div {*/
+        /*border:1px solid green;*/
+    /*}*/
+    button {
+        margin-bottom: 20px;
+        padding: 5px 10px;
+    }
+
+    .slide-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    .slide-list > li {
+        display: inline;
+    }
+    .slide-list > li:hover {
+        cursor: pointer;
+    }
+    .slide-list > li > img {
+        width: 100px;
+        height: 100px;
     }
 
     /* advert page end */
 </style>
-{{windowWidth}}
-{{advertInfo.id}}
-<div class="container class-bg" ng-controller="AdvertController">
+
+<div class="container class-bg post-main-wrapper" ng-controller="AdvertController">
+    <div class="row">
+        <div class="col-xs-12 text-center"><h1>{{advertInfo.title}}</h1></div>
+    </div>
     <div class="row" data-id="{{advertInfo.id}}">
-        <div class="col-xs-12 visible-md visible-sm visible-xs">{{advertInfo.title}}</div>
-        <div class="col-lg-6">
-            <div class="col-xs-12">
-                foto main
+        <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+            <div class="col-xs-12 main-additional-info-wrapper">
+                <div ng-include="'templates/post/additional-info-block.html'"></div>
             </div>
-            <div class="col-xs-12">{{advertInfo.price}}{{advertInfo.currency}}</div>
+            <div class="col-xs-12 post-description-block-big-screen">
+                {{advertInfo.description}}
+            </div>
         </div>
         <div class="col-lg-6">
-            <div class="col-xs-12 hidden-md hidden-sm hidden-xs">{{advertInfo.title}}</div>
-            <div class="col-xs-12 hidden-sm hidden-xs">
-                <div class="col-md-4">foto1</div>
-                <div class="col-md-4">foto2</div>
-                <div class="col-md-4">foto3</div>
+            <div class="col-xs-12 text-center advert-price-block">{{advertInfo.price}} {{advertInfo.currency}}</div>
+            <div class="col-xs-12 text-center main-photo-wrapper">
+                <div ng-include="'templates/post/main-gallery-foto-block.html'"></div>
             </div>
-            <div class="col-xs-12">infa</div>
+        </div>
+    </div>
+    <div class="row hidden-md hidden-sm hidden-xs main-slider-block-wrapper" ng-if="slides.length > 1">
+        <div ng-if="slides.length >= 6" class="col-lg-1 text-center logo_block_arrow_left" ng-click="galleryRotateLeft()">
+            <i class="fa fa-angle-left fa-5x" aria-hidden="true"></i>
+        </div>
+        <div ng-if="slides.length >= 6" class="col-lg-10 gallery-slides-block">
+            <div ng-include="'templates/post/slides-gallery-foto-block.html'"></div>
+        </div>
+        <div ng-if="slides.length < 6" class="col-lg-12 gallery-no-slides-block">
+            <div ng-include="'templates/post/no-sliders-gallery-foto-block.html'"></div>
+        </div>
+        <div ng-if="slides.length >= 6" class="col-lg-1 text-center logo_block_arrow_right" ng-click="galleryRotateRight()">
+            <i class="fa fa-angle-right fa-5x" aria-hidden="true"></i>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12">opisanie</div>
+        <div class="col-xs-12 visible-md visible-sm visible-xs additional-info-small-dev">
+            <div ng-include="'templates/post/additional-info-block.html'"></div>
+        </div>
+        <div class="col-xs-12 visible-md visible-sm visible-xs">
+            {{advertInfo.description}}
+        </div>
+        <div class="col-xs-12">
+            <div ng-include="'templates/post/messages-block.html'"></div>
+        </div>
     </div>
 </div>

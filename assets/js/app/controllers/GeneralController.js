@@ -385,6 +385,7 @@
         );
 
         angular.element(window).bind('resize', function(){
+            Service.allignImageInBlock($rootScope.windowWidth);
             $rootScope.$apply();
         });
 

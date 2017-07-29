@@ -1,0 +1,35 @@
+<div ng-if="true === firstRender">
+    <ul class="slide-list">
+        <li ng-repeat="s in slides">
+            <div ng-if="s.index < 6">
+                <div class="col-lg-2 thumbnail-advert-show"
+                     ng-click="showMainFoto(s.index)"
+                >
+                    <div
+                        class="img-slider-photo"
+                        style="background-image: url({{s.src}});"
+                        data-index="{{s.index}}"
+                    >
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div ng-if="false === firstRender">
+    <ul class="slide-list">
+        <li ng-repeat="s in currentSlides">
+            <div class="col-lg-2 thumbnail-advert-show"
+                 ng-click="showMainFoto(s.index)"
+            >
+                <div
+                 class="img-slider-photo"
+                 style="background-image: url({{s.src}});"
+                 data-index="{{s.index}}"
+                >
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+

@@ -167,6 +167,25 @@
             }
 
             return title;
+        },
+
+        this.allignImageInBlock = function (currentWidth, originData) {
+            if (originData) {
+                if (currentWidth > 1400) {
+                    var imgHeight = Math.round(575 * originData.h / originData.w);
+                } else {
+                    var imgHeight = Math.round(555 * originData.h / originData.w);
+                }
+            } else {
+                var imgHeight = angular.element('img.main-image-center:visible').height();
+            }
+
+            var offset = Math.round(parseInt((500 - imgHeight) / 2));
+            if (currentWidth > 1200) {
+                angular.element('img.main-image-center').closest('ul').css('margin-top', offset + 'px');
+            } else {
+                angular.element('img.main-image-center').closest('ul').css('margin-top', '0');
+            }
         }
     }
 
