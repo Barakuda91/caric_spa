@@ -911,10 +911,34 @@ textarea.form-control{
 }
 .advert-block-upload-img .process{
     height: 5px;
-    background: lime;
+    background: #ff7200;
     width: 0;
     position: absolute;
 }
+.advert-block-upload-img .process.error, .advert-block-upload-img .process.loading{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background: rgba(255, 0, 0, 0.52);
+    color: white;
+    font-size: x-large;
+    font-weight: bold;
+}
+.advert-block-upload-img .process.error:after{
+    content: 'ERROR';
+    position: relative;
+}
+
+.advert-block-upload-img .process.loading{
+    background: rgb(241, 241, 241);
+    background-image: url(/images/spinner.gif);
+    background-size: 45%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
 .advert-block-upload-img img{
     max-width: 150px;
     max-height: 110px;

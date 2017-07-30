@@ -5,13 +5,35 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 var currentName= 'AdvertsController';
+var fs = require('fs');
+var resizeImg = require('resize-img');
 module.exports = {
     get_image: function (req, res) {
+        sails.log(currentName + '.get_image');
         var path_arr = req.path.split('_');
-        console.log(path_arr);
+        var size_arr = path_arr[3].split('x');
+        var width = Number(size_arr[0]);
+        var height = Number(size_arr[1]);
+        var resizeObj = {};
 
-        res.sendfile('post_store/597a56a19579b86e16302b7e/357dbe0c-9772-46e1-b54f-686dad255ca4.jpg');
+        if(width) {resizeObj.width = width;}
+        if(height) { resizeObj.height = height;}
 
+        var file_url = 'post_store/'+path_arr[1] + '/' + path_arr[2] + '.jpg';
+        fs.stat(file_url, function(err, stat) {
+            if(err == null) {
+                if(resizeObj.width || resizeObj.height) {
+                    resizeImg(fs.readFileSync(file_url), resizeObj).then(function (buf) {
+                        res.writeHead(200, {'Content-Type': 'image/jpeg'});
+                        res.end(buf, 'binary');
+                    });
+                } else  {
+                    res.sendfile(file_url);
+                }
+            } else {
+                res.sendfile('assets/images/no_image.png');
+            }
+        });
     },
     create: function (req, res) {
         sails.log(currentName + '.create');
@@ -19,7 +41,6 @@ module.exports = {
         Services.getDataFromToken(req.body.token, function (err,data) {
             var saveObject = {
                 user: data.email,
-                filesCount: 0,
                 status: 'create' // create, active, inactive, delete
             }
 
@@ -36,27 +57,25 @@ module.exports = {
         sails.log(currentName + '.update_photo');
 // TODO сделать удаление про коле или ерроре, сделать переименование файлов при записи
         var dirToSave = sails.config.caric.post_images_path+'/'+req.headers.post_id;
+        var filename = Number(req.headers.filename)
 
-        sails.models.adverts.findOne({id: req.headers.post_id}).exec(function(err, row){
-
-
-                console.log('first ',row.filesCount)
-
-                row.filesCount++;
-                console.log('Second');
-                req.file('image').upload({
-                    dirname: dirToSave
-                }, function (err, uploadedFiles) {
-                    if (err) {
-                        console.log(err);
-                        return res.json({status: false});
-                    }
-                    console.log(row.filesCount, uploadedFiles)
-                    return uploadedFiles.filename;
-                    //row.save(function(err, row) { console.log(err, row) });
-                    //return res.json({status: true, data: {filename: uploadedFiles.filename}});
-                });
-        });
+        if(filename >= 0 &&  filename <= 10 ) {
+            console.log('Second');
+            req.file('image').upload({
+                dirname: dirToSave,
+                saveAs: filename+'.jpg'
+            }, function (err, uploadedFiles) {
+                if (err) {
+                    console.log(err);
+                    return res.json({status: false, data: err});
+                }
+                console.log( uploadedFiles)
+                res.json({status: true, data: {fileUrl: '/image_'+req.headers.post_id+'_'+filename+'_150x_.jpg'}});
+                return uploadedFiles.filename;
+            });
+        } else {
+            return res.json({status: false, data: 'fileName must be integer 0...10 '});
+        }
     },
     update: function (req, res) {
         sails.log(currentName + '.update');
