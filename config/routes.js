@@ -44,6 +44,7 @@ module.exports.routes = {
   'post /api/post/get': 'AdvertsController.get',
   'post /api/post/get_one': 'AdvertsController.get_one',
   'post /api/post/update_photo': 'AdvertsController.update_photo',
+  'post /api/post/leave': 'AdvertsController.leave',
 
   'post /api/admin/dump/set': 'Params_settingsController.save_dump_in_file',
   'post /api/admin/dump/get': 'Params_settingsController.restore_dump_from_file',

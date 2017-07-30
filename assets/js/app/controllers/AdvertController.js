@@ -15,9 +15,13 @@
             files: 0
         };
 
-        $scope.$on("$destroy", function(){
-            alert('DESTROY')
-        });
+
+        window.onbeforeunload = function onbeforeunload(e) {
+            io.socket.post('/api/post/leave', advert_setting, function () {})
+        };
+
+
+        $scope.$on("$destroy", onbeforeunload);
 
         $scope.showParamsBlock = function(){
             console.log('_____________________')
@@ -170,7 +174,6 @@
                     okButton: true
                 });
             } else {
-
                 io.socket.post('/api/post/update', advert_setting, function (resData) {
                     if(resData.status) {
                         setting.values = Service.getDefaultSettingParamsValues(setting.params);

@@ -81,7 +81,7 @@ module.exports = {
         sails.log(currentName + '.update');
         console.log(req.body);
         var saveObject = req.body;
-
+        saveObject.status = 'active';
         // saveObject = {
         //     advertType: req.body.advertType,
         //     price: req.body.price,
@@ -161,7 +161,23 @@ module.exports = {
             });
         });
     },
-
+    // срабатывает когда мы покидаем страницу подачи объявления
+    leave: function(req, res) {
+        sails.log(currentName + '.leave');
+        Services.getDataFromToken(req.body.token, function (err,data) {
+            if (!err) {
+                sails.models.adverts.destroy({id: req.body.post_id, user: data.email, status: 'create'}).exec(function (err, rows) {
+                    if (!err) {
+                        res.json({status: true})
+                    } else {
+                        res.json({status: false, data: err})
+                    }
+                });
+            } else {
+                res.json({status: false, data: err})
+            }
+        });
+    },
     get_one: function (req, res) {
         sails.log(currentName + '.get_one');
         sails.models.adverts.findOne({id: req.body.id}).exec(function(err, rows) {
