@@ -28,16 +28,27 @@
 </style>
 
 <div class="container class-bg post-main-wrapper" ng-controller="AdvertController">
+    <div class="popup-description-block">
+        {{advertInfo.advertDescription}}
+        <div>
+            <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.HIDE_ALL}}</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xs-12 text-center"><h1>{{advertInfo.title}}</h1></div>
     </div>
     <div class="row" data-id="{{advertInfo.id}}">
-        <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
+        <div class="col-lg-6 hidden-md hidden-sm hidden-xs post-main-lg-wrapper">
             <div class="col-xs-12 main-additional-info-wrapper">
                 <div ng-include="'templates/post/additional-info-block.html'"></div>
             </div>
             <div class="col-xs-12 post-description-block-big-screen">
-                {{advertInfo.advertDescription}}
+                <div class="popup-description-block-first-show">
+                    {{advertInfo.advertDescriptionFormatted}}
+                </div>
+                <div ng-if="advertInfo.advertDescription.length > 800">
+                    <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.SHOW_ALL}}</a>
+                </div>
             </div>
         </div>
         <div class="col-lg-6">

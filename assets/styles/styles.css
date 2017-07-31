@@ -1183,7 +1183,21 @@ div.post-description-block-big-screen {
 a.localization-links {
     margin: 5px;
 }
+
 a.localization-links:hover {
     cursor: pointer;
 }
 
+a.show-all-desc-link:hover {
+    cursor: pointer;
+}
+div.popup-description-block {
+    display: none;
+    position: absolute;
+    top: 0;
+    background-color: #ffffff;
+    width: auto;
+    padding: 10px;
+    box-shadow: 0px 0px 1px 1px #ccc;
+    z-index: 10;
+}

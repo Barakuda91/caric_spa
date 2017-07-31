@@ -156,6 +156,42 @@
                         Service.allignImageInBlock($rootScope.windowWidth, originData);
                     });
 
+                    /* массив флагов типа открыть закрыть с дефалтными значениями */
+                    $scope.clickElements = {
+                        a_show_all_desc_link: true
+                    };
+                    /* массив параметров страницы типа данных блоков с дефалтными значениями */
+                    $scope.mainPageData = {
+                        div_class_post_main_wrapper: 0
+                    };
+
+                    $scope.showAllDescription = function () {
+                        if ($scope.clickElements.a_show_all_desc_link) {
+                            /* 30 - 2 padding x 15 */
+                            var width = angular.element('.post-description-block-big-screen').closest('div.row').width() - 30;
+                            var top = angular.element('.post-description-block-big-screen').offset().top;
+                            var left = angular.element('.post-description-block-big-screen').offset().left;
+                            var originHeight = angular.element('.popup-description-block').css('height');
+                            var addHeight = parseFloat(originHeight) - 500; /* 500 ~ sum height fixed block */
+                            $scope.mainPageData.div_class_post_main_wrapper = angular.element('.post-main-wrapper').css('height');
+                            if (addHeight >= 0) {
+                                var newHeight = parseFloat(angular.element('.post-main-wrapper').css('height')) + addHeight;
+                            }
+                            angular.element('.post-main-wrapper').css('height', newHeight + 'px');
+                            angular.element('.popup-description-block').css('width', width + 'px');
+                            angular.element('.popup-description-block').css('top', top + 'px');
+                            angular.element('.popup-description-block').css('left', left + 'px');
+                            angular.element('.popup-description-block').show('fast');
+                            angular.element('a.show-all-desc-link').text($rootScope._.HIDE_ALL);
+                            $scope.clickElements.a_show_all_desc_link = false;
+                        } else {
+                            angular.element('.popup-description-block').hide('fast');
+                            angular.element('a.show-all-desc-link').text($rootScope._.SHOW_ALL);
+                            angular.element('.post-main-wrapper').css('height', $scope.mainPageData.div_class_post_main_wrapper);
+                            $scope.clickElements.a_show_all_desc_link = true;
+                        }
+                    };
+
                     /* slider gallery super tru */
                     $scope.opts = {
                         index: 0,

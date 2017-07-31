@@ -156,11 +156,11 @@
                         title = [obj.pcd, obj.diameter, obj.wheelWidth].join(' ');
                         break;
 
-                    case 'tires':
+                    case 'tyres':
                         title = [obj.tyreWidth, obj.tyreHeight, obj.diameter].join(' ');
                         break;
 
-                    case 'spacers':
+                    case 'spaces':
                         title = [obj.pcdSpacesFrom, obj.pcdSpacesTo, obj.spacesWidth].join(' ');
                         break;
                 }
