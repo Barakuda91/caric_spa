@@ -46,7 +46,7 @@
                 <div class="popup-description-block-first-show">
                     {{advertInfo.advertDescriptionFormatted}}
                 </div>
-                <div ng-if="advertInfo.advertDescription.length > 750">
+                <div ng-if="advertInfo.advertDescription && advertInfo.advertDescription.length > 750">
                     <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.SHOW_ALL}}</a>
                 </div>
             </div>

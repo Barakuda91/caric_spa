@@ -146,7 +146,7 @@
                         resData.data.informationBlock = resData.data.id + ' ' + resData.data.advertType + ' ' + resData.data.createdAt;
 
                         var advertDescriptionFormatted = resData.data.advertDescription;
-                        if (advertDescriptionFormatted.length > 750) {
+                        if (advertDescriptionFormatted && advertDescriptionFormatted.length > 750) {
                             advertDescriptionFormatted = resData.data.advertDescription.substr(0, 750) + '...';
                         }
                         resData.data.advertDescriptionFormatted = advertDescriptionFormatted;
@@ -156,8 +156,33 @@
                         var originData = {
                             src: '/images/test-advert-foto/2560x1600_2.jpg',
                             w: 2560, h: 1600, index: 0
-                        }
+                        };
                         Service.allignImageInBlock($rootScope.windowWidth, originData);
+                        if (resData.data.files.length) {
+                            $scope.slides = [];
+                            for (var position in resData.data.files) {
+                                var tempObj = {
+                                    src: '/image_'
+                                        + advertId
+                                        + '_'
+                                        + position
+                                        + '_'
+                                        + resData.data.files[position].width
+                                        + '_'
+                                        + resData.data.files[position].height
+                                        + '_'
+                                        + urlId
+                                        + '.jpg',
+                                    w: resData.data.files[position].width,
+                                    h: resData.data.files[position].height,
+                                    index: position
+                                };
+                                $scope.slides.push(tempObj)
+                            };
+                            $scope.slidesCount = $scope.slides.length;
+                        } else {
+                            $scope.slidesCount = 0;
+                        }
                     });
 
                     /* массив флагов типа открыть закрыть с дефалтными значениями */
@@ -202,34 +227,34 @@
                         history: false
                     };
 
-                    $scope.slides = [
-                        {
-                            src: '/images/test-advert-foto/2560x1600_2.jpg',
-                            w: 2560, h: 1600, index: 0
-                        },
-                        {
-                            src: '/images/test-advert-foto/930x620.jpg',
-                            w: 930, h: 620, index: 1
-                        },
-                        {
-                            src: '/images/test-advert-foto/1000x600.jpg',
-                            w: 1000, h: 600, index: 2
-                        },
-                        {
-                            src: '/images/test-advert-foto/1181x699.jpg',
-                            w: 1181, h: 699, index: 3
-                        },
-                        {
-                            src: '/images/test-advert-foto/1920x1200.jpg',
-                            w: 1920, h: 1200, index: 4
-                        },
-                        {
-                            src: '/images/test-advert-foto/2560x1600.jpg',
-                            w: 2560, h: 1600, index: 5
-                        }
-                    ];
+                    // $scope.slides = [
+                    //     {
+                    //         src: '/images/test-advert-foto/2560x1600_2.jpg',
+                    //         w: 2560, h: 1600, index: 0
+                    //     },
+                    //     {
+                    //         src: '/images/test-advert-foto/930x620.jpg',
+                    //         w: 930, h: 620, index: 1
+                    //     },
+                    //     {
+                    //         src: '/images/test-advert-foto/1000x600.jpg',
+                    //         w: 1000, h: 600, index: 2
+                    //     },
+                    //     {
+                    //         src: '/images/test-advert-foto/1181x699.jpg',
+                    //         w: 1181, h: 699, index: 3
+                    //     },
+                    //     {
+                    //         src: '/images/test-advert-foto/1920x1200.jpg',
+                    //         w: 1920, h: 1200, index: 4
+                    //     },
+                    //     {
+                    //         src: '/images/test-advert-foto/2560x1600.jpg',
+                    //         w: 2560, h: 1600, index: 5
+                    //     }
+                    // ];
 
-                    $scope.slidesCount = $scope.slides.length;
+                    // $scope.slidesCount = $scope.slides.length;
 
                     // TODO fix fucking shit
                     // $scope.$watch(
