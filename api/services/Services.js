@@ -7,9 +7,12 @@ module.exports = {
                 email: data.email,
                 passwordHash: data.passwordHash
             };
-        sails.jwt.encode(config.secret, objectData, function (err, token) {
+
+        return new Promise(function(resolve, reject) {
+            // TODO вынести создание массива в отдельный функционал. Оставить тут только создание токена
+            sails.jwt.encode(config.secret, objectData, function (err, token) {
                 if (!err) {
-                    cb(null, {
+                    resolve({
                         token: token,
                         firstName: data.firstName,
                         lastName: data.lastName,
@@ -19,11 +22,22 @@ module.exports = {
                         id: data.id
                     });
                 } else {
-                    cb(err, null)
+                    reject(err)
                 }
             })
+        })
+            .catch(function(err) {
+                sails.log.error(err);
+            });
     },
-    getDataFromToken: function (token, cb) {
-        sails.jwt.decode(config.secret, token,cb)
+    getDataFromToken: function (token) {
+        return new Promise(function(resolve, reject) {
+            sails.jwt.decode(config.secret, token, function(e, d) {
+                if(!e) resolve(d); else reject(e);
+            })
+        })
+            .catch(function(err) {
+                sails.log.error(err);
+            });
     }
 };

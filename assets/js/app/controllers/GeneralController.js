@@ -51,6 +51,7 @@
                 price: {required: true},
                 advertPhoneNumber: {required: true},
                 advertDescription: {},
+                deliveryMethod: {},
                 regions: {required: true},
                 city : {required: true}
             },
@@ -111,7 +112,6 @@
 
         // установка значений параметров для фильтров, подачи объявлений и т.д__________________________________________
         // TODO перенести эту хуйню в сервисы ДОЛОЙ ЛОГИКУ ИЗ КОНТРОЛЛЕРОВ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        console.log($rootScope.setting,$rootScope.setting.length)
         // если в локальной базе нет параметров - загружаем их
         //if(!$rootScope.setting.params) {
         if (true) {
@@ -188,8 +188,6 @@
                 } else {
                     $log.error(resData.data)
                 }
-                console.log('paramss done',$rootScope.setting.params)
-                console.log($rootScope.setting.values)
             });
         } else {
             $rootScope.setting.values = Service.getDefaultSettingParamsValues(

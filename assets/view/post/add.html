@@ -3,73 +3,74 @@
         <div ng-include="'templates/modals/auth.html'"></div>
     </div>
     <div ng-if="userData.auth" class="content_block">
-        <div class="row filter-block-row small">
-            <div class="col-lg-1 col-md-1 col-sm-1"></div>
-            <div class="col-lg-11 col-md-11 col-sm-11">
-                <span class="required">*</span> поля отмеченые звездочкой обязательны к выбору или заполнению
-            </div>
-        </div>
-        <div class="row filter-block-row  small bottom-line-x1">
-            <div class="col-lg-1 col-md-1 col-sm-1">
-            </div>
-            <div class="col-lg-11 col-md-11 col-sm-11">
-                кликнув на название поля, вы получите больше информации о параметре
-            </div>
-        </div>
-        <div class="row filter-block-row">
-            <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-                {{_.ADD_ADVERT_PLEASE_TYPE}} <span ng-if="setting.advertAddSettingParams.general.advertType.required" class="required">*</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3">
-                <div class="select-list">
-                    <select ng-class="setting.advertAddSettingParams.errorClass.advertType" ng-model="setting.values.advertType" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in setting.params.advertType" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
+        <div ng-if="advertAddingInProgress">
+            <div class="row filter-block-row small">
+                <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                <div class="col-lg-11 col-md-11 col-sm-11">
+                    <span class="required">*</span> поля отмеченые звездочкой обязательны к выбору или заполнению
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-                <div class="row">
-                    <div class="row-price">
-                        <div class="col-lg-7 col-md-7 col-sm-7 text-right price-left">
-                            <input ng-class="setting.advertAddSettingParams.errorClass.price"  ng-model="setting.values.price" type="text" class="form-control form-control-sm " placeholder="0">
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 text-right price-right">
-                            <div class="select-list">
-                                <select ng-model="setting.values.currency" class="form-control form-control-sm">
-                                    <option value="{{item.key}}" ng-repeat="item in setting.params.currency" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                                </select>
+            <div class="row filter-block-row  small bottom-line-x1">
+                <div class="col-lg-1 col-md-1 col-sm-1">
+                </div>
+                <div class="col-lg-11 col-md-11 col-sm-11">
+                    кликнув на название поля, вы получите больше информации о параметре
+                </div>
+            </div>
+            <div class="row filter-block-row">
+                <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
+                    {{_.ADD_ADVERT_PLEASE_TYPE}} <span ng-if="setting.advertAddSettingParams.general.advertType.required" class="required">*</span>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.advertType" ng-model="setting.values.advertType" class="form-control form-control-sm">
+                            <option value="{{item.key}}" ng-repeat="item in setting.params.advertType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 text-right">
+                    <div class="row">
+                        <div class="row-price">
+                            <div class="col-lg-7 col-md-7 col-sm-7 text-right price-left">
+                                <input ng-class="setting.advertAddSettingParams.errorClass.price"  ng-model="setting.values.price" type="text" class="form-control form-control-sm " placeholder="0">
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 text-right price-right">
+                                <div class="select-list">
+                                    <select ng-model="setting.values.currency" class="form-control form-control-sm">
+                                        <option value="{{item.key}}" ng-repeat="item in setting.params.currency" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 small">
+                    {{_.PRICE}} <span ng-if="setting.advertAddSettingParams.general.price.required" class="required">*</span>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-3 col-sm-3 small">
-                {{_.PRICE}} <span ng-if="setting.advertAddSettingParams.general.price.required" class="required">*</span>
-            </div>
-        </div>
 
-        <div class="row filter-block-row">
-            <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
-                {{_.PRICE_FOR}} <span ng-if="setting.advertAddSettingParams.general.priceFor.required" class="required">*</span>
-            </div>
-            <div class="col-lg-2 col-md-3 col-sm-3">
-                <div class="select-list">
-                    <select ng-class="setting.advertAddSettingParams.errorClass.priceFor" ng-model="setting.values.priceFor" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in setting.params.priceFor" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
+            <div class="row filter-block-row">
+                <div class="col-lg-4 col-md-3 col-sm-3 text-right small">
+                    {{_.PRICE_FOR}} <span ng-if="setting.advertAddSettingParams.general.priceFor.required" class="required">*</span>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3">
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.priceFor" ng-model="setting.values.priceFor" class="form-control form-control-sm">
+                            <option value="{{item.key}}" ng-repeat="item in setting.params.priceFor" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-3 text-right">
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.quantity" ng-model="setting.values.quantity" class="form-control form-control-sm">
+                            <option value="{{item.key}}" ng-repeat="item in setting.params.quantity" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3 col-sm-3 small">
+                    {{_.QUANTITY}} <span ng-if="setting.advertAddSettingParams.general.quantity.required" class="required">*</span>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-3 text-right">
-                <div class="select-list">
-                    <select ng-class="setting.advertAddSettingParams.errorClass.quantity" ng-model="setting.values.quantity" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in setting.params.quantity" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-3 col-sm-3 small">
-                {{_.QUANTITY}} <span ng-if="setting.advertAddSettingParams.general.quantity.required" class="required">*</span>
-            </div>
-        </div>
 
             <div ng-if="setting.values.advertType === 'wheels'"
                  ng-include="'/templates/filters/wheels-filter-block.html'"
@@ -80,73 +81,82 @@
             <div ng-if="setting.values.advertType === 'spaces'"
                  ng-include="'/templates/filters/spaces-filter-block.html'"
             ></div>
-        <div class="row filter-block-row">
-            <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-                {{_.PHONE_NUMBER}} <span ng-if="setting.advertAddSettingParams.general.advertPhoneNumber.required" class="required">*</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2">
-                <input ng-class="setting.advertAddSettingParams.errorClass.advertPhoneNumber" type="text" ng-model="setting.values.advertPhoneNumber" class="form-control form-control-sm" placeholder="+3(XXX)XXX-XX-XX">
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-                <div class="select-list">
-                    <select ng-class="setting.advertAddSettingParams.errorClass.deliveryMethod" ng-model="setting.values.deliveryMethod" class="form-control form-control-sm">
-                        <option value="{{item.key}}" ng-repeat="item in setting.params.deliveryMethod" ng-disabled="item.disable">{{_[item.title]}}</option>
-                    </select>
+            <div class="row filter-block-row">
+                <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
+                    {{_.PHONE_NUMBER}} <span ng-if="setting.advertAddSettingParams.general.advertPhoneNumber.required" class="required">*</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <input ng-class="setting.advertAddSettingParams.errorClass.advertPhoneNumber" type="text" ng-model="setting.values.advertPhoneNumber" class="form-control form-control-sm" placeholder="+3(XXX)XXX-XX-XX">
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.deliveryMethod" ng-model="setting.values.deliveryMethod" class="form-control form-control-sm">
+                            <option value="{{item.key}}" ng-repeat="item in setting.params.deliveryMethod" ng-disabled="item.disable">{{_[item.title]}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 small">
+                    {{_.DELIVERY_METHOD}} <span ng-if="setting.advertAddSettingParams.general.deliveryMethod.required" class="required">*</span>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 small">
-                {{_.DELIVERY_METHOD}} <span ng-if="setting.advertAddSettingParams.general.deliveryMethod.required" class="required">*</span>
-            </div>
-        </div>
 
-        <div class="row filter-block-row">
-            <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
-                {{_.REGION}} <span ng-if="setting.advertAddSettingParams.general.regions.required" class="required">*</span>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2">
-                <div class="select-list">
-                    <select ng-class="setting.advertAddSettingParams.errorClass.regions" ng-model="setting.values.regions" class="form-control form-control-sm">
-                        <option value="{{$index}}" ng-repeat="item in setting.params.regions" ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
+            <div class="row filter-block-row">
+                <div class="col-lg-4 col-md-4 col-sm-3 text-right small">
+                    {{_.REGION}} <span ng-if="setting.advertAddSettingParams.general.regions.required" class="required">*</span>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.regions" ng-model="setting.values.regions" class="form-control form-control-sm">
+                            <option value="{{$index}}" ng-repeat="item in setting.params.regions" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                    <div class="select-list">
+                        <select ng-class="setting.advertAddSettingParams.errorClass.city"
+                                ng-model="setting.values.city"
+                                ng-disabled="setting.values.regions == 0"
+                                class="form-control form-control-sm">
+                            <option value="" ng-if="setting.values.regions == 0" disabled>{{_["SELECT_REGION_FIRST"]}}</option>
+                            <option value="{{$index}}"
+                                    ng-repeat="item in setting.params.regions[setting.values.regions].cities"
+                                    ng-disabled="item.disabled">{{_[item.title]}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 small">
+                    {{_.CITY}} <span ng-if="setting.advertAddSettingParams.general.city.required" class="required">*</span>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-2 text-right">
-                <div class="select-list">
-                    <select ng-class="setting.advertAddSettingParams.errorClass.city"
-                            ng-model="setting.values.city"
-                            ng-disabled="setting.values.regions == 0"
-                            class="form-control form-control-sm">
-                        <option value="" ng-if="setting.values.regions == 0" disabled>{{_["SELECT_REGION_FIRST"]}}</option>
-                        <option value="{{item.key}}"
-                                ng-repeat="item in setting.params.regions[setting.values.regions].cities"
-                                ng-disabled="item.disabled">{{_[item.title]}}</option>
-                    </select>
+
+            <div class="row filter-block-row">
+                <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
+                    {{_.DESCRIPTION}}  <span ng-if="setting.advertAddSettingParams.general.advertDescription.required" class="required">*</span>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 ">
+                    <textarea ng-model="setting.values.advertDescription" class="form-control"></textarea>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
+
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 small">
-                {{_.CITY}} <span ng-if="setting.advertAddSettingParams.general.city.required" class="required">*</span>
+
+            <div ng-include="'/templates/post/upload.html'"></div>
+
+            <div class="row filter-block-row">
+                <div class="col-lg-8 col-md-4 col-sm-4 text-right small">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 text-left small">
+                    <div class="btn btn-sm btn-orange" ng-click="advertSubmit()">{{_.ADVERT_SUBBMIT}}</div>
+                </div>
             </div>
         </div>
-
-        <div class="row filter-block-row">
-            <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
-                {{_.DESCRIPTION}}  <span ng-if="setting.advertAddSettingParams.general.advertDescription.required" class="required">*</span>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 ">
-                <textarea ng-model="setting.values.advertDescription" class="form-control"></textarea>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 text-right small">
-
-            </div>
-        </div>
-
-        <div ng-include="'/templates/post/upload.html'"></div>
-
-        <div class="row filter-block-row">
-            <div class="col-lg-8 col-md-4 col-sm-4 text-right small">
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-4 text-left small">
-                <div class="btn btn-sm btn-orange" ng-click="advertSubmit()">{{_.ADVERT_SUBBMIT}}</div>
+        <div ng-if="advertAddingInProgress == false">
+            <div class="row filter-block-row">
+                <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                    <h3 ng-class="advertAddingResultClass">{{_[advertAddingResultHead]}}</h3>
+                    {{_[advertAddingResultText]}}
+                </div>
             </div>
         </div>
     </div>

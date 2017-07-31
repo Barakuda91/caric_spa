@@ -28,6 +28,7 @@
     "mongoose": "^4.11.4",
     "rc": "1.0.1",
     "resize-img": "^1.1.2",
+    "rmdir": "^1.2.0",
     "sails": "~0.12.13",
     "sails-disk": "^0.10.10",
     "sails-hook-autoreload": "^0.14.1",

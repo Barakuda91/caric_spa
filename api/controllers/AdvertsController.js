@@ -10,17 +10,18 @@ var resizeImg = require('resize-img');
 module.exports = {
     get_image: function (req, res) {
         sails.log(currentName + '.get_image');
-        var path_arr = req.path.split('_');
-        var size_arr = path_arr[3].split('x');
-        var width = Number(size_arr[0]);
-        var height = Number(size_arr[1]);
+        var path_arr    = req.path.split('_');
+        var size_arr    = path_arr[3].split('x');
+        var width       = Number(size_arr[0]);
+        var height      = Number(size_arr[1]);
         var resizeObj = {};
 
         if(width) {resizeObj.width = width;}
         if(height) { resizeObj.height = height;}
 
-        var file_url = 'post_store/'+path_arr[1] + '/' + path_arr[2] + '.jpg';
-        fs.stat(file_url, function(err, stat) {
+        var file_url = sails.config.caric.post_images_path+'/'+path_arr[1] + '/' + path_arr[2] + '.jpg';
+        fs.stat(file_url, function(err) {
+            // TODO сделать запрос в базы на предмет получения мейнтипа и разхмеров?
             if(err == null) {
                 if(resizeObj.width || resizeObj.height) {
                     resizeImg(fs.readFileSync(file_url), resizeObj).then(function (buf) {
@@ -35,46 +36,76 @@ module.exports = {
             }
         });
     },
+    // создает объявление со статусом "create"
     create: function (req, res) {
         sails.log(currentName + '.create');
 
-        Services.getDataFromToken(req.body.token, function (err,data) {
-            var saveObject = {
-                user: data.email,
-                status: 'create' // create, active, inactive, delete
-            }
+        Services
+            .getDataFromToken(req.body.token)
+            .then(function (data) {
+                var saveObject = {
+                    user: data.email,
+                    files: [],
+                    status: 'create' // create, active, inactive, delete
+                };
 
-            sails.models.adverts.create(saveObject).exec(function (err, resData) {
-                if(!err) {
-                    res.json({status: true, data: {post_id:resData.id}});
-                } else {
-                    res.json({status: false});
-                }}
-            );
-        });
+                sails.models.adverts.create(saveObject).exec(function (err, resData) {
+                    if(!err) {
+                        res.json({status: true, data: {post_id:resData.id}});
+                    } else {
+                        sails.log.error(err);
+                        res.json({status: false});
+                    }}
+                );
+            });
     },
     update_photo: function (req, res) {
         sails.log(currentName + '.update_photo');
-// TODO сделать удаление про коле или ерроре, сделать переименование файлов при записи
+
         var dirToSave = sails.config.caric.post_images_path+'/'+req.headers.post_id;
         var filename = Number(req.headers.filename)
 
-        if(filename >= 0 &&  filename <= 10 ) {
-            console.log('Second');
-            req.file('image').upload({
-                dirname: dirToSave,
-                saveAs: filename+'.jpg'
-            }, function (err, uploadedFiles) {
-                if (err) {
-                    console.log(err);
-                    return res.json({status: false, data: err});
-                }
-                console.log( uploadedFiles)
-                res.json({status: true, data: {fileUrl: '/image_'+req.headers.post_id+'_'+filename+'_150x_.jpg'}});
-                return uploadedFiles.filename;
-            });
+        if (filename >= 0 && filename <= 10) {
+            Services
+                .getDataFromToken(req.headers.token)
+                .then(function (data) {
+                    sails.models.adverts
+                        .findOne({id: req.headers.post_id, user: data.email})
+                        .exec(function (err, rows) {
+                            if (!err) {
+                                var fileData = req.file('image')._files[0].stream;
+                                rows.files.push({
+                                    position:   filename,
+                                    width:      req.headers.width,
+                                    height:     req.headers.height,
+                                    originName: fileData.filename,
+                                    contentType:fileData.headers['content-type'],
+                                    size:       fileData.byteCount
+                                });
+                                req.file('image').upload({
+                                    dirname: dirToSave,
+                                    saveAs: filename + '.jpg'
+                                }, function (err, uploadedFiles) {
+                                    if (err) {
+                                        console.log(err);
+                                        return res.json({status: false, data: err});
+                                    }
+                                    rows.save()
+                                    res.json({
+                                        status: true,
+                                        data: {fileUrl: '/image_' + req.headers.post_id + '_' + filename + '_150x_.jpg'}
+                                    });
+                                    return uploadedFiles.filename;
+                                });
+                            } else {
+                                sails.log.error(err);
+                                return res.json({status: false});
+                            }
+                        });
+                });
         } else {
-            return res.json({status: false, data: 'fileName must be integer 0...10 '});
+            sails.log.error('fileName must be integer 0...10 ');
+            res.json({status: false});
         }
     },
     update: function (req, res) {
@@ -82,6 +113,10 @@ module.exports = {
         console.log(req.body);
         var saveObject = req.body;
         saveObject.status = 'active';
+        delete saveObject.token;
+
+        // TODO сделать все проверки на валидацию на стороне сервера
+
         // saveObject = {
         //     advertType: req.body.advertType,
         //     price: req.body.price,
@@ -129,11 +164,12 @@ module.exports = {
         //         });
         //         break;
         // }
-        sails.models.adverts.update({id: saveObject.post_id}, saveObject).exec(function (err, resData) {
 
+        sails.models.adverts.update({id: saveObject.post_id}, saveObject).exec(function (err, resData) {
             if(!err) {
                 res.json({status: true});
             } else {
+                sails.log.error(err);
                 res.json({status: false});
             }}
         );
@@ -156,7 +192,8 @@ module.exports = {
                 if (!err) {
                     res.json({status: true, data: rows})
                 } else {
-                    res.json({status: false, data: err})
+                    sails.log.error(err);
+                    res.json({status: false})
                 }
             });
         });
@@ -164,19 +201,26 @@ module.exports = {
     // срабатывает когда мы покидаем страницу подачи объявления
     leave: function(req, res) {
         sails.log(currentName + '.leave');
-        Services.getDataFromToken(req.body.token, function (err,data) {
-            if (!err) {
-                sails.models.adverts.destroy({id: req.body.post_id, user: data.email, status: 'create'}).exec(function (err, rows) {
-                    if (!err) {
-                        res.json({status: true})
-                    } else {
-                        res.json({status: false, data: err})
-                    }
-                });
-            } else {
-                res.json({status: false, data: err})
-            }
-        });
+        Services
+            .getDataFromToken(req.body.token)
+            .then(function (data) {
+                sails.models.adverts
+                    .destroy({id: req.body.post_id, user: data.email, status: 'create'})
+                    .exec(function (err,rows) {
+                        if (!err && rows.length > 0) {
+                            sails.rmdir(sails.config.caric.post_images_path + '/' + req.body.post_id, function (err) {
+                                if (!err) {
+                                    res.json({status: true})
+                                } else {
+                                    sails.log.error(err);
+                                    res.json({status: false})
+                                }
+                            });
+                        } else {
+                            res.json({status: false})
+                        }
+                    });
+            });
     },
     get_one: function (req, res) {
         sails.log(currentName + '.get_one');
@@ -184,7 +228,8 @@ module.exports = {
             if (!err) {
                 res.json({status: true, data: rows})
             } else {
-                res.json({status: false, data: err})
+                sails.log.error(err);
+                res.json({status: false})
             }
         });
     }

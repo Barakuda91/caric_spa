@@ -825,7 +825,7 @@ ul#main-line-menu li.active a {
 .content_block {
     border: 1px solid #d9d9d9;
     background-color: #fff;
-    min-height: 600px;
+    /*min-height: 600px;*/
     margin: 0px auto;
 }
 /*.spinner-show-row { display: none !important;}*/
