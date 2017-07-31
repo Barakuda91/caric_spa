@@ -145,8 +145,12 @@
                         resData.data.title = Service.createAdvertTitleByType(resData.data);
                         resData.data.informationBlock = resData.data.id + ' ' + resData.data.advertType + ' ' + resData.data.createdAt;
 
+                        var advertDescriptionFormatted = resData.data.advertDescription;
+                        if (advertDescriptionFormatted.length > 800) {
+                            advertDescriptionFormatted = resData.data.advertDescription.substr(0, 800) + '...';
+                        }
+                        resData.data.advertDescriptionFormatted = advertDescriptionFormatted;
                         $scope.advertInfo = resData.data;
-
 
                         /* авто выравнивание фотки по высоте для 1200 и больше екранов */
                         var originData = {
