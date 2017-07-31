@@ -146,8 +146,8 @@
                         resData.data.informationBlock = resData.data.id + ' ' + resData.data.advertType + ' ' + resData.data.createdAt;
 
                         var advertDescriptionFormatted = resData.data.advertDescription;
-                        if (advertDescriptionFormatted.length > 800) {
-                            advertDescriptionFormatted = resData.data.advertDescription.substr(0, 800) + '...';
+                        if (advertDescriptionFormatted.length > 750) {
+                            advertDescriptionFormatted = resData.data.advertDescription.substr(0, 750) + '...';
                         }
                         resData.data.advertDescriptionFormatted = advertDescriptionFormatted;
                         $scope.advertInfo = resData.data;
