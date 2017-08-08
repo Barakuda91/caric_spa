@@ -31,8 +31,8 @@
 
 
             switch(options.status) {
-                case 'success': $rootScope.modals.statusIcon = 'fa-thumbs-o-up fa-3x green'; break;
-                case 'error': $rootScope.modals.statusIcon = 'fa-thumbs-o-down fa-3x red'; break;
+                case 'success': $rootScope.modals.statusIcon = 'fa-check fa-3x green'; break;
+                case 'error': $rootScope.modals.statusIcon = 'fa-ban fa-3x red'; break;
             }
             $rootScope.modals.shadow = true;
             if(!$rootScope.$$phase) {

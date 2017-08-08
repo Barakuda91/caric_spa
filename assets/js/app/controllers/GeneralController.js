@@ -265,6 +265,7 @@
         };
 
         // вызывает модальное окно при клике на название параметра в фильтре
+        $rootScope.modal = {};
         $rootScope.getModalWithDescription = function(type) {
             $rootScope.modal.blockTextName = type+'_TEXT';
             Service.modal($rootScope, {
