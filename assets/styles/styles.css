@@ -1248,3 +1248,29 @@ span.required {
 .add-margin-top-15 {
     margin-top: 15px;
 }
+
+label.add-hand:hover {
+    cursor: pointer;
+}
+
+input.form-checkbox-align {
+    margin-top: 12px;
+}
+
+div.login-button, div.register-button {
+    background-color: #FF7200;
+    border: 1px solid #C25700;
+    border-radius: 5px;
+}
+div.login-button a, div.register-button a {
+    color: #ffffff;
+}
+div.login-button:hover, div.register-button:hover {
+    cursor: pointer;
+    background-color: #C25700;
+}
+
+div.notActiveBlock {
+    background-color: #C25700;
+    opacity: .65;
+}

@@ -12,8 +12,10 @@
         'md5',
         'localStorageService',
         '$log',
-        'Upload'];
-    function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,Upload) {
+        'Upload',
+        '$location'
+    ];
+    function GeneralController ($scope,$rootScope,Service,$timeout,md5,localStorageService,$log,Upload,$location) {
         $log.debug('GET '+controllerName);
 
         /*------------------------------------------------- установки ------------------------------------------------*/
@@ -312,6 +314,8 @@
                     template: 'reg_auth',
                     crossButton: true
                 });
+                $rootScope.registerActiveClass = 'notActiveBlock';
+                $rootScope.loginActiveClass = '';
             } else {
                 Service.modal($rootScope);
             }
@@ -324,6 +328,13 @@
             $rootScope.reg_auth.login.open = false;
             $rootScope.reg_auth.register.open = false;
             $rootScope.reg_auth[type].open = true;
+            if ($rootScope.reg_auth.login.open) {
+                $rootScope.registerActiveClass = 'notActiveBlock';
+                $rootScope.loginActiveClass = '';
+            } else {
+                $rootScope.loginActiveClass = 'notActiveBlock';
+                $rootScope.registerActiveClass = '';
+            }
         };
 
         // включение отключение блока "забыл пароль"____________________________________________________________________
@@ -351,7 +362,7 @@
                         confirmPassword: md5.createHash($rootScope.reg_auth.form[type].confirmPassword || '')
                     };
                     break;
-                case "":
+                default:
                     break;
             }
 
@@ -371,6 +382,7 @@
         // функция выхода_______________________________________________________________________________________________
         $rootScope.userLogout = function() {
             defaultUserData();
+            $location.path('/');
         };
 
         $rootScope.$watch( // TODO исправить
@@ -402,7 +414,19 @@
         function defaultUserData() {
             $rootScope.userData = {
                 auth: false,
-                language: 'ru'
+                language: 'ru',
+                settings: {/* Default user settings all enabled */
+                    show_disks: true,
+                    show_tires: true,
+                    show_spacers: true,
+                    show_posts: true,
+                    show_currency: 'usd',
+                    firstname: '',
+                    lastname: '',
+                    telephone: '',
+                    password: '',
+                    confirm_password: ''
+                }
             };
             localStorageService.set('user_data', $rootScope.userData)
         }
@@ -414,6 +438,24 @@
             if (localStorageService.get('user_data')) {
                 // считываем user_data в рабочую переменную
                 $rootScope.userData = localStorageService.get('user_data');
+                console.log('GET USER DATA');
+                console.log($rootScope.userData);
+                console.log('GET USER DATA');
+                if (!$rootScope.userData.settings) {
+                    /* Default user settings all enabled */
+                    $rootScope.userData.settings = {
+                        show_disks: true,
+                        show_tires: true,
+                        show_spacers: true,
+                        show_posts: true,
+                        show_currency: 'usd',
+                        firstname: '',
+                        lastname: '',
+                        telephone: '',
+                        password: '',
+                        confirm_password: ''
+                    }
+                }
             } else {
                 // если пользователь зашел впервые - устанавливаем ему user_data, сохраняя её в память
                 defaultUserData();

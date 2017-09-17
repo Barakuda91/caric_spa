@@ -14,12 +14,22 @@ module.exports = {
                 if (!err) {
                     resolve({
                         token: token,
-                        firstName: data.firstName,
-                        lastName: data.lastName,
                         username: data.username,
                         status: data.status,
                         language: data.language,
-                        id: data.id
+                        id: data.id,
+                        settings: {
+                            show_disks : data.settings.show_disks,
+                            show_tires : data.settings.show_tires,
+                            show_spacers : data.settings.show_spacers,
+                            show_posts : data.settings.show_posts,
+                            show_currency : data.settings.show_currency,
+                            firstname : data.settings.firstname,
+                            lastname : data.settings.lastname,
+                            telephone : data.settings.telephone,
+                            password : '',
+                            confirm_password: ''
+                        }
                     });
                 } else {
                     reject(err)
