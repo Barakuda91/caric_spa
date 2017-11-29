@@ -131,7 +131,7 @@
                 middleware: 'getLocalization',
                 templateUrl: '/view/user/settings.html'
             })
-            .when('/user/adverts', {
+            .when('/user/posts', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 middleware: 'getLocalization',

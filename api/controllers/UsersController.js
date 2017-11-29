@@ -76,6 +76,38 @@ module.exports = {
 					res.json({status: true})
 				})
 			})
+	},
+    saveSettings: function (req,res)  {
+        sails.log(currentName+'.saveSettings');
+        sails.log(req.body);
+
+		Services
+			.getDataFromToken(req.body.token)
+			.then(function(data) {
+				var tempHash = data.passwordHash;
+				if (req.body.newPasswordHash && req.body.newPasswordHash != data.passwordHash) {
+                    tempHash = req.body.newPasswordHash;
+				}
+
+				Users.update({
+					email: data.email,
+					passwordHash: data.passwordHash
+				},{
+                    passwordHash: tempHash,
+					settings: {
+						show_disks : req.body.show_disks || false,
+						show_tires : req.body.show_tires || false,
+						show_spacers : req.body.show_spacers || false,
+						show_posts : req.body.show_posts || false,
+						show_currency : req.body.show_currency || 'seller',
+						firstname : req.body.firstname || '',
+						lastname : req.body.lastname || '',
+						telephone : req.body.telephone || ''
+					}
+				}).then(function(rows) {
+					res.json({status: true})
+				})
+			})
 	}
 };
 

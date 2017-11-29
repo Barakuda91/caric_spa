@@ -20,8 +20,6 @@ module.exports = {
       type: 'string',
       required: true
     },
-    firstName: 'string',
-    lastName: 'string',
     status: {
       type: 'string',
       enum: ['admin', 'moderator', 'user'],

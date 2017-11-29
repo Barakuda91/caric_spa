@@ -2,10 +2,10 @@
     <!-- Navigation -->
     <div class="panel-heading">
         <div class="row">
-            <div class="col-xs-6">
+            <div class="col-xs-6 login-button {{loginActiveClass}}">
                 <a ng-click="modelLoginSwitch('login')">{{_.LOGIN}}</a>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-6 register-button {{registerActiveClass}}">
                 <a ng-click="modelLoginSwitch('register')">{{_.REGISTRATION}}</a>
             </div>
         </div>
@@ -155,4 +155,3 @@
         </div>
     </div>
 </div>
-{{reg_auth.form.login}}

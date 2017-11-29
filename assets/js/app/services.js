@@ -186,6 +186,23 @@
             } else {
                 angular.element('img.main-image-center').closest('ul').css('margin-top', '0');
             }
+        },
+
+        this.validateUserSettings = function (data) {
+            var result = {
+                password: true
+            };
+            if (data) {
+                /* валидация полей формы */
+                if (data.password != data.confirm_password) {
+                    result.password = false;
+                }
+                if (data.password && data.password.length < 6) {
+                    result.password = false;
+                }
+            }
+
+            return result;
         }
     }
 

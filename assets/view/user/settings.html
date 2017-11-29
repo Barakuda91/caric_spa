@@ -1,9 +1,108 @@
 <div class="container" ng-controller="UserController">
-    <div class="content_block">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                настройки
+    <form class="form-horizontal">
+        <div class="content_block">
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 text-center" style="margin-top: 10px">
+                    <strong class="text-uppercase">{{_.SETTINGS_VIEW}}</strong>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12">
+                    <label for="sell-disk" class="col-sm-6 col-xs-12 control-label add-hand">Показывать объявления о продаже дисков:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.show_disks" type="checkbox" id="sell-disk" class="form-checkbox-align">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12">
+                    <label for="sell-tires" class="col-sm-6 col-xs-12 control-label add-hand">Показывать объявления о продаже шин:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.show_tires" type="checkbox" id="sell-tires"  class="form-checkbox-align">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12">
+                    <label for="sell-spacers" class="col-sm-6 col-xs-12 control-label add-hand">Показывать объявления о продаже проставок:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.show_spacers" type="checkbox" id="sell-spacers" class="form-checkbox-align">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12">
+                    <label for="post-search" class="col-sm-6 col-xs-12 control-label add-hand">Показывать мои объявления в поиске:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.show_posts" type="checkbox" id="post-search" class="form-checkbox-align">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12">
+                    <label class="col-sm-6 col-xs-12 control-label add-hand ">Валюта:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <label class="add-hand" for="seller-usd">USD</label>
+                        <input ng-model="settings.show_currency" class="form-checkbox-align" id="seller-usd" type="radio" name="seller_currency" value="usd">
+                        <label class="add-hand" for="seller-uah">UAH</label>
+                        <input ng-model="settings.show_currency" class="form-checkbox-align" id="seller-uah" type="radio" name="seller_currency" value="uah">
+                        <label class="add-hand" for="seller-currency">Продавца</label>
+                        <input ng-model="settings.show_currency" class="form-checkbox-align" id="seller-currency" type="radio" name="seller_currency" value="seller">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 text-center">
+                    <strong class="text-uppercase">{{_.PERSONAL_DATA}}</strong>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 ">
+                    <label for="input-pass1" class="col-sm-6 col-xs-12 control-label">Новый пароль:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.password" type="password" name="input-pass-1" class="form-control" id="input-pass1" placeholder="Пароль" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 ">
+                    <label for="input-pass2" class="col-sm-6 col-xs-12 control-label">Подтвердить новый пароль:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.confirm_password" type="password" name="input-pass-2" class="form-control" id="input-pass2" placeholder="Пароль" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 ">
+                    <label for="input-name" class="col-sm-6 col-xs-12 control-label">Имя:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.firstname" type="text" name="input-name" class="form-control" id="input-name" placeholder="Имя" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 ">
+                    <label for="input-surname" class="col-sm-6 col-xs-12 control-label">Фамилия:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.lastname" type="text" name="input-surname" class="form-control" id="input-surname" placeholder="Фамилия" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="form-group col-xs-12 ">
+                    <label for="input-tel" class="col-sm-6 col-xs-12 control-label">Телефон:</label>
+                    <div class="col-sm-3 col-xs-12">
+                        <input ng-model="settings.telephone" type="text" name="input-tel" class="form-control" id="input-tel" placeholder="Телефон" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="row fix-row-margin-left">
+                <div class="col-xs-12 form-group text-center">
+                    <button id="save-settings-data" ng-click="saveUserSettings()" type="button" class="btn btn-orange">Сохранить</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+
+
