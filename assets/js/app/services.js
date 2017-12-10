@@ -60,7 +60,7 @@
                 get: function(target, phrase) {
                     if (phrase in target) {
                         return (function($rootScope){
-                            if (typeof target[phrase][$rootScope.userData.language] == 'undefined') {
+                            if (typeof target[phrase][$rootScope.userData.language] === 'undefined') {
                                 return phrase;
                             } else {
                                 return target[phrase][$rootScope.userData.language].charAt(0).toUpperCase() + target[phrase][$rootScope.userData.language].slice(1);

@@ -314,8 +314,22 @@
                     template: 'reg_auth',
                     crossButton: true
                 });
+                // возврашаем дефолтное сосотояние модального окна
+                $rootScope.reg_auth.login.open = true;
+                $rootScope.reg_auth.register.open = false;
                 $rootScope.registerActiveClass = 'notActiveBlock';
                 $rootScope.loginActiveClass = '';
+                // чистим введеные ранее данные
+                if ($rootScope.reg_auth.form && $rootScope.reg_auth.form.login) {
+                    $rootScope.reg_auth.form.login.email = '';
+                    $rootScope.reg_auth.form.login.password = '';
+                }
+                if ($rootScope.reg_auth.form && $rootScope.reg_auth.form.register) {
+                    $rootScope.reg_auth.form.register.username = '';
+                    $rootScope.reg_auth.form.register.email = '';
+                    $rootScope.reg_auth.form.register.password = '';
+                    $rootScope.reg_auth.form.register.confirmPassword = '';
+                }
             } else {
                 Service.modal($rootScope);
             }
@@ -346,37 +360,43 @@
 
         // функция авторизации, регистрации, восстановления пароля______________________________________________________
         $rootScope.loginFormFunction = function(type) {
-            var data = {};
-            switch (type) {
-                case "login":
-                    data = {
-                        email: $rootScope.reg_auth.form[type].email,
-                        password: md5.createHash($rootScope.reg_auth.form[type].password || '')
-                    };
-                    break;
-                case "register":
-                    data = {
-                        username: $rootScope.reg_auth.form[type].username,
-                        email: $rootScope.reg_auth.form[type].email,
-                        password: md5.createHash($rootScope.reg_auth.form[type].password || ''),
-                        confirmPassword: md5.createHash($rootScope.reg_auth.form[type].confirmPassword || '')
-                    };
-                    break;
-                default:
-                    break;
-            }
-
-            io.socket.post('/api/user/'+type, data, function (resData) {
-                if (resData.status) {
-                    $rootScope.userData = resData.data;
-                    $rootScope.userData.auth = true;
-                    localStorageService.set('user_data', $rootScope.userData);
-                    Service.modal($rootScope);
-                    $rootScope.$digest();
-                } else {
-                    $log.error(resData.data)
+            if ($rootScope.reg_auth.form) {
+                var data = {};
+                switch (type) {
+                    case "login":
+                        data = {
+                            email: $rootScope.reg_auth.form[type].email,
+                            password: md5.createHash($rootScope.reg_auth.form[type].password || '')
+                        };
+                        break;
+                    case "register":
+                        data = {
+                            username: $rootScope.reg_auth.form[type].username,
+                            email: $rootScope.reg_auth.form[type].email,
+                            password: md5.createHash($rootScope.reg_auth.form[type].password || ''),
+                            confirmPassword: md5.createHash($rootScope.reg_auth.form[type].confirmPassword || '')
+                        };
+                        break;
+                    default:
+                        break;
                 }
-            })
+
+                if ($rootScope.reg_auth.form[type].email) {
+                    io.socket.post('/api/user/' + type, data, function (resData) {
+                        if (resData.status) {
+                            $rootScope.userData = angular.extend($rootScope.userData, resData.data);
+                            $rootScope.userData.auth = true;
+                            localStorageService.set('user_data', $rootScope.userData);
+                            Service.modal($rootScope);
+                            $rootScope.$digest();
+                        } else {
+                            $log.error(resData.data)
+                        }
+                    })
+                } else {
+                    $log.error('NO EMAIL IN FORM');
+                }
+            }
         };
 
         // функция выхода_______________________________________________________________________________________________
