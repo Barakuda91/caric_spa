@@ -43,7 +43,19 @@ module.exports = {
 					Users.create({
 						username: req.body.username,
 						email: req.body.email,
-						passwordHash: req.body.password
+						passwordHash: req.body.password,
+                        settings: {/* Default user settings all enabled */
+                            show_disks: true,
+                            show_tires: true,
+                            show_spacers: true,
+                            show_posts: true,
+                            show_currency: 'usd',
+                            firstname: '',
+                            lastname: '',
+                            telephone: '',
+                            password: '',
+                            confirm_password: ''
+                        }
 					}).then(function(rows) {
 						Services
 							.createDataWithToken(rows)
