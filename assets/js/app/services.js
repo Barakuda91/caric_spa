@@ -51,7 +51,62 @@
           if($rootScope.modals) {
             delete $rootScope.modals;
             if(!$rootScope.$$phase) {
+<<<<<<< HEAD
               $rootScope.$digest();
+=======
+                $rootScope.$digest();
+            }
+
+            if(typeof options.delay == 'number') {
+                $timeout(function () {
+                    if($rootScope.modals) {
+                        delete $rootScope.modals;
+                        if(!$rootScope.$$phase) {
+                            $rootScope.$digest();
+                        }
+                    }
+                }, options.delay)
+            }
+        };
+
+        this.getLocalizator = function($rootScope) {
+            $log.debug(name+'.getLocalizator');
+
+            if (!window.localization_items) return;
+            var currentObject = window.localization_items;
+            currentObject = new Proxy(currentObject, {
+                get: function(target, phrase) {
+                    if (phrase in target) {
+                        return (function($rootScope){
+                            if (typeof target[phrase][$rootScope.userData.language] === 'undefined') {
+                                return phrase;
+                            } else {
+                                return target[phrase][$rootScope.userData.language].charAt(0).toUpperCase() + target[phrase][$rootScope.userData.language].slice(1);
+                            }
+                        })($rootScope);
+                    } else {
+                        return phrase;
+                    }
+                }
+            });
+
+            return currentObject;
+        };
+
+        this.getLocalizationButton = function(lang) {
+            $log.debug(name+'.getLocalizationButton');
+
+            var e={en:'',ru:'',ua:''}
+            e[lang] = 'btn-orange';
+            return e;
+        };
+
+        // возаращает массив параметров [parameter], модифицированный если нужно
+        this.getSettingParameter = function(parameter,disabled) {
+
+            if(typeof disabled == 'undefined') {
+                disabled = true;
+>>>>>>> ba6cf7dac816538742eabcae4dd6d012d69f8f2c
             }
           }
         }, options.delay)

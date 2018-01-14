@@ -96,8 +96,8 @@
                                 class="form-control"
                                 placeholder="{{_.USERNAME}}"
                                 value="">
-                        <i ng-if="registration.username.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <i ng-hide="registration.username.$untouched"  ng-if="reg_auth.form.register.username.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        <i ng-if="registration.username.$valid"  aria-hidden="true"></i>
+                        <i ng-hide="registration.username.$untouched"  ng-if="reg_auth.form.register.username.$invalid"  aria-hidden="true"></i>
                     </div>
                     <div class="form-group">
                         <input
@@ -110,8 +110,8 @@
                                 class="form-control"
                                 placeholder="{{_.EMAIL}}"
                                 value="">
-                        <i ng-if="registration.email.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <i ng-hide="registration.email.$untouched"  ng-if="registration.email.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        <i ng-if="registration.email.$valid" aria-hidden="true"></i>
+                        <i ng-hide="registration.email.$untouched"  ng-if="registration.email.$invalid"  aria-hidden="true"></i>
                     </div>
                     <div class="form-group">
                         <input
@@ -123,8 +123,8 @@
                                 min-chars-length="6"
                                 class="form-control"
                                 placeholder="{{_.PASSWORD}}">
-                        <i ng-if="registration.password.$valid" class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <i ng-hide="registration.password.$untouched" ng-if="registration.password.$invalid" class="fa fa-square-o" aria-hidden="true"></i>
+                        <i ng-if="registration.password.$valid" aria-hidden="true"></i>
+                        <i ng-hide="registration.password.$untouched" ng-if="registration.password.$invalid" aria-hidden="true"></i>
                     </div>
                     <div class="form-group">
                         <input
@@ -136,8 +136,8 @@
                                 min-chars-length="6"
                                 class="form-control"
                                 placeholder="{{_.REPEAT}} {{_.PASSWORD}}">
-                        <i ng-show="registration.password.$viewValue == registration.confirmPassword.$viewValue" class="fa fa-check-square-o" aria-hidden="true"></i>
-                        <i ng-hide="registration.confirmPassword.$untouched" ng-if="registration.password.$viewValue !== registration.confirmPassword.$viewValue" class="fa fa-square-o" aria-hidden="true"></i>
+                        <i ng-show="registration.password.$viewValue == registration.confirmPassword.$viewValue" aria-hidden="true"></i>
+                        <i ng-hide="registration.confirmPassword.$untouched" ng-if="registration.password.$viewValue !== registration.confirmPassword.$viewValue" aria-hidden="true"></i>
                     </div>
                     <div class="form-group">
                         <div class="row">

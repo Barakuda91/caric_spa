@@ -190,6 +190,7 @@
         } else {
           $log.error(resData.data)
         }
+<<<<<<< HEAD
       });
     } else {
       $rootScope.setting.values = Service.getDefaultSettingParamsValues(
@@ -246,6 +247,215 @@
         if(
           !$rootScope.setting.values[type] ||
           (
+=======
+        /*-------------------------------------------------- установки [END] -----------------------------------------*/
+        /*-------------------------------------------------- функции -------------------------------------------------*/
+
+        // TODO сделать универсальные функции работы с полями выбора
+        /* вызывается когда изменилось значение выпадающего списка параметра
+         * нужно взять подсписок у текущего элемента,
+         * и добавть этот подсписок в новый элемент
+         * */
+        $rootScope.customSelectInputChange = function (type, target) {
+            $rootScope.setting.customSelect[type].disabled = false;
+            $rootScope.setting.customSelect[type].placeholder = '';
+            if(
+                $rootScope.setting.params[target][$rootScope.setting.values[target]].models &&
+                $rootScope.setting.params[target][$rootScope.setting.values[target]].models.length > 0)
+            {
+                $rootScope.setting.customSelect[type].mainDivClass = 'select-list';
+            } else {
+                $rootScope.setting.customSelect[type].mainDivClass = '';
+            }
+            $rootScope.setting.customSelect[type].value = '';
+        };
+        // фокус на блоке выбора модели
+        //$rootScope.searchBlockFocus = function(){
+        $rootScope.customSelectFocus = function(type){
+            console.log('focus');
+
+            $rootScope.setting.customSelect[type].itemListClass = 'show'
+        };
+
+        /*
+         * при потери фокуса следует закрыть выпадающий список
+         * */
+        $rootScope.customSelectBlur = function(type){
+            console.log('blur');
+
+            $timeout(function(){
+                $rootScope.setting.customSelect[type].itemListClass = '';
+                var title = $rootScope.setting.customSelect[type].value;
+                if(
+                    !$rootScope.setting.values[type] ||
+                    (
+                        true
+                    )) {
+                        var item = {
+                            new_key: true,
+                            title: title.toUpperCase(),
+                            key: title.toLowerCase().replace(/\s/g, '_'),
+                        };
+                        $rootScope.setting.values[type] = item;
+                        console.log(item)
+                    }
+            }, 50);
+        };
+
+        // ивент выбора элемента из выпадающего кастомного списка
+        $rootScope.customSelectChooseItem = function( item, type ){
+            $rootScope.setting.values[type] = {key: item.key, title: item.title};
+            $rootScope.setting.customSelect[type].value = item.title;
+            $rootScope.setting.customSelect[type].itemListClass = '';
+        };
+
+        // вызывает модальное окно при клике на название параметра в фильтре
+        $rootScope.modal = {};
+        $rootScope.getModalWithDescription = function(type) {
+            $rootScope.modal.blockTextName = type+'_TEXT';
+            Service.modal($rootScope, {
+                size: 'sm',
+                okButton: true,
+                header: type,
+                template: 'parameter_description'
+            })
+        };
+
+        // сработает при получении или потере фокуса полем ввода поискового запроса_____________________________________
+        $rootScope.searchInputFocus = function(type) {
+            if(type) {
+                $rootScope.searchInputBlock = 'active';
+            } else {
+                $rootScope.searchInputBlock = '';
+            }
+
+        };
+
+        // обработчик нажатия на кнопку смены языка_____________________________________________________________________
+        $rootScope.changelang = function(language) {
+            $rootScope.userData.language = language;
+            localStorageService.set('user_data', $rootScope.userData);
+
+            if ($rootScope.userData.auth) {
+                io.socket.post('/api/user/change_language', {language: language}, function (resData) {
+                    if(resData) {
+
+                        localStorageService.set('user_data', $rootScope.userData);
+                    } else {
+                        $log.error(resData)
+                    }
+                })
+            }
+        };
+
+        // открытие закрытие модального окна логина, регистрации
+        $rootScope.modalLoginOpenSwitcher = function (type) {
+            $log.debug(controllerName+'.modalLoginOpenSwitcher');
+
+            if(type == 'open' ) {
+                Service.modal($rootScope,{
+                    template: 'reg_auth',
+                    crossButton: true
+                });
+                // возврашаем дефолтное сосотояние модального окна
+                $rootScope.reg_auth.login.open = true;
+                $rootScope.reg_auth.register.open = false;
+                $rootScope.registerActiveClass = 'notActiveBlock';
+                $rootScope.loginActiveClass = '';
+                // чистим введеные ранее данные
+                if ($rootScope.reg_auth.form && $rootScope.reg_auth.form.login) {
+                    $rootScope.reg_auth.form.login.email = '';
+                    $rootScope.reg_auth.form.login.password = '';
+                }
+                if ($rootScope.reg_auth.form && $rootScope.reg_auth.form.register) {
+                    $rootScope.reg_auth.form.register.username = '';
+                    $rootScope.reg_auth.form.register.email = '';
+                    $rootScope.reg_auth.form.register.password = '';
+                    $rootScope.reg_auth.form.register.confirmPassword = '';
+                }
+            } else {
+                Service.modal($rootScope);
+            }
+        };
+
+        // переключение в модальном окне (вход - регистрация)___________________________________________________________
+        $rootScope.modelLoginSwitch = function (type) {
+            $log.debug(controllerName+'.modelLoginSwitch+');
+
+            $rootScope.reg_auth.login.open = false;
+            $rootScope.reg_auth.register.open = false;
+            $rootScope.reg_auth[type].open = true;
+            if ($rootScope.reg_auth.login.open) {
+                $rootScope.registerActiveClass = 'notActiveBlock';
+                $rootScope.loginActiveClass = '';
+            } else {
+                $rootScope.loginActiveClass = 'notActiveBlock';
+                $rootScope.registerActiveClass = '';
+            }
+        };
+
+        // включение отключение блока "забыл пароль"____________________________________________________________________
+        $rootScope.modelLoginForgot = function () {
+            $log.debug(controllerName+'.modelLoginForgot');
+
+            $rootScope.reg_auth.forgot.open = !$rootScope.reg_auth.forgot.open;
+        };
+
+        // функция авторизации, регистрации, восстановления пароля______________________________________________________
+        $rootScope.loginFormFunction = function(type) {
+            if ($rootScope.reg_auth.form) {
+                var data = {};
+                switch (type) {
+                    case "login":
+                        data = {
+                            email: $rootScope.reg_auth.form[type].email,
+                            password: md5.createHash($rootScope.reg_auth.form[type].password || '')
+                        };
+                        break;
+                    case "register":
+                        data = {
+                            username: $rootScope.reg_auth.form[type].username,
+                            email: $rootScope.reg_auth.form[type].email,
+                            password: md5.createHash($rootScope.reg_auth.form[type].password || ''),
+                            confirmPassword: md5.createHash($rootScope.reg_auth.form[type].confirmPassword || '')
+                        };
+                        break;
+                    default:
+                        break;
+                }
+
+                if ($rootScope.reg_auth.form[type].email) {
+                    io.socket.post('/api/user/' + type, data, function (resData) {
+                        if (resData.status) {
+                            $rootScope.userData = angular.extend($rootScope.userData, resData.data);
+                            $rootScope.userData.auth = true;
+                            localStorageService.set('user_data', $rootScope.userData);
+                            Service.modal($rootScope);
+                            $rootScope.$digest();
+                        } else {
+                            $log.error(resData.data)
+                        }
+                    })
+                } else {
+                    $log.error('NO EMAIL IN FORM');
+                }
+            }
+        };
+
+        // функция выхода_______________________________________________________________________________________________
+        $rootScope.userLogout = function() {
+            defaultUserData();
+            $location.path('/');
+        };
+
+        $rootScope.$watch( // TODO исправить
+            function () {
+                return window.innerWidth;
+            },
+            function (value) {
+                $rootScope.windowWidth = value;
+            },
+>>>>>>> ba6cf7dac816538742eabcae4dd6d012d69f8f2c
             true
           )) {
           var item = {
