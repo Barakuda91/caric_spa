@@ -1,142 +1,190 @@
 <div class="gallery_wrap panel-body" id="main_page_logos_div">
-    <div class="container" ng-controller="ListController as list">
-        <div ng-include="'/templates/filters/pagi-nav-block.html'"></div>
-        <div ng-switch on="listType" class="bottom-line">
-            <div ng-switch-when="wheels">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 bottom-line-x3">
-                        <h3>{{_.WHEELS_ON_SALE}}</h3>
-                    </div>
-                </div>
-                <div class="content_block">
-                    <div ng-include="'/templates/filters/wheels-filter-block.html'"></div>
-                </div>
-            </div>
-            <div ng-switch-when="tyres">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 bottom-line-x3">
-                        <h3>{{_.TYRES_ON_SALE}}</h3>
-                    </div>
-                </div>
-                <div class="content_block">
-                    <div ng-include="'/templates/filters/tyres-filter-block.html'"></div>
-                </div>
-            </div>
-            <div ng-switch-when="spaces">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 bottom-line-x3">
-                        <h3>{{_.SPACES_ON_SALE}}</h3>
-                    </div>
-                </div>
-                <div class="content_block">
-                    <div ng-include="'/templates/filters/spaces-filter-block.html'"></div>
-                </div>
-            </div>
+  <div class="container" ng-controller="ListController as list">
+    <div ng-include="'/templates/filters/pagi-nav-block.html'"></div>
+    <div ng-switch on="advertType">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1>{{_.FOUND_ADVERTS}} {{advertsCount}}</h1>
         </div>
-        {{list.var}}
-        {{var}}
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="additional-info-main-wrapper-box">
+
+        <div ng-switch-when="wheels">
+          <div class="content_block">
+            <div ng-include="'/templates/filters/wheels-filter-block.html'"></div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-            </div>
+        <div ng-switch-when="tyres">
+          <div class="content_block">
+            <div ng-include="'/templates/filters/tyres-filter-block.html'"></div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
-                    <div class="logo_block inline main-auto-img" >
-                        <a class="21" href="#" title="ешеду"></a>
-                    </div>
-                </div>
-            </div>
+        <div ng-switch-when="spaces">
+          <div class="content_block">
+            <div ng-include="'/templates/filters/spaces-filter-block.html'"></div>
+          </div>
         </div>
-        <div ng-include="'/templates/filters/pagi-nav-block.html'"></div>
+      </div>
     </div>
+    <div class="additional-info-main-wrapper-box col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12"
+         style="min-height: 0px; padding-bottom: 3px; padding-top: 3px">
+      <div class="col-lg-2"><a class="btn btn-orange btn-md full-width"  ng-click="goSearchButton()">{{_.SEARCH}}</a></div>
+      <div class="col-lg-2"><a class="btn btn-orange btn-md full-width"  ng-click="w()">{{_.REMOVE_FILTERS}}</a></div>
+      <div class="col-lg-2"><a class="btn btn-orange btn-md full-width">{{_.SAVE_SEARCH}}</a></div>
+      <div class="col-lg-6 text-right">
+
+        <pagination count="pagination.data.length" take="pagination.take" activate="pagination.activate"
+                    max-size="6" hide-arrows="false"></pagination>
+      </div>
+    </div>
+    <div ng-if="advertsCount > 0" class="additional-info-main-wrapper-box col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12" style="padding-bottom: 10px;">
+      <div ng-repeat="(i,el) in adverts" class="col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xxs-12 text-center">
+        <a ng-href="{{el.url}}">
+          <div class="addv-small-block inline main-auto-img" >
+            <div data-id="{{el.id}}" class="info">
+              <div class="price">{{el.price}}</div>
+              <div class="params">{{el.params[0]}} {{el.params[1]}} {{el.params[2]}}</div></div>
+            <div class="image"><div style="background-image: url({{el.imgUrl}})"></div></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div ng-if="advertsCount == 0" class="additional-info-main-wrapper-box col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12" style="padding-bottom: 10px;">
+      <h3 class="text-center">ПО ДАННОМУ ЗАПРОСУ ОБЪЯВЛЕНИЙ НЕ ОБНАРУЖЕНО</h3>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-2 col-xxs-2 text-center">
+          <div class="logo_block inline main-auto-img" >
+            <a class="21" href="#" title="ешеду"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-include="'/templates/filters/pagi-nav-block.html'"></div>
+  </div>
 </div>

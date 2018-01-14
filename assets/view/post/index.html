@@ -1,86 +1,94 @@
 <style>
-    /* advert page start*/
-    /*.class-bg div {*/
-        /*border:1px solid green;*/
-    /*}*/
-    button {
-        margin-bottom: 20px;
-        padding: 5px 10px;
-    }
+  /* advert page start*/
+  /*.class-bg div {*/
+  /*border:1px solid green;*/
+  /*}*/
+  button {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+  }
 
-    .slide-list {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
-    .slide-list > li {
-        display: inline;
-    }
-    .slide-list > li:hover {
-        cursor: pointer;
-    }
-    .slide-list > li > img {
-        width: 100px;
-        height: 100px;
-    }
+  .slide-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .slide-list > li {
+    display: inline;
+  }
+  .slide-list > li:hover {
+    cursor: pointer;
+  }
+  .slide-list > li > img {
+    width: 100px;
+    height: 100px;
+  }
 
-    /* advert page end */
+  /* advert page end */
 </style>
 
 <div class="container class-bg post-main-wrapper" ng-controller="AdvertController">
-    <div class="popup-description-block">
-        {{advertInfo.advertDescription}}
-        <div>
-            <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.HIDE_ALL}}</a>
-        </div>
+  <div class="popup-description-block">
+    {{advertInfo.advertDescription}}
+    <div>
+      <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.HIDE_ALL}}</a>
     </div>
-    <div class="row">
-        <div class="col-xs-12 text-center"><h1>{{advertInfo.title}}</h1></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center"><h1>{{advertInfo.title}}</h1></div>
+  </div>
+  <div class="row" data-id="{{advertInfo.id}}">
+    <div class="col-lg-6 hidden-md hidden-sm hidden-xs post-main-lg-wrapper">
+      <div class="col-xs-12 main-additional-info-wrapper">
+        <div ng-include="'templates/post/additional-info-block.html'"></div>
+      </div>
+      <div class="col-xs-12 additional-info-main-wrapper">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 additional-info-main-wrapper-box">
+            {{advertInfo.advertDescriptionFormatted}}
+          </div>
+          <div ng-if="advertInfo.advertDescription && advertInfo.advertDescription.length > 750">
+            <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.SHOW_ALL}}</a>
+          </div>
+      </div>
     </div>
-    <div class="row" data-id="{{advertInfo.id}}">
-        <div class="col-lg-6 hidden-md hidden-sm hidden-xs post-main-lg-wrapper">
-            <div class="col-xs-12 main-additional-info-wrapper">
-                <div ng-include="'templates/post/additional-info-block.html'"></div>
-            </div>
-            <div class="col-xs-12 post-description-block-big-screen">
-                <div class="popup-description-block-first-show">
-                    {{advertInfo.advertDescriptionFormatted}}
-                </div>
-                <div ng-if="advertInfo.advertDescription && advertInfo.advertDescription.length > 750">
-                    <a class="show-all-desc-link" ng-click="showAllDescription()">{{_.SHOW_ALL}}</a>
-                </div>
-            </div>
+    <div class="col-lg-6">
+      <div class="col-xs-12 text-center advert-price-block">
+        <div class="col-lg-6 text-left">
+          <span class="small">{{_.PRICE}}</span>
+          <span class="text-success"> {{advertInfo.price}}{{_[advertInfo.currency]}}</span>
+          <span style="text-transform: lowercase;" class="small">{{_[advertInfo.priceFor]}}</span>
         </div>
-        <div class="col-lg-6">
-            <div class="col-xs-12 text-center advert-price-block">{{advertInfo.price}} {{advertInfo.currency}}</div>
-            <div class="col-xs-12 text-center main-photo-wrapper">
-                <div ng-include="'templates/post/main-gallery-foto-block.html'"></div>
-            </div>
-        </div>
+        <div class="col-lg-6 text-right small">{{_[advertInfo.deliveryMethod]}}</div>
+      </div>
+
+      <div class="col-xs-12 text-center main-photo-wrapper">
+        <div ng-include="'templates/post/main-gallery-foto-block.html'"></div>
+      </div>
     </div>
-    <div class="row hidden-md hidden-sm hidden-xs main-slider-block-wrapper" ng-if="slides.length > 1">
-        <div ng-if="slides.length >= 6" class="col-lg-1 text-center logo_block_arrow_left" ng-click="galleryRotateLeft()">
-            <i class="fa fa-angle-left fa-5x" aria-hidden="true"></i>
-        </div>
-        <div ng-if="slides.length >= 6" class="col-lg-10 gallery-slides-block">
-            <div ng-include="'templates/post/slides-gallery-foto-block.html'"></div>
-        </div>
-        <div ng-if="slides.length < 6" class="col-lg-12 gallery-no-slides-block">
-            <div ng-include="'templates/post/no-sliders-gallery-foto-block.html'"></div>
-        </div>
-        <div ng-if="slides.length >= 6" class="col-lg-1 text-center logo_block_arrow_right" ng-click="galleryRotateRight()">
-            <i class="fa fa-angle-right fa-5x" aria-hidden="true"></i>
-        </div>
+  </div>
+  <div class="row hidden-md hidden-sm hidden-xs main-slider-block-wrapper" ng-if="slides.length > 1">
+    <div ng-if="slides.length >= 6" class="col-lg-1 text-center logo_block_arrow_left" ng-click="galleryRotateLeft()">
+      <i class="fa fa-angle-left fa-5x" aria-hidden="true"></i>
     </div>
-    <div class="row">
-        <div class="col-xs-12 visible-md visible-sm visible-xs additional-info-small-dev">
-            <div ng-include="'templates/post/additional-info-block.html'"></div>
-        </div>
-        <div class="col-xs-12 visible-md visible-sm visible-xs">
-            {{advertInfo.advertDescription}}
-        </div>
-        <div class="col-xs-12">
-            <div ng-include="'templates/post/messages-block.html'"></div>
-        </div>
+    <div ng-if="slides.length >= 6" class="col-lg-10 gallery-slides-block">
+      <div ng-include="'templates/post/slides-gallery-foto-block.html'"></div>
     </div>
+    <div ng-if="slides.length < 6" class="col-lg-12 gallery-no-slides-block">
+      <div ng-include="'templates/post/no-sliders-gallery-foto-block.html'"></div>
+    </div>
+    <div ng-if="slides.length >= 6" class="col-lg-1 text-center logo_block_arrow_right" ng-click="galleryRotateRight()">
+      <i class="fa fa-angle-right fa-5x" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 visible-md visible-sm visible-xs additional-info-small-dev">
+      <div ng-include="'templates/post/additional-info-block.html'"></div>
+    </div>
+    <div class="col-xs-12 visible-md visible-sm visible-xs">
+      {{advertInfo.advertDescription}}
+    </div>
+    <div class="col-xs-12">
+      <div ng-include="'templates/post/messages-block.html'"></div>
+    </div>
+  </div>
 </div>

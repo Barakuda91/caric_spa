@@ -61,7 +61,7 @@
             $log.debug(controllerName+'.aliasRemove');
             delete $scope.localizationArray[key];
         };
-        
+
         $scope.goMainPage = function() {
 
             $route.reload();

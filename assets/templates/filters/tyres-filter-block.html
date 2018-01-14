@@ -5,17 +5,17 @@
         </label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.tyreType" ng-model="setting.values.tyreType" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.tyreType" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.tyreType" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 form-group">
-        <label for="" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('SPEED_INDEX')">
+        <label for="" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('SPEED_INDEX')">
             {{_.SPEED_INDEX}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].tyreSpeedIndex.required" class="required">*</span>
         </label>
-        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 col-xxs-12">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.tyreSpeedIndex" ng-model="setting.values.tyreSpeedIndex" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.tyreSpeedIndex" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.tyreSpeedIndex" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
@@ -28,17 +28,17 @@
         </label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.diameter" ng-model="setting.values.diameter" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.diameter" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 form-group">
-        <label for="" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('LOAD_INDEX')">
+        <label for="" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('LOAD_INDEX')">
             {{_.LOAD_INDEX}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].tyreLoadIndex.required" class="required">*</span>
         </label>
-        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 col-xxs-12">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.tyreLoadIndex" ng-model="setting.values.tyreLoadIndex" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.tyreLoadIndex" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.tyreLoadIndex" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
@@ -51,17 +51,17 @@
         </label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.tyreWidth" ng-model="setting.values.tyreWidth" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.tyreWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.tyreWidth" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 form-group">
-        <label for="" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('PRODUCTION_YEAR')">
+        <label for="" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('PRODUCTION_YEAR')">
             {{_.PRODUCTION_YEAR}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].productionYear.required" class="required">*</span>
         </label>
-        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 col-xxs-12">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.productionYear" ng-model="setting.values.productionYear" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.productionYear" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.productionYear" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
@@ -74,15 +74,15 @@
         </label>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12">
             <select ng-class="setting.advertAddSettingParams.errorClass.tyreHeight" ng-model="setting.values.tyreHeight" class="form-control">
-                <option value="{{item.key}}" ng-repeat="item in setting.params.tyreHeight" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.tyreHeight" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 form-group">
-        <label for="" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('RESIDUAL_TREAD')">
+        <label for="" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('RESIDUAL_TREAD')">
             {{_.RESIDUAL_TREAD}}
         </label>
-        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 col-xxs-12">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-xxs-12">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-xxs-12">
                     <input ng-class="setting.advertAddSettingParams.errorClass.treadRest_1" ng-model="setting.values.treadRest_1" type="text" placeholder="mm front" class="form-control">
@@ -104,15 +104,15 @@
             <select ng-class="setting.advertAddSettingParams.errorClass.tyreMaker"
                     ng-change="customSelectInputChange('tyreModel','tyreMaker')"
                     ng-model="setting.values.tyreMaker" class="form-control">
-                <option value="{{$index}}" ng-repeat="item in setting.params.tyreMaker" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                <option value="{{item.title}}" ng-repeat="item in setting.params.tyreMaker" ng-disabled="item.disabled">{{_[item.title]}}</option>
             </select>
         </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12 form-group">
-        <label for="" class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('MODEL')">
+        <label for="" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 col-xxs-12 control-label" ng-click="getModalWithDescription('MODEL')">
             {{_.MODEL}} <span ng-if="setting.advertAddSettingParams[setting.values.advertType].tyreModel.required" class="required">*</span>
         </label>
-        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 col-xxs-12">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 col-xxs-12">
             <div  ng-class="setting.customSelect['tyreModel'].mainDivClass">
                 <input type="text"
                        ng-class="setting.advertAddSettingParams.errorClass.tyreMaker"

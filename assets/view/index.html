@@ -79,7 +79,7 @@
                         <!--<i class="fa fa-angle-left fa-5x" aria-hidden="true"></i>-->
                     <!--</div>-->
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xxs-12">
-                        <a href="/list/{{block.type}}" class="btn btn-head-block btn-lg">
+                        <a href="/list?advertType={{block.type}}" class="btn btn-head-block btn-lg">
                             {{_[block.title]}}
                         </a>
                     </div>
@@ -89,7 +89,7 @@
                                 <div data-id="{{el.id}}" class="info">
                                     <div class="price">{{el.price}}</div>
                                     <div class="params">{{el.params[0]}} {{el.params[1]}} {{el.params[2]}}</div></div>
-                                <div class="image" style="background-image: url({{el.imgUrl}})"></div>
+                              <div class="image"><div style="background-image: url({{el.imgUrl}})"></div></div>
                             </div>
                         </a>
                     </div>

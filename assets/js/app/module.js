@@ -11,7 +11,8 @@
             'ngAnimate',
             'ngFileUpload',
             'ngSanitize',
-            'ngPhotoswipe'
+            'ngPhotoswipe',
+            'ng-pagination'
         ])
         .config(GeneralConfig)
         .directive('minCharsLength', function() {
@@ -82,7 +83,7 @@
                 controller: 'GeneralController',
                 middleware: 'getLocalization'
             })
-            .when('/list/:type', {
+            .when('/list', {
                 controller: 'GeneralController',
                 //controllerAs: 'general',
                 templateUrl: '/view/list/index.html',

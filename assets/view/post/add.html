@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 col-xxs-4">
                                 <select ng-model="setting.values.currency" class="form-control">
-                                    <option value="{{item.key}}" ng-repeat="item in setting.params.currency" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                                    <option value="{{item.title}}" ng-repeat="item in setting.params.currency" ng-disabled="item.disabled">{{_[item.title]}}</option>
                                 </select>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                     </label>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-xxs-12">
                         <select ng-class="setting.advertAddSettingParams.errorClass.priceFor" ng-model="setting.values.priceFor" class="form-control">
-                            <option value="{{item.key}}" ng-repeat="item in setting.params.priceFor" ng-disabled="item.disabled">{{_[item.title]}}</option>
+                            <option value="{{item.title}}" ng-repeat="item in setting.params.priceFor" ng-disabled="item.disabled">{{_[item.title]}}</option>
                         </select>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     </label>
                     <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 col-xxs-12">
                         <select ng-class="setting.advertAddSettingParams.errorClass.deliveryMethod" ng-model="setting.values.deliveryMethod" class="form-control">
-                            <option value="{{item.key}}" ng-repeat="item in setting.params.deliveryMethod" ng-disabled="item.disable">{{_[item.title]}}</option>
+                            <option value="{{item.title}}" ng-repeat="item in setting.params.deliveryMethod" ng-disabled="item.disable">{{_[item.title]}}</option>
                         </select>
                     </div>
                 </div>
