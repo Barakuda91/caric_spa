@@ -19,6 +19,15 @@
         </div>
     </li>
 </ul>
+<div ng-if="slidesCount == 0">
+    <div class="img-viewport-main">
+        <img ng-src="{{noImageDefaultSrc}}"
+             alt="alter description"
+             data-index="0"
+             class="img-responsive main-image-center"
+        />
+    </div>
+</div>
 <div ng-photoswipe
      slides="slides"
      open="open"
