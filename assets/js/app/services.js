@@ -13,105 +13,99 @@
         return param;
       }
     },
-    this.modal = function($rootScope, options) {
-      $log.debug(name+'.modal')
-      /*закрываем модалку*/
-      if(!options) {
-        delete $rootScope.modals;
+      this.modal = function($rootScope, options) {
+        $log.debug(name+'.modal')
+        /*закрываем модалку*/
+        if(!options) {
+          delete $rootScope.modals;
 
 //                $rootScope.modals.shadow = false;
-        return;
-      }
+          return;
+        }
 
-      $rootScope.modals = {
-        window: true,
-        header: options.header || false,
-        crossButton: options.crossButton || false,
-        okButton: options.okButton || false,
-        size: options.size || 'lg'
-      };
+        $rootScope.modals = {
+          window: true,
+          header: options.header || false,
+          crossButton: options.crossButton || false,
+          okButton: options.okButton || false,
+          size: options.size || 'lg'
+        };
 
-      /*устанавливаем модалку*/
-      if(options.template) {
-        $rootScope.modals.content = '/templates/modals/'+options.template+'.html';
-      }
+        /*устанавливаем модалку*/
+        if(options.template) {
+          $rootScope.modals.content = '/templates/modals/'+options.template+'.html';
+        }
 
 
-      switch(options.status) {
-        case 'success': $rootScope.modals.statusIcon = 'fa-check fa-3x green'; break;
-        case 'error': $rootScope.modals.statusIcon = 'fa-ban fa-3x red'; break;
-      }
-      $rootScope.modals.shadow = true;
-      if(!$rootScope.$$phase) {
-        $rootScope.$digest();
-      }
+        switch(options.status) {
+          case 'success': $rootScope.modals.statusIcon = 'fa-check fa-3x green'; break;
+          case 'error': $rootScope.modals.statusIcon = 'fa-ban fa-3x red'; break;
+        }
+        $rootScope.modals.shadow = true;
+        if(!$rootScope.$$phase) {
+          $rootScope.$digest();
+        }
 
-      if(typeof options.delay == 'number') {
-        $timeout(function () {
-          if($rootScope.modals) {
-            delete $rootScope.modals;
-            if(!$rootScope.$$phase) {
-<<<<<<< HEAD
-              $rootScope.$digest();
-=======
+        if(typeof options.delay == 'number') {
+          $timeout(function () {
+            if($rootScope.modals) {
+              delete $rootScope.modals;
+              if(!$rootScope.$$phase) {
                 $rootScope.$digest();
-            }
+              }
 
-            if(typeof options.delay == 'number') {
+              if(typeof options.delay == 'number') {
                 $timeout(function () {
-                    if($rootScope.modals) {
-                        delete $rootScope.modals;
-                        if(!$rootScope.$$phase) {
-                            $rootScope.$digest();
-                        }
+                  if($rootScope.modals) {
+                    delete $rootScope.modals;
+                    if(!$rootScope.$$phase) {
+                      $rootScope.$digest();
                     }
-                }, options.delay)
-            }
-        };
+                  }
+                }, options.delay);
+              }
+            };
 
-        this.getLocalizator = function($rootScope) {
-            $log.debug(name+'.getLocalizator');
+            this.getLocalizator = function($rootScope) {
+              $log.debug(name+'.getLocalizator');
 
-            if (!window.localization_items) return;
-            var currentObject = window.localization_items;
-            currentObject = new Proxy(currentObject, {
+              if (!window.localization_items) return;
+              var currentObject = window.localization_items;
+              currentObject = new Proxy(currentObject, {
                 get: function(target, phrase) {
-                    if (phrase in target) {
-                        return (function($rootScope){
-                            if (typeof target[phrase][$rootScope.userData.language] === 'undefined') {
-                                return phrase;
-                            } else {
-                                return target[phrase][$rootScope.userData.language].charAt(0).toUpperCase() + target[phrase][$rootScope.userData.language].slice(1);
-                            }
-                        })($rootScope);
-                    } else {
+                  if (phrase in target) {
+                    return (function($rootScope){
+                      if (typeof target[phrase][$rootScope.userData.language] === 'undefined') {
                         return phrase;
-                    }
+                      } else {
+                        return target[phrase][$rootScope.userData.language].charAt(0).toUpperCase() + target[phrase][$rootScope.userData.language].slice(1);
+                      }
+                    })($rootScope);
+                  } else {
+                    return phrase;
+                  }
                 }
-            });
+              });
 
-            return currentObject;
-        };
+              return currentObject;
+            };
 
-        this.getLocalizationButton = function(lang) {
-            $log.debug(name+'.getLocalizationButton');
+            this.getLocalizationButton = function(lang) {
+              $log.debug(name+'.getLocalizationButton');
 
-            var e={en:'',ru:'',ua:''}
-            e[lang] = 'btn-orange';
-            return e;
-        };
+              var e={en:'',ru:'',ua:''}
+              e[lang] = 'btn-orange';
+              return e;
+            };
 
-        // возаращает массив параметров [parameter], модифицированный если нужно
-        this.getSettingParameter = function(parameter,disabled) {
+            // возаращает массив параметров [parameter], модифицированный если нужно
+            this.getSettingParameter = function(parameter,disabled) {
 
-            if(typeof disabled == 'undefined') {
-                disabled = true;
->>>>>>> ba6cf7dac816538742eabcae4dd6d012d69f8f2c
-            }
-          }
-        }, options.delay)
-      }
-    };
+              if(typeof disabled == 'undefined')  disabled = true;
+            };
+          }, options.delay);
+        }
+      };
 
     this.getLocalizator = function($rootScope) {
       $log.debug(name+'.getLocalizator');
